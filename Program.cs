@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Packing;
+using Packing.vmsPackingDB;
 using System.Globalization;
 
 
@@ -10,6 +12,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+var constr = builder.Configuration.GetConnectionString("VMSConnectionString");
+// Add services to the container.
+//builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews();
+builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
+builder.Services.AddDbContext<vms_packingContext>(options => options.UseSqlServer(constr, option =>
+{
+    option.EnableRetryOnFailure();
+}));
 
 //Configure multi langnage
 builder.Services.AddLocalization();
