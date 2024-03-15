@@ -1,0 +1,63 @@
+{
+  "Loading": "Loading",
+  "LoadingList": "Loading List",
+  "Approval": "Approval",
+  "History": "History",
+  "Summary": "Summary",
+  "Configuration": "Configuration",
+  "Exit": "Exit",
+
+  "BatchNo": "Batch No",
+  "SubBatch": "Sub Batch",
+  "Line": "Line",
+  "SLOC": "Storage Location",
+  "MaterialCode": "Material Code",
+  "MaterialGroup": "Material Group",
+  "MaterialType": "Material Type",
+  "MaterialName": "Material Name",
+  "MFGDate": "MFG Date",
+  "ExpiredDate": "Expire Date",
+  "RunNo": "Run No",
+  "UOM": "UOM",
+  "Package": "Package",
+  "Shift": "Shift",
+  "HoldPass": "Hold/Pass",
+  "Apply": "Apply",
+  "Save": "Save",
+  "CloseJob": "Close Job",
+  "PrintQRCode": "Print QR Code",
+  "ClearData": "Clear Data",
+
+  "Plant": "Plant",
+  "Search": "Search",
+  "Excel": "Excel",
+  "Qty": "Qty",
+
+  "Status": "Stataus",
+  "Update": "Update",
+
+  "FromDate": "From Date",
+  "ToDate": "To Date",
+
+  "ShiftName": "Shift Name",
+  "From": "From",
+  "To": "To",
+  "BatchNoFormat": "Batch Number Format",
+  "StickerFormat": "Sticker Format",
+  "StickerWH": "Sticker (WxH)",
+  "Inchs": "Inchs",
+  "QRFormatWH": "QR Code (WxH)",
+  "FontSize": "Font Size",
+  "RunNoFontSize": "Running No Font size",
+  "FormNoFontSize": "Form No Font Size",
+  "Hold": "HOLD",
+  "FormNo": "Form No",
+  "Rev": "Rev",
+
+  "UserName": "User Name",
+  "Password": "Password",
+  "SelectLine": "SelectLine",
+  "Login": "Log In"
+
+
+}
