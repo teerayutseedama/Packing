@@ -6,7 +6,7 @@ namespace Packing.DatabaseConnection
 {
     public class ConnectDB
     {
-        private string connectionString = "";
+        private string connectionString = "Data Source=192.168.5.240;Initial Catalog=VMS_PACKING;Persist Security Info=True;User ID=isradmin;Password=1qazxsw2";
         SqlConnection connection;
         public ConnectDB()
         {
@@ -48,24 +48,39 @@ namespace Packing.DatabaseConnection
             
         }
     
-        public bool SaveData()
+        public bool SaveData(string StoredProcedure, SqlCommand commands = null!)
         {
-            string connectionString = "Data Source=YourServer;Initial Catalog=YourDatabase;Integrated Security=True";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                using (SqlCommand command = new SqlCommand("InsertData", connection))
+                connection.Open();
+                if (commands != null)
                 {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    // เพิ่มพารามิเตอร์สำหรับ Stored Procedure
-                    //command.Parameters.AddWithValue("@param1", value1);
-                    //command.Parameters.AddWithValue("@param2", value2);
+                    commands.CommandType = System.Data.CommandType.StoredProcedure;
+                    return commands.ExecuteNonQuery() > 1;
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
                 }
+                else
+                {
+                    using (SqlCommand command = new SqlCommand("InsertData", connection))
+                    {
+                        command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        return command.ExecuteNonQuery() > 1;
+                     
+                    }
+
+
+                }
+               
             }
-            return true;
+            catch (Exception)
+            {
+                connection.Dispose();
+                return false;
+            }
+               
+           
         }
     }
 }
