@@ -6,6 +6,10 @@
 @{
     IEnumerable<tbm_material> data = (IEnumerable<tbm_material>)ViewBag.Data;
     tbm_pk_batch_slip BatchSlip = (tbm_pk_batch_slip)ViewBag.BatchSlip;
+    IEnumerable<tbm_pk_work_shift> WorkSlift = (IEnumerable<tbm_pk_work_shift>)ViewBag.WorkSlift;
+    tbm_pk_work_shift A = @WorkSlift.FirstOrDefault(x => x.ID == 1)!;
+      tbm_pk_work_shift B = @WorkSlift.FirstOrDefault(x => x.ID == 2)!;
+    tbm_pk_work_shift C = @WorkSlift.FirstOrDefault(x => x.ID == 3)!;
 }
 <div class="row" style="padding-top:10px">
     <div class="form-row">
@@ -23,18 +27,18 @@
                 <tbody>
                     <tr>
                         <td style="width:100px;min-width:100px"><input class="form-control text-center" value="เช้า" /></td>
-                        <td style="width:100px;min-width:100px"><input id="txtA1" value="" class="form-control text-center" /></td>
-                        <td style="width:100px;min-width:100px"><input id="txtA2" value="" class="form-control text-center" /></td>
+                        <td style="width:100px;min-width:100px"><input id="txtA1" value="@A.TIME_START!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
+                        <td style="width:100px;min-width:100px"><input id="txtA2" value="@A.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                     </tr>
                     <tr>
                         <td><input class="form-control text-center" value="บ่าย" /></td>
-                        <td><input id="txtB1" value="" class="form-control text-center" /></td>
-                        <td><input id="txtB2" value="" class="form-control text-center" /></td>
+                        <td><input id="txtB1" value="@B.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
+                        <td><input id="txtB2" value="@B.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                     </tr>
                     <tr>
                         <td><input class="form-control text-center" value="ดึก" /></td>
-                        <td><input id="txtC1" value="" class="form-control text-center" /></td>
-                        <td><input id="txtC2" value="" class="form-control text-center" /></td>
+                        <td><input id="txtC1" value="@C.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
+                        <td><input id="txtC2" value="@C.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                         <td><button onclick="SaveShift()" class="btn btn-primary" style="padding-top:4px;padding-bottom:4px">@localizer["Apply"]</button></td>
                     </tr>
                 </tbody>
@@ -217,19 +221,19 @@
         var datasave=[];
         datasave.push({
             ID:1 ,
-            WORK_SHIFT: 'A',
+            WORK_SHIFT: 'กะเช้า',
             TIME_START: $('#txtA1').val(),
             TIME_END: $('#txtA2').val(),
         })
         datasave.push({
             ID:2 ,
-            WORK_SHIFT: 'B',
+            WORK_SHIFT: 'กะบ่าย',
             TIME_START: $('#txtB1').val(),
             TIME_END: $('#txtB2').val(),
         })
         datasave.push({
             ID:3 ,
-            WORK_SHIFT: 'C',
+            WORK_SHIFT: 'กะดึก',
             TIME_START: $('#txtC1').val(),
             TIME_END: $('#txtC2').val(),
         })

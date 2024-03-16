@@ -12,6 +12,7 @@ namespace Packing.Function
         Task<IEnumerable<tbm_material>> GetMaterialList(string orderBy=null!);
 
         Task<tbm_pk_batch_slip> Get_Batch_Slip();
+        Task<IEnumerable<tbm_pk_work_shift>> Get_Work_Shifts();
 	}
 
     public class ConfigureInterface : IConfigureInterface
@@ -47,6 +48,11 @@ namespace Packing.Function
         {
             var data= await _context.tbm_pk_batch_slip.FirstOrDefaultAsync()!;
             return data!;
+        }
+
+        public async Task<IEnumerable<tbm_pk_work_shift>> Get_Work_Shifts()
+        {
+            return await _context.tbm_pk_work_shift.ToListAsync();
         }
 
         public async Task<ResponseMessage> SaveWorkShift(List<SaveShipDataView> data)

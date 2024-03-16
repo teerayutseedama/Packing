@@ -27,6 +27,7 @@ namespace Loadin.Controllers
             var data=await _configure.GetMaterialList();
             ViewBag.Data = data;
             ViewBag.BatchSlip = await _configure.Get_Batch_Slip();
+            ViewBag.WorkSlift=await _configure.Get_Work_Shifts();
             return View();
         }
         public IActionResult Loading(string id)
