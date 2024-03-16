@@ -1,0 +1,1841 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Project\\Packing\\obj\\Release\\net7.0\\scopedcss\\projectbundle\\Packing.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Packing.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bootstrap.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bootstrap.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bootstrap.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bootstrap4.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bootstrap5.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bootstrap5.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bootstrap5.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bulma.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bulma.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.bulma.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.bulma.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.dataTables.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.dataTables.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.dataTables.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.dataTables.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.foundation.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.foundation.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.foundation.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.foundation.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.jqueryui.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.jqueryui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.jqueryui.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.jqueryui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.semanticui.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.semanticui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\buttons.semanticui.min.css",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\buttons.semanticui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\common.scss",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\common.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\css\\mixins.scss",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\css\\mixins.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bootstrap.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bootstrap.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bootstrap4.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bootstrap5.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bootstrap5.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bulma.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bulma.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.bulma.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.bulma.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.colVis.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.colVis.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.colVis.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.colVis.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.dataTables.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.dataTables.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.dataTables.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.foundation.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.foundation.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.foundation.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.foundation.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.html5.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.html5.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.html5.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.html5.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.jqueryui.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.jqueryui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.jqueryui.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.jqueryui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.print.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.print.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.print.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.print.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.semanticui.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.semanticui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\buttons.semanticui.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\buttons.semanticui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\dataTables.buttons.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\dataTables.buttons.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Buttons-2.4.2\\js\\dataTables.buttons.min.js",
+      "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\dataTables.buttons.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap4.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap5.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap5.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap5.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bulma.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bulma.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bulma.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.bulma.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.dataTables.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.dataTables.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.dataTables.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.dataTables.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.foundation.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.foundation.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.foundation.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.foundation.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.jqueryui.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.jqueryui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.jqueryui.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.jqueryui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.semanticui.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.semanticui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.semanticui.min.css",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\css\\fixedColumns.semanticui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\dataTables.fixedColumns.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\dataTables.fixedColumns.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\dataTables.fixedColumns.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\dataTables.fixedColumns.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap4.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap5.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap5.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bulma.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bulma.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.bulma.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.bulma.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.dataTables.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.dataTables.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.dataTables.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.foundation.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.foundation.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.foundation.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.foundation.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.jqueryui.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.jqueryui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.jqueryui.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.jqueryui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.semanticui.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.semanticui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\js\\fixedColumns.semanticui.min.js",
+      "PackagePath": "staticwebassets\\FixedColumns-4.3.0\\js\\fixedColumns.semanticui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap4.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap5.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap5.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bootstrap5.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bulma.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bulma.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.bulma.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.bulma.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.dataTables.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.dataTables.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.dataTables.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.dataTables.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.foundation.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.foundation.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.foundation.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.foundation.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.jqueryui.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.jqueryui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.jqueryui.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.jqueryui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.semanticui.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.semanticui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\css\\fixedHeader.semanticui.min.css",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\css\\fixedHeader.semanticui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\dataTables.fixedHeader.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\dataTables.fixedHeader.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\dataTables.fixedHeader.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\dataTables.fixedHeader.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap4.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap5.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap5.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bulma.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bulma.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.bulma.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.bulma.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.dataTables.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.dataTables.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.dataTables.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.foundation.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.foundation.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.foundation.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.foundation.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.jqueryui.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.jqueryui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.jqueryui.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.jqueryui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.semanticui.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.semanticui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\FixedHeader-3.4.0\\js\\fixedHeader.semanticui.min.js",
+      "PackagePath": "staticwebassets\\FixedHeader-3.4.0\\js\\fixedHeader.semanticui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\JSZip-3.10.1\\jszip.js",
+      "PackagePath": "staticwebassets\\JSZip-3.10.1\\jszip.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\JSZip-3.10.1\\jszip.min.js",
+      "PackagePath": "staticwebassets\\JSZip-3.10.1\\jszip.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Notiflix-1.9.1\\AIO\\notiflix-aio-1.9.1.js",
+      "PackagePath": "staticwebassets\\Notiflix-1.9.1\\AIO\\notiflix-aio-1.9.1.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Notiflix-1.9.1\\AIO\\notiflix-aio-1.9.1.min.js",
+      "PackagePath": "staticwebassets\\Notiflix-1.9.1\\AIO\\notiflix-aio-1.9.1.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Notiflix-1.9.1\\Minified\\notiflix-1.9.1.min.css",
+      "PackagePath": "staticwebassets\\Notiflix-1.9.1\\Minified\\notiflix-1.9.1.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Notiflix-1.9.1\\Minified\\notiflix-1.9.1.min.js",
+      "PackagePath": "staticwebassets\\Notiflix-1.9.1\\Minified\\notiflix-1.9.1.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Notiflix-1.9.1\\Unminified\\notiflix-1.9.1.css",
+      "PackagePath": "staticwebassets\\Notiflix-1.9.1\\Unminified\\notiflix-1.9.1.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\Notiflix-1.9.1\\Unminified\\notiflix-1.9.1.js",
+      "PackagePath": "staticwebassets\\Notiflix-1.9.1\\Unminified\\notiflix-1.9.1.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\AIO\\notiflix-aio-1.9.1.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\AIO\\notiflix-aio-1.9.1.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\AIO\\notiflix-aio-1.9.1.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\AIO\\notiflix-aio-1.9.1.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\Minified\\notiflix-1.9.1.min.css",
+      "PackagePath": "staticwebassets\\NotiflixNew\\Minified\\notiflix-1.9.1.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\Minified\\notiflix-1.9.1.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\Minified\\notiflix-1.9.1.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\Unminified\\notiflix-1.9.1.css",
+      "PackagePath": "staticwebassets\\NotiflixNew\\Unminified\\notiflix-1.9.1.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\Unminified\\notiflix-1.9.1.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\Unminified\\notiflix-1.9.1.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-3.2.4.min.css",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-3.2.4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-aio-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-aio-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-block-aio-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-block-aio-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-confirm-aio-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-confirm-aio-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-loading-aio-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-loading-aio-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-notify-aio-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-notify-aio-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\NotiflixNew\\notiflix-report-aio-3.2.4.min.js",
+      "PackagePath": "staticwebassets\\NotiflixNew\\notiflix-report-aio-3.2.4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\chart.js\\Chart.bundle.js",
+      "PackagePath": "staticwebassets\\chart.js\\Chart.bundle.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\chart.js\\Chart.bundle.min.js",
+      "PackagePath": "staticwebassets\\chart.js\\Chart.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\chart.js\\Chart.css",
+      "PackagePath": "staticwebassets\\chart.js\\Chart.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\chart.js\\Chart.js",
+      "PackagePath": "staticwebassets\\chart.js\\Chart.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\chart.js\\Chart.min.css",
+      "PackagePath": "staticwebassets\\chart.js\\Chart.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\chart.js\\Chart.min.js",
+      "PackagePath": "staticwebassets\\chart.js\\Chart.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\adminlte.min.css",
+      "PackagePath": "staticwebassets\\css\\adminlte.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\adminlte.min.css.map",
+      "PackagePath": "staticwebassets\\css\\adminlte.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.js",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\bootstrap\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\css\\sweetalert2.min.css",
+      "PackagePath": "staticwebassets\\css\\sweetalert2.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-bs4\\css\\dataTables.bootstrap4.css",
+      "PackagePath": "staticwebassets\\datatables-bs4\\css\\dataTables.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-bs4\\css\\dataTables.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\datatables-bs4\\css\\dataTables.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-bs4\\js\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\datatables-bs4\\js\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-bs4\\js\\dataTables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\datatables-bs4\\js\\dataTables.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\css\\buttons.bootstrap4.css",
+      "PackagePath": "staticwebassets\\datatables-buttons\\css\\buttons.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\css\\buttons.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\datatables-buttons\\css\\buttons.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.bootstrap4.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.colVis.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.colVis.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.colVis.min.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.colVis.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.flash.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.flash.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.flash.min.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.flash.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.html5.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.html5.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.html5.min.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.html5.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.print.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.print.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\buttons.print.min.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\buttons.print.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\dataTables.buttons.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\dataTables.buttons.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-buttons\\js\\dataTables.buttons.min.js",
+      "PackagePath": "staticwebassets\\datatables-buttons\\js\\dataTables.buttons.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-responsive\\css\\responsive.bootstrap4.css",
+      "PackagePath": "staticwebassets\\datatables-responsive\\css\\responsive.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-responsive\\css\\responsive.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\datatables-responsive\\css\\responsive.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-responsive\\js\\dataTables.responsive.js",
+      "PackagePath": "staticwebassets\\datatables-responsive\\js\\dataTables.responsive.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-responsive\\js\\dataTables.responsive.min.js",
+      "PackagePath": "staticwebassets\\datatables-responsive\\js\\dataTables.responsive.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-responsive\\js\\responsive.bootstrap4.js",
+      "PackagePath": "staticwebassets\\datatables-responsive\\js\\responsive.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables-responsive\\js\\responsive.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\datatables-responsive\\js\\responsive.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap4.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap4.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap4.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap5.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap5.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bootstrap5.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bulma.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bulma.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.bulma.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.bulma.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.dataTables.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.dataTables.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.dataTables.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.dataTables.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.foundation.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.foundation.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.foundation.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.foundation.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.jqueryui.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.jqueryui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.jqueryui.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.jqueryui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.semanticui.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.semanticui.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\dataTables.semanticui.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\dataTables.semanticui.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\jquery.dataTables.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\jquery.dataTables.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\css\\jquery.dataTables.min.css",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\css\\jquery.dataTables.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\images\\sort_asc.png",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\images\\sort_asc.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\images\\sort_asc_disabled.png",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\images\\sort_asc_disabled.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\images\\sort_both.png",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\images\\sort_both.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\images\\sort_desc.png",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\images\\sort_desc.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\images\\sort_desc_disabled.png",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\images\\sort_desc_disabled.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap4.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap5.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap5.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bulma.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bulma.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.bulma.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.bulma.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.dataTables.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.dataTables.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.dataTables.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.foundation.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.foundation.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.foundation.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.foundation.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.jqueryui.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.jqueryui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.jqueryui.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.jqueryui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.semanticui.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.semanticui.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\dataTables.semanticui.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\dataTables.semanticui.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\jquery.dataTables.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\DataTables-1.11.5\\js\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\datatables\\DataTables-1.11.5\\js\\jquery.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\jquery.dataTables.js",
+      "PackagePath": "staticwebassets\\datatables\\jquery.dataTables.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datatables\\jquery.dataTables.min.js",
+      "PackagePath": "staticwebassets\\datatables\\jquery.dataTables.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker.css.map",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker.min.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker.standalone.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker.standalone.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker.standalone.css.map",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker.standalone.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker.standalone.min.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker.standalone.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker3.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker3.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker3.css.map",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker3.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker3.min.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker3.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker3.standalone.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker3.standalone.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker3.standalone.css.map",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker3.standalone.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\css\\bootstrap-datepicker3.standalone.min.css",
+      "PackagePath": "staticwebassets\\datepicker\\css\\bootstrap-datepicker3.standalone.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\js\\bootstrap-datepicker.js",
+      "PackagePath": "staticwebassets\\datepicker\\js\\bootstrap-datepicker.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\datepicker\\js\\bootstrap-datepicker.min.js",
+      "PackagePath": "staticwebassets\\datepicker\\js\\bootstrap-datepicker.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\.bower.json",
+      "PackagePath": "staticwebassets\\font-awesome\\.bower.json"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\.gitignore",
+      "PackagePath": "staticwebassets\\font-awesome\\.gitignore"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\.npmignore",
+      "PackagePath": "staticwebassets\\font-awesome\\.npmignore"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\HELP-US-OUT.txt",
+      "PackagePath": "staticwebassets\\font-awesome\\HELP-US-OUT.txt"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\bower.json",
+      "PackagePath": "staticwebassets\\font-awesome\\bower.json"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\css\\font-awesome.css",
+      "PackagePath": "staticwebassets\\font-awesome\\css\\font-awesome.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\css\\font-awesome.css.map",
+      "PackagePath": "staticwebassets\\font-awesome\\css\\font-awesome.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\css\\font-awesome.min.css",
+      "PackagePath": "staticwebassets\\font-awesome\\css\\font-awesome.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\fonts\\FontAwesome.otf",
+      "PackagePath": "staticwebassets\\font-awesome\\fonts\\FontAwesome.otf"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\fonts\\fontawesome-webfont.eot",
+      "PackagePath": "staticwebassets\\font-awesome\\fonts\\fontawesome-webfont.eot"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\fonts\\fontawesome-webfont.svg",
+      "PackagePath": "staticwebassets\\font-awesome\\fonts\\fontawesome-webfont.svg"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\fonts\\fontawesome-webfont.ttf",
+      "PackagePath": "staticwebassets\\font-awesome\\fonts\\fontawesome-webfont.ttf"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\fonts\\fontawesome-webfont.woff",
+      "PackagePath": "staticwebassets\\font-awesome\\fonts\\fontawesome-webfont.woff"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\fonts\\fontawesome-webfont.woff2",
+      "PackagePath": "staticwebassets\\font-awesome\\fonts\\fontawesome-webfont.woff2"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\animated.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\animated.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\bordered-pulled.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\bordered-pulled.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\core.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\core.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\fixed-width.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\fixed-width.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\font-awesome.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\font-awesome.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\icons.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\icons.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\larger.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\larger.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\list.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\list.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\mixins.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\mixins.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\path.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\path.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\rotated-flipped.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\rotated-flipped.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\screen-reader.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\screen-reader.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\stacked.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\stacked.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\less\\variables.less",
+      "PackagePath": "staticwebassets\\font-awesome\\less\\variables.less"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_animated.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_animated.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_bordered-pulled.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_bordered-pulled.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_core.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_core.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_fixed-width.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_fixed-width.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_icons.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_icons.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_larger.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_larger.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_list.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_list.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_mixins.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_mixins.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_path.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_path.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_rotated-flipped.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_rotated-flipped.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_screen-reader.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_screen-reader.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_stacked.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_stacked.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\_variables.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\_variables.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\font-awesome\\scss\\font-awesome.scss",
+      "PackagePath": "staticwebassets\\font-awesome\\scss\\font-awesome.scss"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\all.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\all.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\all.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\brands.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\brands.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\brands.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\brands.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\fontawesome.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\fontawesome.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\fontawesome.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\regular.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\regular.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\regular.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\regular.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\solid.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\solid.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\solid.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\solid.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\svg-with-js.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\svg-with-js.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\svg-with-js.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\svg-with-js.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\v4-shims.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\v4-shims.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\css\\v4-shims.min.css",
+      "PackagePath": "staticwebassets\\fontawesome-free\\css\\v4-shims.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\fontawesome-free\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\fontawesome-free\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\img\\icons.png",
+      "PackagePath": "staticwebassets\\img\\icons.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\img\\logo.png",
+      "PackagePath": "staticwebassets\\img\\logo.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\img\\qrcode.png",
+      "PackagePath": "staticwebassets\\img\\qrcode.png"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\adminlte.js",
+      "PackagePath": "staticwebassets\\js\\adminlte.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\adminlte.js.map",
+      "PackagePath": "staticwebassets\\js\\adminlte.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\dashboard.js",
+      "PackagePath": "staticwebassets\\js\\dashboard.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\jquery-3.6.0.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery-3.6.0.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\scalemon.js",
+      "PackagePath": "staticwebassets\\js\\scalemon.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\signalr\\signalr.js",
+      "PackagePath": "staticwebassets\\js\\signalr\\signalr.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\signalr\\signalr.js.map",
+      "PackagePath": "staticwebassets\\js\\signalr\\signalr.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\signalr\\signalr.min.js",
+      "PackagePath": "staticwebassets\\js\\signalr\\signalr.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\signalr\\signalr.min.js.map",
+      "PackagePath": "staticwebassets\\js\\signalr\\signalr.min.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\js\\sweetalert2.min.js",
+      "PackagePath": "staticwebassets\\js\\sweetalert2.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\pimage\\cam4.jpg",
+      "PackagePath": "staticwebassets\\pimage\\cam4.jpg"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\pimage\\cam5.jpg",
+      "PackagePath": "staticwebassets\\pimage\\cam5.jpg"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\css\\select2.css",
+      "PackagePath": "staticwebassets\\select2\\css\\select2.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\css\\select2.min.css",
+      "PackagePath": "staticwebassets\\select2\\css\\select2.min.css"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\af.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\af.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ar.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ar.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\az.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\az.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\bg.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\bg.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\bn.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\bn.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\bs.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\bs.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\build.txt",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\build.txt"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ca.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ca.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\cs.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\cs.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\da.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\da.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\de.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\de.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\dsb.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\dsb.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\el.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\el.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\en.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\en.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\es.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\es.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\et.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\et.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\eu.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\eu.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\fa.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\fa.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\fi.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\fi.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\fr.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\fr.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\gl.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\gl.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\he.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\he.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\hi.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\hi.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\hr.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\hr.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\hsb.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\hsb.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\hu.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\hu.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\hy.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\hy.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\id.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\id.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\is.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\is.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\it.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\it.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ja.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ja.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ka.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ka.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\km.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\km.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ko.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ko.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\lt.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\lt.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\lv.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\lv.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\mk.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\mk.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ms.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ms.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\nb.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\nb.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ne.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ne.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\nl.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\nl.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\pl.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\pl.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ps.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ps.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\pt-BR.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\pt-BR.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\pt.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\pt.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ro.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ro.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\ru.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\ru.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\sk.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\sk.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\sl.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\sl.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\sq.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\sq.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\sr-Cyrl.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\sr-Cyrl.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\sr.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\sr.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\sv.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\sv.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\th.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\th.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\tk.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\tk.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\tr.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\tr.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\uk.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\uk.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\vi.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\vi.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\zh-CN.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\zh-CN.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\i18n\\zh-TW.js",
+      "PackagePath": "staticwebassets\\select2\\js\\i18n\\zh-TW.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\select2.full.js",
+      "PackagePath": "staticwebassets\\select2\\js\\select2.full.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\select2.full.min.js",
+      "PackagePath": "staticwebassets\\select2\\js\\select2.full.min.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\select2.js",
+      "PackagePath": "staticwebassets\\select2\\js\\select2.js"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\select2\\js\\select2.min.js",
+      "PackagePath": "staticwebassets\\select2\\js\\select2.min.js"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.Packing.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.build.Packing.props",
+      "PackagePath": "build\\Packing.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Packing.props",
+      "PackagePath": "buildMultiTargeting\\Packing.props"
+    },
+    {
+      "Id": "obj\\Release\\net7.0\\staticwebassets\\msbuild.buildTransitive.Packing.props",
+      "PackagePath": "buildTransitive\\Packing.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

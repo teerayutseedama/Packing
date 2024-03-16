@@ -3298,24 +3298,33 @@
     ]
   },
   "packageFolders": {
-    "/Users/teerayutseedama/.nuget/packages/": {}
+    "C:\\Users\\YUTZA\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/teerayutseedama/Documents/Packing/Packing.csproj",
+      "projectUniqueName": "C:\\Project\\Packing\\Packing.csproj",
       "projectName": "Packing",
-      "projectPath": "/Users/teerayutseedama/Documents/Packing/Packing.csproj",
-      "packagesPath": "/Users/teerayutseedama/.nuget/packages/",
-      "outputPath": "/Users/teerayutseedama/Documents/Packing/obj/",
+      "projectPath": "C:\\Project\\Packing\\Packing.csproj",
+      "packagesPath": "C:\\Users\\YUTZA\\.nuget\\packages\\",
+      "outputPath": "C:\\Project\\Packing\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/teerayutseedama/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\YUTZA\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3372,7 +3381,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.406/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

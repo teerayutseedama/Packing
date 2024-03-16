@@ -1,7 +1,12 @@
 ﻿@using System.Globalization
 @using Microsoft.AspNetCore.Mvc.Localization
+@using Packing.Views.DataView;
+@using Packing.vmsPackingDB;
 @inject IViewLocalizer localizer
-
+@{
+    IEnumerable<tbm_material> data = (IEnumerable<tbm_material>)ViewBag.Data;
+    tbm_pk_batch_slip BatchSlip = (tbm_pk_batch_slip)ViewBag.BatchSlip;
+}
 <div class="row" style="padding-top:10px">
     <div class="form-row">
         <div class="form-group col-md-12">
@@ -18,19 +23,19 @@
                 <tbody>
                     <tr>
                         <td style="width:100px;min-width:100px"><input class="form-control text-center" value="เช้า" /></td>
-                        <td style="width:100px;min-width:100px"><input class="form-control text-center" /></td>
-                        <td style="width:100px;min-width:100px"><input class="form-control text-center" /></td>
+                        <td style="width:100px;min-width:100px"><input id="txtA1" value="" class="form-control text-center" /></td>
+                        <td style="width:100px;min-width:100px"><input id="txtA2" value="" class="form-control text-center" /></td>
                     </tr>
                     <tr>
                         <td><input class="form-control text-center" value="บ่าย" /></td>
-                        <td><input class="form-control text-center" /></td>
-                        <td><input class="form-control text-center" /></td>
+                        <td><input id="txtB1" value="" class="form-control text-center" /></td>
+                        <td><input id="txtB2" value="" class="form-control text-center" /></td>
                     </tr>
                     <tr>
                         <td><input class="form-control text-center" value="ดึก" /></td>
-                        <td><input class="form-control text-center" /></td>
-                        <td><input class="form-control text-center" /></td>
-                        <td><button class="btn btn-primary" style="padding-top:4px;padding-bottom:4px">@localizer["Apply"]</button></td>
+                        <td><input id="txtC1" value="" class="form-control text-center" /></td>
+                        <td><input id="txtC2" value="" class="form-control text-center" /></td>
+                        <td><button onclick="SaveShift()" class="btn btn-primary" style="padding-top:4px;padding-bottom:4px">@localizer["Apply"]</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -41,25 +46,25 @@
             <label style="width:100%;padding:0px 0px 0px 15px;background-color:silver;border:silver thin solid">@localizer["StickerFormat"]</label>
             <div class="form-inline">
                 <label style="font-weight:normal;width:120px">@localizer["StickerWH"]</label>
-                <input type="text" id="txstickerwidth" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
-                <input type="text" id="txstickerwidth" class="form-control" style="width:50px;text-align:center;margin-right:5px" />
+                <input type="text" value="@BatchSlip.STICKER_WIDTH" id="txstickerwidth" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
+                <input type="text" value="@BatchSlip.STICKER_HEIGH" id="txstickerheight" class="form-control" style="width:50px;text-align:center;margin-right:5px" />
                 <label style="font-weight:normal"> @localizer["Inchs"]</label>
                 
                 <label style="font-weight:normal;width:120px">@localizer["QRFormatWH"]</label>
-                <input type="text" id="txqrwidth" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
-                <input type="text" id="txqrwidth" class="form-control" style="width:50px;text-align:center;margin-right:5px" />
+                <input type="text" value="@BatchSlip.QR_CODE_WIDTH" id="txqrwidth" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
+                <input type="text" value="@BatchSlip.QR_CODE_HEIGHT" id="txqrheight" class="form-control" style="width:50px;text-align:center;margin-right:5px" />
                 <label style="font-weight:normal"> @localizer["Inchs"]</label>
 
                 <label style="font-weight:normal;width:80px">@localizer["FontSize"]</label>
-                <input type="text" id="txfontsize" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
+                <input type="text" value="@BatchSlip.FONT_SIZE" id="txfontsize" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
 
                 <label style="font-weight:normal;width:140px">@localizer["RunNoFontSize"]</label>
-                <input type="text" id="txrunnofontsize" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
+                <input type="text" value="@BatchSlip.RUNNING_FONT_SIZE" id="txrunnofontsize" class="form-control" style="margin-right:10px;width:50px;text-align:center" />
 
                 <label style="font-weight:normal;width:140px">@localizer["FormNoFontSize"]</label>
-                <input type="text" id="txformno" class="form-control" style="margin-right:3px;width:50px;text-align:center" />
+                <input type="text" value="@BatchSlip.FORM_NO_SIZE" id="txformno" class="form-control" style="margin-right:3px;width:50px;text-align:center" />
 
-                <button class="btn btn-primary" style="margin-left:5px;padding-top:3px;padding-bottom:3px">@localizer["Apply"]</button>
+                <button class="btn btn-primary" onclick="SaveStickerFormat()" style="margin-left:5px;padding-top:3px;padding-bottom:3px">@localizer["Apply"]</button>
             </div>
         </div>
         <div class="form-group col-md-12">
@@ -80,39 +85,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ondblclick="showmodal(1)">
-                            <td class="text-center">J</td>
-                            <td class="text-center">F011001501</td>
-                            <td>TVO Dehulled soymeal (TH) 70 Kg</td>
-                            <td class="text-center">KG</td>
-                            <td class="text-center" style="color:green">OPEN</td>
-                            <td class="text-center" style="color:gold">HOLD</td>
-                            <td class="text-center">FM-MP3A-006 / 01-11-59</td>
-                            <td class="text-center">4</td>
-                            <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1)"></i></td>
-                        </tr>
-                        <tr ondblclick="showmodal(1)">
-                            <td class="text-center">D</td>
-                            <td class="text-center">F011001601</td>
-                            <td>TVO Dehulled soymeal (TH) Bulk</td>
-                            <td class="text-center">KG</td>
-                            <td class="text-center" style="color:green">OPEN</td>
-                            <td class="text-center" style="color:green">PASS</td>
-                            <td class="text-center">FM-MP3A-007 / 01-11-59</td>
-                            <td class="text-center">2</td>
-                            <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1)"></i></td>
-                        </tr>
-                        <tr ondblclick="showmodal(1)">
-                            <td class="text-center">K</td>
-                            <td class="text-center">F012001501</td>
-                            <td>TVO Dehulled soymeal 70KG</td>
-                            <td class="text-center">KG</td>
-                            <td class="text-center" style="color:red">CLOSE</td>
-                            <td class="text-center" style="color:gold">HOLD</td>
-                            <td class="text-center"> FM-MP3A-009 / 19-10-62</td>
-                            <td class="text-center">0</td>
-                            <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1)"></i></td>
-                        </tr>
+                        @if (data.Count() > 1)
+                        {
+                            foreach (var item in data)
+                            {
+                                <tr ondblclick="showmodal(1)">
+                                    <td class="text-center">@item.DEFAULT_PACKING_LINE_ID</td>
+                                    <td class="text-center">@item.MATERIAL_CODE</td>
+                                    <td>@item.MATERIAL_NAME</td>
+                                    <td class="text-center">@item.DEFAULT_UOM</td>
+                                    <td class="text-center" style="color:green">@item.STATUS</td>
+                                    <td class="text-center" style="color:gold">@item.DEFAULT_HOLD</td>
+                                    <td class="text-center">@item.FORM_NO</td>
+                                    <td class="text-center">@item.REV</td>
+                                    <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1)"></i></td>
+                                </tr>
+                            }
+                     
+                        }
+                    
+                   
                     </tbody>
                 </table>
             </div>
@@ -198,4 +190,60 @@
             $('#modalconfig').hide();
         }
     }
+
+    function SaveStickerFormat() {
+        $.post('@Url.Action("SaveStickerFormat", "Configure")', {
+            STICKER_WIDTH: $('#txstickerwidth').val(),
+            STICKER_HEIGH: $('#txstickerheight').val(),
+            QR_CODE_WIDTH: $('#txqrwidth').val(),
+            QR_CODE_HEIGHT: $('#txqrheight').val(),
+            FONT_SIZE: $('#txfontsize').val(),
+            RUNNING_FONT_SIZE: $('#txrunnofontsize').val(),
+            FORM_NO_SIZE: $('#txformno').val(),
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success(data.message);
+           
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+       
+        });
+    }
+    function SaveShift() {
+
+        var datasave=[];
+        datasave.push({
+            ID:1 ,
+            WORK_SHIFT: 'A',
+            TIME_START: $('#txtA1').val(),
+            TIME_END: $('#txtA2').val(),
+        })
+        datasave.push({
+            ID:2 ,
+            WORK_SHIFT: 'B',
+            TIME_START: $('#txtB1').val(),
+            TIME_END: $('#txtB2').val(),
+        })
+        datasave.push({
+            ID:3 ,
+            WORK_SHIFT: 'C',
+            TIME_START: $('#txtC1').val(),
+            TIME_END: $('#txtC2').val(),
+        })
+        $.post('@Url.Action("SaveShift", "Configure")', { DataSave: datasave }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success(data.message);
+
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
+   
 </script>

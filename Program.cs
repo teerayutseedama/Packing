@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Packing;
+using Packing.Function;
 using Packing.vmsPackingDB;
 using System.Globalization;
 
@@ -27,7 +28,7 @@ builder.Services.AddDbContext<vms_packingContext>(options => options.UseSqlServe
 builder.Services.AddLocalization();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
-
+builder.Services.AddScoped<IConfigureInterface, ConfigureInterface>();
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization(options =>
