@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Packing.Controllers;
+using Packing.Function;
 
 namespace Loadin.Controllers
 {
@@ -10,16 +11,23 @@ namespace Loadin.Controllers
         private readonly ILogger<LIController> _logger;
         private readonly IStringLocalizer<LIController> _localizer;
 
-        public LIController(ILogger<LIController> logger, IStringLocalizer<LIController> localizer)
+        private readonly IConfigureInterface _configure;
+
+        public LIController(IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer)
         {
             _logger = logger;
             _localizer = localizer;
+            _configure= configure;
         }
         public IActionResult Li()
         {
             return View();
         }
-        public IActionResult Configure() { 
+        public async Task<IActionResult> Configure() { 
+            var data=await _configure.GetMaterialList();
+            ViewBag.Data = data;
+            ViewBag.BatchSlip = await _configure.Get_Batch_Slip();
+            ViewBag.WorkSlift=await _configure.Get_Work_Shifts();
             return View();
         }
         public IActionResult Loading(string id)

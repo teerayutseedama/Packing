@@ -1,78 +1,140 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Packing.Views;
 using Packing.Views.DataView;
 using Packing.vmsPackingDB;
 namespace Packing.Function
 {
 	public interface IConfigureInterface
 	{
-		Task<bool> SaveWorkShift(IEnumerable<SaveShipDataView> data);
-        Task<bool> UpdateBatch(UpdateBatchShiftDatView data); 
+		Task<ResponseMessage> SaveWorkShift(List<SaveShipDataView> data);
+        Task<ResponseMessage> UpdateBatch(UpdateBatchShiftDatView data); 
+        Task<IEnumerable<tbm_material>> GetMaterialList(string orderBy=null!);
+
+        Task<tbm_pk_batch_slip> Get_Batch_Slip();
+        Task<IEnumerable<tbm_pk_work_shift>> Get_Work_Shifts();
 	}
 
     public class ConfigureInterface : IConfigureInterface
     {
         private readonly vms_packingContext _context;
+        private ResponseMessage _response;
         public ConfigureInterface(vms_packingContext context) {
             _context = context;
+             _response=new ResponseMessage();
                 }
-        public async Task<bool> SaveWorkShift(IEnumerable<SaveShipDataView> data)
+
+        public async Task<IEnumerable<tbm_material>> GetMaterialList(string orderBy=null!)
         {
-            var check = await _context.tbm_pk_work_shift.ToListAsync();
-            if (check.Count > 0)
+            if (orderBy == null)
             {
-                 _context.tbm_pk_work_shift.RemoveRange(check);
-                await _context.SaveChangesAsync();
-            }
-            var saveList =new  List<tbm_pk_work_shift>();
-            var ID = 0;
-            foreach (var item in data)
+              return  await _context.tbm_material.ToListAsync();
+            } else if (orderBy == "code")
             {
-                ID++;
-                var newShip = new tbm_pk_work_shift();
-                newShip.ID = ID;
-                newShip.TIME_START = item.TIME_START;
-                newShip.TIME_END = item.TIME_END;
-                newShip.WORK_SHIFT = item.WORK_SHIFT;
-                saveList.Add(newShip);
+                return await _context.tbm_material.OrderBy(x => x.MATERIAL_CODE).ToListAsync();
             }
-            
-            await _context.tbm_pk_work_shift.AddRangeAsync(saveList);
-            return await _context.SaveChangesAsync() > 0;
+            else if (orderBy == "group")
+            {
+                return await _context.tbm_material.OrderBy(x => x.MATERIAL_GROUP).ToListAsync();
+            }
+            else 
+            {
+                return await _context.tbm_material.OrderBy(x=>x.MATERIAL_NAME).ToListAsync();
+            }
+
         }
 
-        public async Task<bool> UpdateBatch(UpdateBatchShiftDatView data)
+        public async Task<tbm_pk_batch_slip> Get_Batch_Slip()
         {
-            var batch = await _context.tbm_pk_batch_slip.ToListAsync();
+            var data= await _context.tbm_pk_batch_slip.FirstOrDefaultAsync()!;
+            return data!;
+        }
 
-            if (batch.Count >0)
+        public async Task<IEnumerable<tbm_pk_work_shift>> Get_Work_Shifts()
+        {
+            return await _context.tbm_pk_work_shift.ToListAsync();
+        }
+
+        public async Task<ResponseMessage> SaveWorkShift(List<SaveShipDataView> data)
+        {
+            try
             {
-                _context.tbm_pk_batch_slip.RemoveRange(batch);
-               
+                var check = await _context.tbm_pk_work_shift.ToListAsync();
+                if (check.Count > 0)
+                {
+                    _context.tbm_pk_work_shift.RemoveRange(check);
+                    await _context.SaveChangesAsync();
+                }
+                var saveList = new List<tbm_pk_work_shift>();
+                var ID = 0;
+                foreach (var item in data)
+                {
+                    ID++;
+                    var newShip = new tbm_pk_work_shift();
+                    newShip.ID = ID;
+                    newShip.TIME_START = SystemClass.ConvertTime(item.TIME_START!);
+                    newShip.TIME_END =SystemClass.ConvertTime(item.TIME_END!);
+                    newShip.WORK_SHIFT = item.WORK_SHIFT;
+                    saveList.Add(newShip);
+                }
+
+                await _context.tbm_pk_work_shift.AddRangeAsync(saveList);
+                _response.Message = "บันทึกข้อมูลเสร็จสิ้น";
+                _response.Status= await _context.SaveChangesAsync() > 0;
             }
-            if (await _context.SaveChangesAsync() > 0)
+            catch (Exception ex)
             {
-                var save = new tbm_pk_batch_slip();
-                save.STICKER_WIDTH = data.STICKER_WIDTH;
 
-                save.STICKER_HEIGH = data.STICKER_HEIGH;
-
-                save.QR_CODE_WIDTH = data.QR_CODE_WIDTH;
-
-                save.QR_CODE_HEIGHT = data.QR_CODE_HEIGHT;
-
-                save.FONT_SIZE = data.FONT_SIZE;
-
-                save.RUNNING_FONT_SIZE = data.RUNNING_FONT_SIZE;
-
-                save.FORM_NO_SIZE = data.FORM_NO_SIZE;
-
-                save.QR_CODE_SIZE_UNIT = data.QR_CODE_SIZE_UNIT;
-
- ;
-                await _context.tbm_pk_batch_slip.AddAsync(save);
+                _response.Error = ex.Message;
+                _response.Status = false;
             }
-            return await _context.SaveChangesAsync() > 0;
+            return _response;
+      
+        }
+
+        public async Task<ResponseMessage> UpdateBatch(UpdateBatchShiftDatView data)
+        {
+            try
+            {
+                var batch = await _context.tbm_pk_batch_slip.ToListAsync();
+
+                if (batch.Count > 0)
+                {
+                    _context.tbm_pk_batch_slip.RemoveRange(batch);
+
+                }
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    var save = new tbm_pk_batch_slip();
+                    save.STICKER_WIDTH = data.STICKER_WIDTH;
+
+                    save.STICKER_HEIGH = data.STICKER_HEIGH;
+
+                    save.QR_CODE_WIDTH = data.QR_CODE_WIDTH;
+
+                    save.QR_CODE_HEIGHT = data.QR_CODE_HEIGHT;
+
+                    save.FONT_SIZE = data.FONT_SIZE;
+
+                    save.RUNNING_FONT_SIZE = data.RUNNING_FONT_SIZE;
+
+                    save.FORM_NO_SIZE = data.FORM_NO_SIZE;
+
+                    save.QR_CODE_SIZE_UNIT = data.QR_CODE_SIZE_UNIT;
+
+                    ;
+                    await _context.tbm_pk_batch_slip.AddAsync(save);
+                }
+                _response.Message = "บันทึกข้อมูลเสร็จสิ้น";
+                _response.Status= await _context.SaveChangesAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                _response.Error = ex.Message;
+                _response.Status = false;
+            }
+            return _response;
+         
                   
         }
     }
