@@ -29,6 +29,7 @@ builder.Services.AddLocalization();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
 builder.Services.AddScoped<IConfigureInterface, ConfigureInterface>();
+builder.Services.AddScoped<ISummaryInterface, SummaryInterface>();
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization(options =>

@@ -12,7 +12,7 @@
         </div>
         <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["Line"]</label>
-            <select id="seltype" class="form-control select2" style="width:100%">
+            <select id="selline" class="form-control select2" style="width:100%">
                 <option></option>
                 <option>J</option>
                 <option>K</option>
@@ -62,8 +62,8 @@
             <input id="txtodate" class="form-control text-center" />
         </div>
         <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:27px">
-            <button type="submit" class="btn btn-primary">@localizer["Search"]</button>
-            <button type="submit" class="btn btn-secondary">@localizer["Excel"]</button>
+            <button type="button" onclick="GetSummaryList()" class="btn btn-primary">@localizer["Search"]</button>
+            <button type="button"  class="btn btn-secondary">@localizer["Excel"]</button>
         </div>
         <div class="form-group col-md-12">
             <div class="form-inline">
@@ -208,4 +208,27 @@
             orientation: "auto"
         }).datepicker("setDate", d);
     });
+        
+    function GetSummaryList() {
+        $.post('@Url.Action("GetSummaryList", "Configure")', {
+            Plant: $('#selplant').val(),
+            Line: $('#selline').val(),
+            MaterialCode: $('#selmatcode').val(),
+            MaterialName: $('#selmatname').val(),
+            BatchNo: $('#txbatch').val(),
+            Shift: $('#selshift').val(),
+            FromDate: moment($('#txfromdate').val(), "dd/mm/yyyy").toDate(),
+            ToDate: moment($('#txtodate').val(), "dd/mm/yyyy").toDate()
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success(data.message);
+
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
 </script>

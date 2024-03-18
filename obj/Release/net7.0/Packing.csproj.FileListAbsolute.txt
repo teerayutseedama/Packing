@@ -83,3 +83,7 @@ C:\Project\Packing\obj\Release\net7.0\refint\Packing.dll
 C:\Project\Packing\obj\Release\net7.0\Packing.pdb
 C:\Project\Packing\obj\Release\net7.0\Packing.genruntimeconfig.cache
 C:\Project\Packing\obj\Release\net7.0\ref\Packing.dll
+C:\Project\Packing\bin\Release\net7.0\EntityFramework.SqlServer.dll
+C:\Project\Packing\bin\Release\net7.0\EntityFramework.dll
+C:\Project\Packing\bin\Release\net7.0\LinqKit.dll
+C:\Project\Packing\bin\Release\net7.0\LinqKit.Core.dll

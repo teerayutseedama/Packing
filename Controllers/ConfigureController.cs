@@ -14,9 +14,11 @@ namespace Packing.Controllers
     {
      
         private readonly IConfigureInterface _configure;
-        public ConfigureController(IConfigureInterface configure)
+        private readonly ISummaryInterface _summary;
+        public ConfigureController(IConfigureInterface configure, ISummaryInterface summary)
         {
             _configure = configure;
+            _summary = summary;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -32,6 +34,11 @@ namespace Packing.Controllers
         public async Task<IActionResult> SaveShift(List<SaveShipDataView> DataSave)
         {
             return Ok(await _configure.SaveWorkShift(DataSave));
+        }
+
+        public async Task<IActionResult> GetSummaryList(GetSummaryDataView data)
+        {
+            return Ok(await _summary.GetSummaryList(data));
         }
     }
 }
