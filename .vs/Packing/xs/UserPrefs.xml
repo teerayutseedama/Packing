@@ -1,13 +1,17 @@
 ﻿<Properties StartupConfiguration="{DC52E703-D58A-4B45-8570-957EAE6C08C2}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workbench ActiveDocument="Function/IConfigureInterface.cs">
     <Files>
-      <File FileName="Controllers/ConfigureController.cs" Line="16" Column="32" />
-      <File FileName="vmsPackingDB/vms_packingContext.cs" Line="1" Column="1" />
-      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="Controllers/ConfigureController.cs" />
+      <File FileName="vmsPackingDB/vms_packingContext.cs" />
+      <File FileName="Program.cs" />
       <File FileName="Function/IConfigureInterface.cs" Line="75" Column="58" />
-      <File FileName="vmsPackingDB/tbm_pk_work_shift.cs" Line="8" Column="4" />
-      <File FileName="Views/DataView/SaveShipDataView.cs" Line="33" Column="55" />
-      <File FileName="vmsPackingDB/tbm_pk_batch_slip.cs" Line="8" Column="3" />
+      <File FileName="vmsPackingDB/tbm_pk_work_shift.cs" />
+      <File FileName="Views/DataView/SaveShipDataView.cs" />
+      <File FileName="vmsPackingDB/tbm_pk_batch_slip.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -27,16 +31,9 @@
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.Packing PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
