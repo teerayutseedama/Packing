@@ -8,9 +8,9 @@ namespace Packing.Views.DataView
 
         public string WORK_SHIFT { get; set; } = null!;
 
-        public DateTime? TIME_START { get; set; }
+        public string? TIME_START { get; set; }
 
-        public DateTime? TIME_END { get; set; }
+        public string? TIME_END { get; set; }
     
 	}
 

@@ -5,6 +5,7 @@ namespace Packing.vmsPackingDB;
 
 public partial class tbm_pk_batch_slip
 {
+    public int id { get; set; }
     public string? STICKER_WIDTH { get; set; }
 
     public string? STICKER_HEIGH { get; set; }

@@ -95,8 +95,7 @@ public partial class vms_packingContext : DbContext
 
         modelBuilder.Entity<tbm_pk_batch_slip>(entity =>
         {
-            entity.HasNoKey();
-
+            entity.HasKey(e=>e.id);
             entity.Property(e => e.FONT_SIZE).HasMaxLength(10);
             entity.Property(e => e.FORM_NO_SIZE).HasMaxLength(10);
             entity.Property(e => e.QR_CODE_HEIGHT).HasMaxLength(10);
