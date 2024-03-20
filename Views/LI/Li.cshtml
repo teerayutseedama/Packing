@@ -6,7 +6,7 @@
 <div class="row" style="padding-top:10px">
     <div class="form-row">
         <div class="form-group col-md-3" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"] <span style="color:red"> *</span></label>
             <select id="selline" class="form-control select2" style="width:100%">
                 <option selected></option>                
                 <option>A</option>
@@ -17,7 +17,7 @@
             </select>
         </div>
         <div class="form-group col-md-3" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"] <span style="color:red"> *</span></label>
             <select id="selsloc" class="form-control select2" style="width:100%">
                 <option></option>
                 <option>MP3A</option>
@@ -34,7 +34,7 @@
             <input type="text" class="form-control text-center" id="txsubbatch" readonly>
         </div>
         <div class="form-group col-md-2" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="txdate">@localizer["MFGDate"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="txdate">@localizer["MFGDate"] <span style="color:red"> *</span></label>
             <input type="text" class="form-control text-center" id="txmfgdate">
         </div>
         <div class="form-group col-md-2" style="margin-bottom:3px">
@@ -44,7 +44,7 @@
 
         <div class="form-group col-md-3" style="margin-bottom:3px">
             @*tbm_material.material_code*@
-            <label style="font-weight:normal;margin-bottom:3px" for="selmatcode">@localizer["MaterialCode"]</label>@*Material Code*@
+            <label style="font-weight:normal;margin-bottom:3px" for="selmatcode">@localizer["MaterialCode"] <span style="color:red"> *</span></label>@*Material Code*@
             <select id="selmatcode" class="form-control select2" style="width:100%">
                 <option selected></option>
                 <option>F011001501</option>
@@ -66,7 +66,7 @@
 
 
         <div class="form-group col-md-3" style="margin-bottom:10px">
-            <label style="font-weight:normal;margin-bottom:3px" for="txqty">@localizer["Qty"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="txqty">@localizer["Qty"] <span style="color:red"> *</span></label>
             <div class="row">
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
@@ -78,7 +78,7 @@
             
         </div>*@
         <div class="form-group col-md-2" style="margin-bottom:10px">
-            <label style="font-weight:normal;margin-bottom:3px" for="seluom">@localizer["UOM"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="seluom">@localizer["UOM"] <span style="color:red"> *</span></label>
             <select id="seluom" class="form-control select2" style="width:100%">
                 <option selected></option>
                 <option>00 ไม่ระบุ</option>
