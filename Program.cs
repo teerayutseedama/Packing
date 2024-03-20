@@ -37,7 +37,8 @@ builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactor
 builder.Services.AddScoped<IConfigureInterface, ConfigureInterface>();
 builder.Services.AddScoped<ISummaryInterface, SummaryInterface>();
 builder.Services.AddScoped<IHistoryInterface, HistoryInterface>(); 
-    builder.Services.AddScoped<ILoaddingListInterface, LoaddingListInterface>();
+builder.Services.AddScoped<ILoaddingListInterface, LoaddingListInterface>();
+builder.Services.AddScoped<IApprovalInterface, ApprovalInterface>();
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization(options =>

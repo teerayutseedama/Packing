@@ -29,8 +29,9 @@ namespace Packing.Function
 
         public async Task<IEnumerable<LoaddingDataView>> GetLoaddingDataViews(GetLoaddingData data)
         {
+            var status=await _context.tbm_pk_batch_status.FirstOrDefaultAsync(x=>x.BATCH_STATUS== "HOLD");
             List<LoaddingDataView> result = new List<LoaddingDataView>();
-            Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.BATCH_STATUS==null && x.BATCH_STATUS=="HOLD");
+            Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.BATCH_STATUS==null && x.BATCH_STATUS== status.ID!);
             Expression<Func<tbm_plant, bool>> plantConds = PredicateBuilder.New<tbm_plant>(true);
             Expression<Func<tbm_material, bool>> materialConds = PredicateBuilder.New<tbm_material>(true);
          
