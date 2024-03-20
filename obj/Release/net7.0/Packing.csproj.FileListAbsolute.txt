@@ -87,3 +87,11 @@ C:\Project\Packing\bin\Release\net7.0\EntityFramework.SqlServer.dll
 C:\Project\Packing\bin\Release\net7.0\EntityFramework.dll
 C:\Project\Packing\bin\Release\net7.0\LinqKit.dll
 C:\Project\Packing\bin\Release\net7.0\LinqKit.Core.dll
+C:\Project\Packing\bin\Release\net7.0\ClosedXML.dll
+C:\Project\Packing\bin\Release\net7.0\DocumentFormat.OpenXml.dll
+C:\Project\Packing\bin\Release\net7.0\ExcelNumberFormat.dll
+C:\Project\Packing\bin\Release\net7.0\Irony.dll
+C:\Project\Packing\bin\Release\net7.0\SixLabors.Fonts.dll
+C:\Project\Packing\bin\Release\net7.0\System.IO.Packaging.dll
+C:\Project\Packing\bin\Release\net7.0\XLParser.dll
+C:\Project\Packing\bin\Release\net7.0\efpt.config.json

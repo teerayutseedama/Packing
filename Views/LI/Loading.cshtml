@@ -81,8 +81,8 @@
             <input id="txrunno" class="form-control" />
         </div>
         <div class="form-group col-md-1" style="margin-bottom:0px;padding-top:27px">
-            <button type="submit" class="btn btn-primary">@localizer["Search"]</button>
-            <button type="submit" class="btn btn-secondary">@localizer["Excel"]</button>
+            <button type="button" onclick="GetLoaddingDataViews()" class="btn btn-primary">@localizer["Search"]</button>
+            <button type="button" onclick="GetExcel()" class="btn btn-secondary">@localizer["Excel"]</button>
         </div>
         <div class="form-group col-md-12">
             <div class="form-inline">
@@ -240,4 +240,50 @@
             orientation: "auto"
         }).datepicker("setDate", d);
     });
+
+    function GetLoaddingDataViews() {
+        $.post('@Url.Action("GetLoaddingDataViews", "LoadingList")', {
+            Plant: $('#selplant').val(),
+            Line: $('#selline').val(),
+            MaterialCode: $('#selmatcode').val(),
+            MaterialName: $('#selmatname').val(),
+            BatchNo: $('#txbatch').val(),
+            Shift: $('#selshift').val(),
+            FromDate: moment($('#txfromdate').val(), "dd/mm/yyyy").toDate(),
+            ToDate: moment($('#txtodate').val(), "dd/mm/yyyy").toDate()
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success(data.message);
+
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
+
+    function GetExcel() {
+        $.post('@Url.Action("DownloadLoaddingExcel", "LoadingList")', {
+            Plant: $('#selplant').val(),
+            Line: $('#selline').val(),
+            MaterialCode: $('#selmatcode').val(),
+            MaterialName: $('#selmatname').val(),
+            BatchNo: $('#txbatch').val(),
+            Shift: $('#selshift').val(),
+            FromDate: moment($('#txfromdate').val(), "dd/mm/yyyy").toDate(),
+            ToDate: moment($('#txtodate').val(), "dd/mm/yyyy").toDate()
+        }, function (data) {
+            //if (data.status) {
+            //    Notiflix.Notify.Success(data.message);
+
+            //} else {
+            //    Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
+            //}
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
 </script>

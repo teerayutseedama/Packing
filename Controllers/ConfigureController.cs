@@ -36,10 +36,7 @@ namespace Packing.Controllers
             return Ok(await _configure.SaveWorkShift(DataSave));
         }
 
-        public async Task<IActionResult> GetSummaryList(GetSummaryDataView data)
-        {
-            return Ok(await _summary.GetSummaryList(data));
-        }
+       
     }
 }
 
