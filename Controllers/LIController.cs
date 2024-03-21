@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Packing.Controllers;
 using Packing.Function;
+using Packing.Models;
+using Packing.vmsPackingDB;
 
 namespace Loadin.Controllers
 {
@@ -13,11 +15,13 @@ namespace Loadin.Controllers
 
         private readonly IConfigureInterface _configure;
 
-        public LIController(IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer)
+
+        public LIController( IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer)
         {
             _logger = logger;
             _localizer = localizer;
             _configure= configure;
+         
         }
         public IActionResult Li()
         {
