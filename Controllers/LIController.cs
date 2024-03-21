@@ -14,14 +14,15 @@ namespace Loadin.Controllers
         private readonly IStringLocalizer<LIController> _localizer;
 
         private readonly IConfigureInterface _configure;
+        private readonly IMasterDataInterface _masterData;
 
 
-        public LIController( IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer)
+        public LIController( IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer, IMasterDataInterface masterData)
         {
             _logger = logger;
             _localizer = localizer;
-            _configure= configure;
-         
+            _configure = configure;
+            _masterData = masterData;
         }
         public IActionResult Li()
         {
@@ -34,21 +35,25 @@ namespace Loadin.Controllers
             ViewBag.WorkSlift=await _configure.Get_Work_Shifts();
             return View();
         }
-        public IActionResult Loading(string id)
+        public async Task<IActionResult> Loading(string id)
         {
             ViewBag.Id = id;
+            ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
-        public IActionResult Approval()
+        public async Task<IActionResult> Approval()
         {
+            ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
-        public IActionResult History()
+        public async Task<IActionResult> History()
         {
+            ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
-        public IActionResult Summary()
+        public async Task<IActionResult> Summary()
         {
+            ViewBag.MasterData=await _masterData.GetMasterDataView();
             return View();
         }
         public IActionResult Logout()

@@ -25,7 +25,7 @@ public partial class VMS_CORE_2Context : DbContext
         {
             entity.HasKey(e => e.PLANT);
 
-            entity.ToTable("tbm_plant");
+            entity.ToTable("tbm_plant","dbo");
 
             entity.Property(e => e.PLANT).HasMaxLength(1);
             entity.Property(e => e.CREATE_BY).HasMaxLength(10);

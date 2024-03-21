@@ -54,6 +54,10 @@
               "target": "Package",
               "version": "[1.2.5, )"
             },
+            "LinqKit.EntityFramework": {
+              "target": "Package",
+              "version": "[1.2.5, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",

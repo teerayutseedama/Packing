@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Emn0dxPTNsUswp5SjkFQpbrqPHlMkJ4bt62l2oi4rwotHE7GoTFgTOsbyBM666aCxuxzr+pnB+oyfEPbUfHeeQ==",
+  "dgSpecHash": "7m5bPzT+6VWR2I7GaG+uXKn7R/bizdmq8bA1cruNgfv8vcNXAlygHxvV/jOQIEs1ib1QByBf9er5h4YilQvUOg==",
   "success": true,
   "projectFilePath": "C:\\Project\\Packing\\Packing.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\YUTZA\\.nuget\\packages\\irony.netcore\\1.0.11\\irony.netcore.1.0.11.nupkg.sha512",
     "C:\\Users\\YUTZA\\.nuget\\packages\\linqkit\\1.2.5\\linqkit.1.2.5.nupkg.sha512",
     "C:\\Users\\YUTZA\\.nuget\\packages\\linqkit.core\\1.2.5\\linqkit.core.1.2.5.nupkg.sha512",
+    "C:\\Users\\YUTZA\\.nuget\\packages\\linqkit.entityframework\\1.2.5\\linqkit.entityframework.1.2.5.nupkg.sha512",
     "C:\\Users\\YUTZA\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\YUTZA\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
     "C:\\Users\\YUTZA\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.5\\microsoft.data.sqlclient.5.1.5.nupkg.sha512",

@@ -16,7 +16,7 @@ builder.Services.AddControllersWithViews();
 
 
 var constr = builder.Configuration.GetConnectionString("VMSConnectionString");
-var constr2 = builder.Configuration.GetConnectionString("VMSConnectionString");
+var constr2 = builder.Configuration.GetConnectionString("VMS2ConnectionString");
 
 // Add services to the container.
 //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -38,7 +38,8 @@ builder.Services.AddScoped<IConfigureInterface, ConfigureInterface>();
 builder.Services.AddScoped<ISummaryInterface, SummaryInterface>();
 builder.Services.AddScoped<IHistoryInterface, HistoryInterface>(); 
 builder.Services.AddScoped<ILoaddingListInterface, LoaddingListInterface>();
-builder.Services.AddScoped<IApprovalInterface, ApprovalInterface>();
+builder.Services.AddScoped<IApprovalInterface, ApprovalInterface>(); 
+    builder.Services.AddScoped<IMasterDataInterface, MasterDataInterface>();
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization(options =>

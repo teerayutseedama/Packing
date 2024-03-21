@@ -187,6 +187,23 @@
           }
         }
       },
+      "LinqKit.EntityFramework/1.2.5": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework": "6.3.0",
+          "LinqKit.Core": "1.2.5"
+        },
+        "compile": {
+          "lib/netstandard2.1/LinqKit.EntityFramework.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/LinqKit.EntityFramework.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "compile": {
@@ -2764,6 +2781,21 @@
         "lib/uap10.0.10240/LinqKit.Core.xml",
         "linqkit.core.1.2.5.nupkg.sha512",
         "linqkit.core.nuspec"
+      ]
+    },
+    "LinqKit.EntityFramework/1.2.5": {
+      "sha512": "5I5E2GFzFW7WePOmcnSWHItEPLUtFViJbSN71cupEoLUy4TLFMg7Oh0kca4KdQTDZrk7+MQpwj2BqWkz38Bbkg==",
+      "type": "package",
+      "path": "linqkit.entityframework/1.2.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/LinqKit.EntityFramework.dll",
+        "lib/net45/LinqKit.EntityFramework.xml",
+        "lib/netstandard2.1/LinqKit.EntityFramework.dll",
+        "lib/netstandard2.1/LinqKit.EntityFramework.xml",
+        "linqkit.entityframework.1.2.5.nupkg.sha512",
+        "linqkit.entityframework.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -7934,6 +7966,7 @@
     "net7.0": [
       "ClosedXML >= 0.102.2",
       "LinqKit >= 1.2.5",
+      "LinqKit.EntityFramework >= 1.2.5",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.17",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.17",
@@ -7992,6 +8025,10 @@
             "version": "[0.102.2, )"
           },
           "LinqKit": {
+            "target": "Package",
+            "version": "[1.2.5, )"
+          },
+          "LinqKit.EntityFramework": {
             "target": "Package",
             "version": "[1.2.5, )"
           },

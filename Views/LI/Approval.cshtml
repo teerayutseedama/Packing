@@ -1,6 +1,10 @@
 ﻿@using System.Globalization
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
+@using Packing.Views.DataView;
+@{
+    MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
+}
 
 <div class="row" style="padding-top:10px">
     <div class="form-row">
@@ -8,29 +12,39 @@
             <label style="font-weight:normal">@localizer["Plant"]</label>
             <select id="selplant" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>TVO1</option>
-                <option>TVO2</option>
-                <option>TVO3</option>
+                @if (masterData.PlantList!.Count() > 0)
+                {
+                    foreach (var item in masterData.PlantList!)
+                    {
+                        <option value="@item.PLANT">@item.PLANT_NAME</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["MaterialCode"]</label>
             <select id="selmatcode" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>F011001501</option>
-                <option>F011001601</option>
-                <option>F012001501</option>
-                <option>F012001601</option>
+                @if (masterData.MaterialList!.Count() > 0)
+                {
+                    foreach (var item in masterData.MaterialList!)
+                    {
+                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_CODE</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-2" style="padding:2px">
             <label style="font-weight:normal">@localizer["MaterialName"]</label>
             <select id="selmatname" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>TVO Dehulled soymeal (TH) 70 Kg</option>
-                <option>TVO Dehulled soymeal (TH) Bulk</option>
-                <option>TVO Dehulled soymeal 70KG</option>
-                <option>TVO Dehulled soymeal BulK</option>
+                @if (masterData.MaterialList!.Count() > 0)
+                {
+                    foreach (var item in masterData.MaterialList!)
+                    {
+                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_NAME</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
@@ -38,9 +52,13 @@
             @*tbm_pk_batch_status*@
             <select id="selshift" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>เช้า</option>
-                <option>บ่าย</option>
-                <option>ดึก</option>
+                @if (masterData.ShiftList!.Count() > 0)
+                {
+                    foreach (var item in masterData.ShiftList!)
+                    {
+                        <option value="@item.ID">@item.WORK_SHIFT</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
@@ -51,8 +69,13 @@
             <label style="font-weight:normal">@localizer["Line"]</label>
             <select id="selline" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>J</option>
-                <option>K</option>
+                @if (masterData.LineList!.Count() > 0)
+                {
+                    foreach (var item in masterData.LineList!)
+                    {
+                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
@@ -100,49 +123,8 @@
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center"><input type="checkbox" id="cb1" name="cb1" /></td>
-                            <td class="text-center">290224M3C</td>
-                            <td class="text-center">TVO1</td>
-                            <td>TVO Dehulled soymeal (TH) 70 Kg</td>
-                            <td class="text-center">J</td>
-                            <td class="text-center">1-1,000</td>
-                            <td class="text-right">1,000</td>                           
-                            <td class="text-right">20</td>                            
-                            <td class="text-center">KG</td>
-                            <td class="text-center">01/02/2024</td>
-                            <td class="text-center">01/07/2024</td>
-                            <td class="text-center" style="color:gold">HOLD</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><input type="checkbox" id="cb1" name="cb1" /></td>
-                            <td class="text-center">290224M3C</td>
-                            <td class="text-center">TVO1</td>
-                            <td>TVO Dehulled soymeal (TH) 70 Kg</td>
-                            <td class="text-center">J</td>
-                            <td class="text-center">1,001-2,000</td>
-                            <td class="text-right">1,000</td>
-                            <td class="text-right">20</td>
-                            <td class="text-center">KG</td>
-                            <td class="text-center">01/02/2024</td>
-                            <td class="text-center">01/07/2024</td>
-                            <td class="text-center" style="color:gold">HOLD</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center"><input type="checkbox" id="cb1" name="cb1" /></td>
-                            <td class="text-center">290224M3B</td>
-                            <td class="text-center">TVO1</td>
-                            <td>TVO Dehulled soymeal (TH) Bulk</td>
-                            <td class="text-center">J</td>
-                            <td class="text-center">1-1,000</td>
-                            <td class="text-right">1,000</td>
-                            <td class="text-right">20</td>
-                            <td class="text-center">KG</td>
-                            <td class="text-center">01/02/2024</td>
-                            <td class="text-center">01/07/2024</td>
-                            <td class="text-center" style="color:gold">HOLD</td>
-                        </tr>
+                    <tbody id="approvalbody">
+                     
                     </tbody>
                 </table>
             </div>
@@ -208,24 +190,39 @@
     });
 
     function GetSummaryList() {
+        var txt = '';
         $.post('@Url.Action("GetApprovalDataViews", "Approval")', {
             Plant: $('#selplant').val(),
             MaterialCode: $('#selmatcode').val(),
             MaterialName: $('#selmatname').val(),
             Shift: $('#selshift').val(),
-            MFGDate: moment($('#txmfgdate').val(), "dd/mm/yyyy").toDate(),
+            MFGDate: te: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
             Line: $('#selline').val(),
             Stataus: $('#selstatus').val(),
             BatchNo: $('#txbatch').val(),
             RunNo: $('#txrunno').val()
-
         }, function (data) {
-            if (data.status) {
-                Notiflix.Notify.Success(data.message);
-
-            } else {
-                Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
-            }
+        if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
+                var d = data[i];
+                txt += '<tr>'+
+                    '<td class="text-center" > <input type="checkbox" id = "cb1" name = "cb1"/> </td>' +
+                    '<td class="text-center" > ' + d.batchNo + ' </td>' +
+                    '<td class="text-center" > ' + d.plant+ ' </td>' +
+                    '<td> ' + d.materialName + ' </td>' +
+                    '<td class="text-center" > ' + d.line+ ' </td>' +
+                    '<td class="text-center" > ' + d.package + ' </td>' +
+                    '<td class="text-right" > ' + d.runNo+ ' </td>' +
+                    '<td class="text-right" > ' + d.qty + ' </td>' +
+                    '<td class="text-center" > ' + d.uOM + ' </td>' +
+                    '<td class="text-center" > ' + d.mFGDate + ' </td>' +
+                    '<td class="text-center" > ' + d.expireDate+ ' </td>' +
+                    '<td class="text-center" style = "color:gold" > ' + d.Stataus + ' </td>' +
+                    '</tr>';
+            $('#approvalbody').html(txt);
+        } else {
+            Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา');
+        }
         }).fail(function () {
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 

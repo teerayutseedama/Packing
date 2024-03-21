@@ -95,3 +95,4 @@ C:\Project\Packing\bin\Release\net7.0\SixLabors.Fonts.dll
 C:\Project\Packing\bin\Release\net7.0\System.IO.Packaging.dll
 C:\Project\Packing\bin\Release\net7.0\XLParser.dll
 C:\Project\Packing\bin\Release\net7.0\efpt.config.json
+C:\Project\Packing\bin\Release\net7.0\LinqKit.EntityFramework.dll
