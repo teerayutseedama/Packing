@@ -32,6 +32,7 @@ public IEnumerable<tbm_pk_work_shift>? ShiftList { get; set; }
         public string MATERIAL_GROUP { get; set; } = null!;
         public string PKG_SIZE_KG { get; set; } = null!;
         public string MATERIAL_NAME { get; set; } = null!;
+        public string? SHELF_LIFT_MONTH { get; set; }
 
     }
 }
