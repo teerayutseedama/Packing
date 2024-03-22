@@ -5,12 +5,14 @@
 @using Packing.Views.DataView;
 @{
     MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
+    string BatchNo = DateTime.Now.ToString("ddMMyy");
+
 }
 <div class="row" style="padding-top:10px">
     <div class="form-row">
         <div class="form-group col-md-3" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"]</label>
-            <select id="selline" class="form-control select2" style="width:100%">
+            <select id="selline" onchange="selectLine()" class="form-control select2" style="width:100%">
                 <option></option>
                 @if (masterData.LineList!.Count() > 0)
                 {
@@ -23,7 +25,7 @@
         </div>
         <div class="form-group col-md-3" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"]</label>
-            <select id="selsloc" class="form-control select2" style="width:100%">
+            <select id="selsloc" onchange="selectSloc()" class="form-control select2" style="width:100%">
                 <option></option>
                 @if (masterData.SlocList!.Count() > 0)
                 {
@@ -44,7 +46,7 @@
         </div>
         <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txdate">@localizer["MFGDate"]</label>
-            <input type="text" class="form-control text-center" id="txmfgdate">
+            <input type="text" class="form-control text-center" onchange="selectDate()" id="txmfgdate">
         </div>
         <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txuser">@localizer["ExpiredDate"]</label>
@@ -227,13 +229,19 @@
     </div>
 </div>
 <script>
-    var pkG_SIZE_KG='';
+    var batchNo = '@BatchNo';
+    var SHELF_LIFT_MONTH = 0;
+    var pkG_SIZE_KG = '';
+    var matcode = '';
+    var line = '';
     var LineConfig =localStorage.getItem('LineConfig');
     $(document).ready(function () {
         SetPagename('Loading');
         $('#selline').val(LineConfig).change();
     });
-
+    //$(document).on('change', '#txmfgdate', function (e) { // Change event for datepicker
+    //    console.log('ss', e);
+    //});
     $(function () {
         var d = new Date();
         $('#txmfgdate').datepicker({
@@ -241,17 +249,18 @@
             autoclose: true,
             todayHighlight: true,
             orientation: "auto"
+
         }).datepicker("setDate", d);
     });
     function setQty(){
-       
+
         var qty = $('#txtotalqty').val();
         if (qty>0){
             $('#txqtyfrom').val(1);
             $('#txqtyto').val(qty);
         }
     }
-   
+
    function selectMat(){
             $.post('@Url.Action("GetMaterial", "LI")', {
                 MaterialCode: $('#selmatcode').val()
@@ -260,7 +269,8 @@
                 $('#txmatgroup').val(data.materiaL_GROUP);
                 $('#txmatname').val(data.materiaL_NAME);
                 $('#txpackage').val(data.pkG_SIZE_KG + ' ' + $('#seluom').val());
-                pkG_SIZE_KG = data.pkG_SIZE_KG;
+                    pkG_SIZE_KG = data.pkG_SIZE_KG;
+                    SHELF_LIFT_MONTH = data.shelF_LIFT_MONTH;
                 } else {
                     Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
                 }
@@ -268,7 +278,7 @@
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
             });
-        
+
 
    }
    function selectUOM(){
@@ -278,9 +288,56 @@
     function Apply(){
         var qty = $('#txtotalqty').val();
         if (qty > 0) {
-         
+
         }else{
             Notiflix.Notify.warning('กรุณาระบุจำนวน');
         }
+    }
+
+    function selectLine() {
+
+        $('#selline').val();
+    }
+
+    function selectSloc() {
+        batchNo += $('#selsloc option:selected').text();
+       $.post('@Url.Action("CheckBatchNo", "LI")', {
+           batchNo: batchNo
+            }, function (data) {
+           if (data != null) {
+               $('#txsubbatch').val(parseInt(data.subBatch)+1)
+                    $('#txbatch').val(batchNo);
+                } else {
+                    $('#txbatch').val(batchNo);
+                }
+            }).fail(function () {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+            });
+
+
+    }
+
+    function selectDate() {
+        var d = new Date();
+        d.setMonth(d.getMonth() + SHELF_LIFT_MONTH)
+        $('#txexpiredate').datepicker({
+            format: 'dd/mm/yyyy',
+            autoclose: true,
+            todayHighlight: true,
+            orientation: "auto"
+
+        }).datepicker("setDate", d);
+          $.post('@Url.Action("CheckShift", "LI")', {
+              date: moment($('#txmfgdate').val(), "DD-MM-YYYY").format("YYYY/MM/DD")
+            }, function (data) {
+           if (data != null) {
+               
+                } 
+            }).fail(function () {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+            });
+       
     }
 </script>
