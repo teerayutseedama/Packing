@@ -11,6 +11,8 @@ namespace Packing.Views.DataView
 
 public IEnumerable<tbm_pk_batch_status>? StatausList { get; set; }
 public IEnumerable<tbm_pk_work_shift>? ShiftList { get; set; }
+        public IEnumerable<tbm_pk_sloc>? SlocList { get; set; }
+        public IEnumerable<tbm_unit>? UomtList { get; set; }
     }
     public class PlantList
     {
@@ -27,7 +29,8 @@ public IEnumerable<tbm_pk_work_shift>? ShiftList { get; set; }
     public class MaterialList
     {
         public string MATERIAL_CODE { get; set; } = null!;
-
+        public string MATERIAL_GROUP { get; set; } = null!;
+        public string PKG_SIZE_KG { get; set; } = null!;
         public string MATERIAL_NAME { get; set; } = null!;
 
     }

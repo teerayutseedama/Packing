@@ -40,6 +40,7 @@ builder.Services.AddScoped<IHistoryInterface, HistoryInterface>();
 builder.Services.AddScoped<ILoaddingListInterface, LoaddingListInterface>();
 builder.Services.AddScoped<IApprovalInterface, ApprovalInterface>(); 
     builder.Services.AddScoped<IMasterDataInterface, MasterDataInterface>();
+builder.Services.AddScoped<ILiInterface, LiInterface>();
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization(options =>

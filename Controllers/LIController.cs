@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Localization;
+﻿using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Packing.Controllers;
@@ -15,17 +16,20 @@ namespace Loadin.Controllers
 
         private readonly IConfigureInterface _configure;
         private readonly IMasterDataInterface _masterData;
+        private readonly ILiInterface _liInterface;
 
-
-        public LIController( IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer, IMasterDataInterface masterData)
+        public LIController(ILiInterface liInterface, IConfigureInterface configure, ILogger<LIController> logger, IStringLocalizer<LIController> localizer, IMasterDataInterface masterData)
         {
             _logger = logger;
             _localizer = localizer;
             _configure = configure;
             _masterData = masterData;
+            _liInterface= liInterface;
         }
-        public IActionResult Li()
+        
+        public async Task<IActionResult> Li()
         {
+            ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
         public async Task<IActionResult> Configure() { 
@@ -56,8 +60,9 @@ namespace Loadin.Controllers
             ViewBag.MasterData=await _masterData.GetMasterDataView();
             return View();
         }
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
 
@@ -74,5 +79,12 @@ namespace Loadin.Controllers
 
             return LocalRedirect(returnUrl);
         }
+
+
+        public async Task<IActionResult> GetMaterial(string MaterialCode)
+        {
+            return Ok(await _liInterface.GetMaterial(MaterialCode));
+        }
+        
     }
 }

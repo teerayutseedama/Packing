@@ -2,27 +2,36 @@
 @using System.Globalization
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
-
+@using Packing.Views.DataView;
+@{
+    MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
+}
 <div class="row" style="padding-top:10px">
     <div class="form-row">
         <div class="form-group col-md-3" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"]</label>
             <select id="selline" class="form-control select2" style="width:100%">
-                <option selected></option>                
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-                <option>D</option>
-                <option>J</option>
+                <option></option>
+                @if (masterData.LineList!.Count() > 0)
+                {
+                    foreach (var item in masterData.LineList!)
+                    {
+                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-3" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"]</label>
             <select id="selsloc" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>MP3A</option>
-                <option>MP3B</option>
-                <option>FS1</option>
+                @if (masterData.SlocList!.Count() > 0)
+                {
+                    foreach (var item in masterData.SlocList!)
+                    {
+                        <option value="@item.ID">@item.SLOC</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="margin-bottom:3px">
@@ -45,10 +54,15 @@
         <div class="form-group col-md-3" style="margin-bottom:3px">
             @*tbm_material.material_code*@
             <label style="font-weight:normal;margin-bottom:3px" for="selmatcode">@localizer["MaterialCode"]</label>@*Material Code*@
-            <select id="selmatcode" class="form-control select2" style="width:100%">
-                <option selected></option>
-                <option>F011001501</option>
-                <option>F011001601</option>
+            <select id="selmatcode" onchange="selectMat()" class="form-control select2" style="width:100%">
+                <option></option>
+                @if (masterData.MaterialList!.Count() > 0)
+                {
+                    foreach (var item in masterData.MaterialList!)
+                    {
+                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_CODE</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-3" style="margin-bottom:3px">
@@ -66,9 +80,9 @@
 
 
         <div class="form-group col-md-3" style="margin-bottom:10px">
-            <label style="font-weight:normal;margin-bottom:3px" for="txqty">@localizer["Qty"]</label>
+            <label style="font-weight:normal;margin-bottom:3px"  for="txqty">@localizer["Qty"]</label>
             <div class="row">
-                <div class="col-md-4"><input type="text" class="form-control text-center" id="txtotalqty"></div>
+                <div class="col-md-4"><input type="number" class="form-control text-center" onkeyup="setQty()"  id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto" readonly></div>
             </div>            
@@ -79,13 +93,15 @@
         </div>*@
         <div class="form-group col-md-2" style="margin-bottom:10px">
             <label style="font-weight:normal;margin-bottom:3px" for="seluom">@localizer["UOM"]</label>
-            <select id="seluom" class="form-control select2" style="width:100%">
-                <option selected></option>
-                <option>00 ไม่ระบุ</option>
-                <option>BAG</option>
-                <option>BOX</option>
-                <option>Bottle</option>
-                <option>Kg</option>
+            <select id="seluom" class="form-control select2" onchange="selectUOM()" style="width:100%">
+                <option></option>
+                @if (masterData.UomtList!.Count() > 0)
+                {
+                    foreach (var item in masterData.UomtList!)
+                    {
+                        <option value="@item.UOM">@item.UOM @item.UOM_NAME</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="margin-bottom:10px">
@@ -98,11 +114,11 @@
         </div>
 
         <div class="form-group col-md-4" style="margin-bottom:10px;padding-top:22px">
-            <button type="submit" class="btn btn-info" id="btapply">@localizer["Apply"]</button>
-            <button type="submit" class="btn btn-primary" id="btsave">@localizer["Save"]</button>
-            <button type="submit" class="btn btn-success" disabled id="btclose">@localizer["CloseJob"]</button>
-            <button type="submit" class="btn btn-secondary">@localizer["PrintQRCode"]</button>
-            <button type="submit" class="btn btn-warning">@localizer["ClearData"]</button>
+            <button type="button" onclick="Apply()" class="btn btn-info" id="btapply">@localizer["Apply"]</button>
+            <button type="button" class="btn btn-primary" id="btsave">@localizer["Save"]</button>
+            <button type="button" class="btn btn-success" disabled id="btclose">@localizer["CloseJob"]</button>
+            <button type="button" class="btn btn-secondary">@localizer["PrintQRCode"]</button>
+            <button type="button" class="btn btn-warning">@localizer["ClearData"]</button>
         </div>
         <div class="form-group col-md-12" style="text-align:center">
             <table class="isr-table" id="tblbatch">
@@ -211,8 +227,11 @@
     </div>
 </div>
 <script>
+    var pkG_SIZE_KG='';
+    var LineConfig =localStorage.getItem('LineConfig');
     $(document).ready(function () {
         SetPagename('Loading');
+        $('#selline').val(LineConfig).change();
     });
 
     $(function () {
@@ -224,5 +243,44 @@
             orientation: "auto"
         }).datepicker("setDate", d);
     });
+    function setQty(){
+       
+        var qty = $('#txtotalqty').val();
+        if (qty>0){
+            $('#txqtyfrom').val(1);
+            $('#txqtyto').val(qty);
+        }
+    }
+   
+   function selectMat(){
+            $.post('@Url.Action("GetMaterial", "LI")', {
+                MaterialCode: $('#selmatcode').val()
+            }, function (data) {
+                if (data!=null) {
+                $('#txmatgroup').val(data.materiaL_GROUP);
+                $('#txmatname').val(data.materiaL_NAME);
+                $('#txpackage').val(data.pkG_SIZE_KG + ' ' + $('#seluom').val());
+                pkG_SIZE_KG = data.pkG_SIZE_KG;
+                } else {
+                    Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
+                }
+            }).fail(function () {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
+            });
+        
+
+   }
+   function selectUOM(){
+        $('#txpackage').val(pkG_SIZE_KG + ' ' + $('#seluom').val());
+   }
+
+    function Apply(){
+        var qty = $('#txtotalqty').val();
+        if (qty > 0) {
+         
+        }else{
+            Notiflix.Notify.warning('กรุณาระบุจำนวน');
+        }
+    }
 </script>

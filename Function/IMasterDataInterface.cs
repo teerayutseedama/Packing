@@ -28,7 +28,9 @@ namespace Packing.Function
                 result.StatausList = await _context.tbm_pk_batch_status.ToListAsync();
                 result.ShiftList = await _context.tbm_pk_work_shift.ToListAsync();
                 result.PlantList = await _2Context.tbm_plants.Select(x => new PlantList { PLANT = x.PLANT, PLANT_NAME = x.PLANT_NAME }).ToListAsync();
-                result.MaterialList = await _context.tbm_material.Select(x => new MaterialList { MATERIAL_CODE = x.MATERIAL_CODE, MATERIAL_NAME = x.MATERIAL_NAME }).ToListAsync();
+                result.MaterialList = await _context.tbm_material.Select(x => new MaterialList { MATERIAL_CODE = x.MATERIAL_CODE, MATERIAL_NAME = x.MATERIAL_NAME,MATERIAL_GROUP=x.MATERIAL_GROUP,PKG_SIZE_KG=x.PKG_SIZE_KG }).ToListAsync();
+                result.UomtList=await _2Context.tbm_units.Where(x=>x.ACTIVE==true).ToListAsync();
+                result.SlocList=await _context.tbm_pk_sloc.ToListAsync();
             }
             catch (Exception ex)
             {

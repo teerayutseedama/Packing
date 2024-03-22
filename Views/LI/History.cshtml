@@ -70,9 +70,13 @@
             @*tbm_pk_batch_status*@
             <select id="selstatus" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>PASS</option>
-                <option>HOLD</option>
-                <option>REJECT</option>
+                @if (masterData.StatausList!.Count() > 0)
+                {
+                    foreach (var item in masterData.StatausList!)
+                    {
+                        <option value="@item.ID">@item.BATCH_STATUS</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
