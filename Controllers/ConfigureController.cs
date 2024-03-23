@@ -14,9 +14,11 @@ namespace Packing.Controllers
     {
      
         private readonly IConfigureInterface _configure;
-        public ConfigureController(IConfigureInterface configure)
+        private readonly ISummaryInterface _summary;
+        public ConfigureController(IConfigureInterface configure, ISummaryInterface summary)
         {
             _configure = configure;
+            _summary = summary;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -33,6 +35,8 @@ namespace Packing.Controllers
         {
             return Ok(await _configure.SaveWorkShift(DataSave));
         }
+
+       
     }
 }
 

@@ -218,7 +218,7 @@ public partial class vms_packingContext : DbContext
 
         modelBuilder.Entity<tbt_pk_batch_no_detail>(entity =>
         {
-            entity.HasKey(e => e.BATCH_NO).HasName("PK__tbt_pk_b__216FC02CE0263615");
+            entity.HasKey(e=>e.id);
 
             entity.Property(e => e.BATCH_NO).HasMaxLength(50);
             entity.Property(e => e.APPROVE_BY).HasMaxLength(50);
@@ -236,7 +236,7 @@ public partial class vms_packingContext : DbContext
 
         modelBuilder.Entity<tbt_pk_batch_no_header>(entity =>
         {
-            entity.HasKey(e => e.BATCH_NO).HasName("PK__tbt_pk_b__216FC02C2B3DDE43");
+            entity.HasKey(e => e.id);
 
             entity.Property(e => e.BATCH_NO).HasMaxLength(50);
             entity.Property(e => e.APPROVE_BY).HasMaxLength(50);

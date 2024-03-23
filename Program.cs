@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Packing;
 using Packing.Function;
+using Packing.Models;
 using Packing.vmsPackingDB;
 using System.Globalization;
 
@@ -15,6 +16,8 @@ builder.Services.AddControllersWithViews();
 
 
 var constr = builder.Configuration.GetConnectionString("VMSConnectionString");
+var constr2 = builder.Configuration.GetConnectionString("VMS2ConnectionString");
+
 // Add services to the container.
 //builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddControllersWithViews();
@@ -23,12 +26,21 @@ builder.Services.AddDbContext<vms_packingContext>(options => options.UseSqlServe
 {
     option.EnableRetryOnFailure();
 }));
-
+builder.Services.AddDbContext<VMS_CORE_2Context>(options => options.UseSqlServer(constr2, option =>
+{
+    option.EnableRetryOnFailure();
+}));
 //Configure multi langnage
 builder.Services.AddLocalization();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
 builder.Services.AddScoped<IConfigureInterface, ConfigureInterface>();
+builder.Services.AddScoped<ISummaryInterface, SummaryInterface>();
+builder.Services.AddScoped<IHistoryInterface, HistoryInterface>(); 
+builder.Services.AddScoped<ILoaddingListInterface, LoaddingListInterface>();
+builder.Services.AddScoped<IApprovalInterface, ApprovalInterface>(); 
+    builder.Services.AddScoped<IMasterDataInterface, MasterDataInterface>();
+builder.Services.AddScoped<ILiInterface, LiInterface>();
 builder.Services.AddMvc()
     .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
     .AddDataAnnotationsLocalization(options =>
