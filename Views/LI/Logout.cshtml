@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
-
+@using Packing.Views.DataView;
 @{
     Layout = null;
     //string Check = ViewBag.FailLogin;
@@ -12,7 +12,7 @@
                     //string UserName = HttpContextAccessor.HttpContext.Session.GetString("Name_Emp");
                     //string RFID_No = HttpContextAccessor.HttpContext.Session.GetString("RFID_No");
     //var dataList = menu.ViewMenuByGroup(null);
-
+    MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +58,19 @@
                         <input name="txpw" id="txpw" type="password" style="font-size:larger;height:40px" class="form-control" placeholder="@localizer["Password"]">
                         <span class="glyphicon text-red glyphicon-lock form-control-feedback" style="padding-top:8px"></span>
                     </div>
-
+                    <div class="form-group has-feedback">
+                        <select id="selline" class="form-control" style="width:100%;height:40px">
+                            <option value="">--@localizer["SelectLine"]--</option>
+                            @if (masterData.LineList!.Count() > 0)
+                            {
+                                foreach (var item in masterData.LineList!)
+                                {
+                                    <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                                }
+                            }
+                        </select>
+                        <span class="glyphicon text-red glyphicon-lock form-control-feedback" style="padding-top:8px"></span>
+                    </div>
                     <div class="row">
                         <div class="col-sm-12">
                             <button type="button" id="btnlog" style="font-size:x-large;height:60px;background-color:green;color:white" class="btn  form-control" onclick="LogIn()">@localizer["Login"]</button>
@@ -85,7 +97,10 @@
     }
 
     function LogIn(){
-        window.location.href = '@Url.Action("Li","LI")';
+        var line = document.getElementById('selline').value;
+        localStorage.setItem('LineConfig', line);
+        localStorage.setItem("Username","woottipong");
+        window.location.href = '@Url.Action("Summary","LI")';
     }
 
     function Logout() {

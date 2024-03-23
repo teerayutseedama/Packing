@@ -5,6 +5,7 @@ namespace Packing.vmsPackingDB;
 
 public partial class tbt_pk_batch_no_header
 {
+    public int id { get; set; }
     public string BATCH_NO { get; set; } = null!;
 
     public int SUB_BATCH { get; set; }
