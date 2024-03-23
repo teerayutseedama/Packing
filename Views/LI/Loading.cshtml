@@ -119,7 +119,7 @@
                             <th>@localizer["Package"]</th>
                             <th style="width:100px">@localizer["Line"]</th>
                             <th>@localizer["MFGDate"]</th>
-                            <th>@localizer["RunNo"]</th>
+                 @*           <th>@localizer["RunNo"]</th>*@
                             <th>@localizer["Qty"]</th>
                             <th>@localizer["UOM"]</th>
                         </tr>
@@ -233,14 +233,15 @@
     function GetLoaddingDataViews() {
         var txt = '';
         $.post('@Url.Action("GetLoaddingDataViews", "LoadingList")', {
+            Stataus: $("#selstatus").val(),
             Plant: $('#selplant').val(),
             Line: $('#selline').val(),
             MaterialCode: $('#selmatcode').val(),
             MaterialName: $('#selmatname').val(),
             BatchNo: $('#txbatch').val(),
             Shift: $('#selshift').val(),
-            FromDate: moment($("#txfromdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
-            ToDate: moment($("#txtodate").val(), "DD-MM-YYYY").format("YYYY/MM/DD")
+            MFGDate: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
+            RunNo: $('#txrunno').val()
         }, function (data) {
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
@@ -249,13 +250,13 @@
                         '<td class="text-center" > ' + d.batchNo + ' </td>' +
                         '<td class="text-center" > ' + d.subBatch + ' </td>' +
                         '<td class="text-center" > ' + d.plant + ' </td>' +
-                        '<td>' + d.MaterialName + '</td>' +
+                        '<td>' + d.materialName + '</td>' +
                         '<td class="text-center" > ' + d.package + '</td>' +
                         '<td class="text-center" > ' + d.line + ' </td>' +
-                        '<td class="text-center" > ' + d.mFGDate + ' </td>' +
-                        '<td class="text-center" > ' + d.runNo + ' </td>' +
+                        '<td class="text-center" > ' + d.mfgDate + ' </td>' +
+                        //'<td class="text-center" > ' + d.runNo + ' </td>' +
                         '<td class="text-right" > ' + d.qty + ' </td>' +
-                        '<td class="text-center" > ' + d.uOM + ' </td>' +
+                        '<td class="text-center" > ' + d.uom + ' </td>' +
                         '</tr>';
 
                 }
@@ -270,21 +271,36 @@
     }
 
     function GetExcel() {
-     
-        $.post('@Url.Action("DownloadLoaddingExcel", "LoadingList")', {
-            Plant: $('#selplant').val(),
-            Line: $('#selline').val(),
-            MaterialCode: $('#selmatcode').val(),
-            MaterialName: $('#selmatname').val(),
-            BatchNo: $('#txbatch').val(),
-            Shift: $('#selshift').val(),
-            FromDate: moment($('#txfromdate').val(), "dd/mm/yyyy").toDate(),
-            ToDate: moment($('#txtodate').val(), "dd/mm/yyyy").toDate()
-        }, function (data) {
-      
-        }).fail(function () {
-            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+        $.ajax({
+            url: '@Url.Action("DownloadLoaddingExcel", "LoadingList")',
+            type: 'POST',
+            data:{
+                Stataus: $("#selstatus").val(),
+                Plant: $('#selplant').val(),
+                Line: $('#selline').val(),
+                MaterialCode: $('#selmatcode').val(),
+                MaterialName: $('#selmatname').val(),
+                BatchNo: $('#txbatch').val(),
+                Shift: $('#selshift').val(),
+                MFGDate: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
+                RunNo: $('#txrunno').val()
+            },
+            responseType: 'blob', // Set the response type to blob
+            success: function (response) {
+                // Create a Blob from the response
+                var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
+                // Create a link element and trigger the download
+                var link = document.createElement('a');
+                link.href = '/ExcelLoading/Loadding.xlsx'
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
         });
     }
+
 </script>

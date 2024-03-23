@@ -2,24 +2,32 @@
 using Packing.Views.DataView;
 using Packing.vmsPackingDB;
 using Microsoft.EntityFrameworkCore;
+using DocumentFormat.OpenXml.Drawing;
+using Packing.Views;
+using System.IO.Packaging;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace Packing.Function
 {
     public interface ILiInterface
     {
-        Task<MaterialList> GetMaterial(string MaterialCode);
+        Task<LiMaterial> GetMaterial(string MaterialCode);
         Task<LiCheckBatchNo> CheckBatchNo(string batchNo);
         Task<LiCheckDate> CheckShift(DateTime date);
+        Task<ResponseMessage> SaveLIData(SaveLiData data);
     }
 
     public class LiInterface: ILiInterface
     {
         private vms_packingContext _context;
         private VMS_CORE_2Context _2Context;
+        private ResponseMessage _response;
         public LiInterface(vms_packingContext context, VMS_CORE_2Context Context)
         {
             _context = context;
             _2Context = Context;
+            _response = new ResponseMessage();
         }
 
         public async Task<LiCheckBatchNo> CheckBatchNo(string batchNo)
@@ -31,19 +39,98 @@ namespace Packing.Function
         {
             LiCheckDate result = new LiCheckDate();
             
-            var shift = await _context.tbm_pk_work_shift.FirstOrDefaultAsync(x=> (DateTime.Now.Hour >= x.TIME_START.Value.Hour && DateTime.Now.Minute >= x.TIME_START.Value.Minute) && (DateTime.Now.Hour <= x.TIME_END.Value.Hour && DateTime.Now.Minute <= x.TIME_END.Value.Minute));
+            var shift = await _context.tbm_pk_work_shift.FirstOrDefaultAsync(x=>x.TIME_START.Value.TimeOfDay<=DateTime.Now.TimeOfDay && x.TIME_END.Value.TimeOfDay>=DateTime.Now.TimeOfDay);
+   
             if (shift!=null)
             {
                 result.Shift = shift.WORK_SHIFT;
+                result.ShiftID=shift.ID;
             }
             result.ExpiredDate = date.AddMonths(0);
             return result;
 
         }
 
-        public async Task<MaterialList> GetMaterial(string MaterialCode)
+        public async Task<LiMaterial> GetMaterial(string MaterialCode)
         {
-            return await _context.tbm_material.Select(x => new MaterialList { MATERIAL_CODE = x.MATERIAL_CODE, MATERIAL_NAME = x.MATERIAL_NAME, MATERIAL_GROUP = x.MATERIAL_GROUP, PKG_SIZE_KG = x.PKG_SIZE_KG,SHELF_LIFT_MONTH=x.SHELF_LIFT_MONTH }).FirstOrDefaultAsync(x => x.MATERIAL_CODE == MaterialCode);
+            var list = await (from m in _context.tbm_material.Where(x => x.MATERIAL_CODE == MaterialCode)
+                              from mt in _context.tbm_materail_type.Where(x => x.ID.ToString() == m.MATERIAL_TYPE_ID)
+                              select new LiMaterial {
+                           MATERIAL_CODE=m.MATERIAL_CODE,
+                           MaterialType = mt.MATERIAL_TYPE,
+                                  MATERIAL_NAME = m.MATERIAL_NAME,
+                                  MATERIAL_TYPE_ID = m.MATERIAL_TYPE_ID,
+                                  PKG_SIZE_KG = m.PKG_SIZE_KG,
+                                  BUN = m.BUN,
+                                  MATERIAL_GROUP = m.MATERIAL_GROUP,
+                                  SLOC_ID = m.SLOC_ID,
+                                  SHELF_LIFT_MONTH = m.SHELF_LIFT_MONTH,
+                                  FORM_NO = m.FORM_NO,
+                                  REV = m.REV,
+                                  DEFAULT_PACKING_LINE_ID = m.DEFAULT_PACKING_LINE_ID,
+                                  DEFAULT_UOM = m.DEFAULT_UOM,
+                                  DEFAULT_HOLD = m.DEFAULT_HOLD,
+                                  STATUS = m.STATUS,
+                              }).FirstOrDefaultAsync();
+            return list;
+        }
+
+        public async Task<ResponseMessage> SaveLIData(SaveLiData data)
+        {
+            try
+            {
+                var save = new tbt_pk_batch_no_header();
+                save.BATCH_NO = data.BATCH_NO;
+                save.SUB_BATCH = data.SUB_BATCH;
+                save.PACKING_LINE_ID = data.PACKING_LINE_ID;
+                save.SLOC = data.SLOC;
+                save.WORK_SHIFT_ID = data.WORK_SHIFT_ID;
+                save.MATERIAL_CODE = data.MATERIAL_CODE;
+                save.QTY_TOTAL = data.QTY_TOTAL;
+                save.QTY_FROM = data.QTY_FROM;
+                save.QTY_TO = data.QTY_TO;
+                save.UOM = data.UOM;
+                save.PACKAGE = data.PACKAGE;
+                save.MFG_DATE = data.MFG_DATE;
+                save.EXPIRE_DATE = data.EXPIRE_DATE;
+                save.BATCH_STATUS = data.BATCH_STATUS;
+                save.CREATE_BY = data.User;
+                save.CREATE_DATE = DateTime.Now;
+                save.UPDATE_BY = "";
+                save.UPDATE_DATE = null;
+                save.APPROVE_BY = "";
+                save.APPROVE_DATE = null;
+                await _context.tbt_pk_batch_no_header.AddAsync(save);
+                var detailList = new List<tbt_pk_batch_no_detail>();
+                for (int i = 0; i < data.QTY_TOTAL; i++)
+                {
+                    var detail = new tbt_pk_batch_no_detail();
+                    detail.BATCH_NO = data.BATCH_NO;
+                    detail.SUB_BATCH = data.SUB_BATCH;
+                    detail.BATCH_RUNNING_NO = i+1;
+                    detail.WORK_SHIFT_ID = data.WORK_SHIFT_ID;
+                    detail.BATCH_STATUS = data.BATCH_STATUS;
+                    detail.REMARK_REJECT = "";
+                    detail.REMARK_HOLD = "";
+                    detail.REMARK_HOLD_TO_PASS = "";
+                    detail.CREATE_BY = data.User;
+                    detail.CREATE_DATE = DateTime.Now;
+                    detail.UPDATE_BY = "";
+                    detail.UPDATE_DATE = null;
+                    detail.APPROVE_BY = "";
+                    detail.APPROVE_DATE = null;
+                    detailList.Add(detail);
+                }
+                await _context.tbt_pk_batch_no_detail.AddRangeAsync(detailList);
+                _response.Status=  await _context.SaveChangesAsync()>0;  
+            }
+            catch (Exception ex)
+            {
+                _response.Status = false;
+                _response.Error=ex.Message;
+                throw;
+            }
+            return _response;
         }
     }
 }

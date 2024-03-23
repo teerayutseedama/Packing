@@ -5,6 +5,7 @@ using Microsoft.Extensions.Localization;
 using Packing.Controllers;
 using Packing.Function;
 using Packing.Models;
+using Packing.Views.DataView;
 using Packing.vmsPackingDB;
 
 namespace Loadin.Controllers
@@ -93,8 +94,11 @@ namespace Loadin.Controllers
         {
             return Ok(await _liInterface.CheckShift(date));
         }
-        
-
+        public async Task<IActionResult> SaveLIData(SaveLiData data)
+        {
+            return Ok(await _liInterface.SaveLIData(data));
+        }
+       
 
     }
 }

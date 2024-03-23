@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "333jZXXfh1NAsh2++QZY2CHEYy+5bdMibhlM3dJvdl8=",
+  "Hash": "8f7VixQGGs9qiihkdQfNoPL3NlRoqRvWZ0cRpuLiGQo=",
   "Source": "Packing",
   "BasePath": "_content/Packing",
   "Mode": "Default",
@@ -2650,6 +2650,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\datepicker\\js\\bootstrap-datepicker.min.js"
+    },
+    {
+      "Identity": "C:\\Project\\Packing\\wwwroot\\ExcelLoading\\.xlsx",
+      "SourceId": "Packing",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Project\\Packing\\wwwroot\\",
+      "BasePath": "_content/Packing",
+      "RelativePath": "ExcelLoading/.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ExcelLoading\\.xlsx"
+    },
+    {
+      "Identity": "C:\\Project\\Packing\\wwwroot\\ExcelLoading\\Loadding.xlsx",
+      "SourceId": "Packing",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Project\\Packing\\wwwroot\\",
+      "BasePath": "_content/Packing",
+      "RelativePath": "ExcelLoading/Loadding.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ExcelLoading\\Loadding.xlsx"
     },
     {
       "Identity": "C:\\Project\\Packing\\wwwroot\\favicon.ico",

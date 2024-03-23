@@ -84,7 +84,7 @@
         <div class="form-group col-md-3" style="margin-bottom:10px">
             <label style="font-weight:normal;margin-bottom:3px"  for="txqty">@localizer["Qty"]</label>
             <div class="row">
-                <div class="col-md-4"><input type="number" class="form-control text-center" onkeyup="setQty()"  id="txtotalqty"></div>
+                <div class="col-md-4"><input type="number" class="form-control text-center" onkeyup="setQty()" onfocus="setBatch()" id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto" readonly></div>
             </div>            
@@ -117,7 +117,7 @@
 
         <div class="form-group col-md-4" style="margin-bottom:10px;padding-top:22px">
             <button type="button" onclick="Apply()" class="btn btn-info" id="btapply">@localizer["Apply"]</button>
-            <button type="button" class="btn btn-primary" id="btsave">@localizer["Save"]</button>
+            <button type="button" class="btn btn-primary"  onclick="SaveData()" id="btsave">@localizer["Save"]</button>
             <button type="button" class="btn btn-success" disabled id="btclose">@localizer["CloseJob"]</button>
             <button type="button" class="btn btn-secondary">@localizer["PrintQRCode"]</button>
             <button type="button" class="btn btn-warning">@localizer["ClearData"]</button>
@@ -126,7 +126,7 @@
             <table class="isr-table" id="tblbatch">
                 <thear>
                     <tr>
-                        <th style="width:45px;font-weight:normal"><input type="checkbox" id="checkkall" checked /></th>
+                        <th style="width:45px;font-weight:normal"><input type="checkbox" id="checkkall" onchange="checkall(this.checked)" /></th>
                         <th style="width:120px;font-weight:normal">@localizer["BatchNo"]</th>
                         <th style="width:80px;font-weight:normal">@localizer["Line"]</th>
                         <th style="width:80px;font-weight:normal">@localizer["RunNo"]</th>
@@ -138,91 +138,8 @@
                         <th style="width:120px;font-weight:normal">@localizer["ExpiredDate"]</th>
                     </tr>
                 </thear>
-                <tbody>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">1</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">2</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">3</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">4</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">5</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">6</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center" style="width:45px;font-weight:normal"><input type="checkbox" id="cb1" name="cb1" checked /></td>
-                        <td class="text-center" style="width:120px;font-weight:normal">201223M3B</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">J</td>
-                        <td class="text-center" style="width:80px;font-weight:normal">7</td>
-                        <td class="text-center">BAG</td>
-                        <td class="text-center">F011001501</td>
-                        <td class="text-left">ดีฮัลซอยมิลNon GMO</td>
-                        <td class="text-center">เช้า</td>
-                        <td class="text-center">01/02/2024</td>
-                        <td class="text-center">01/06/2024</td>
-                    </tr>
+                <tbody id="bodyLiList">
+                  
                 </tbody>
             </table>
         </div>
@@ -233,11 +150,21 @@
     var SHELF_LIFT_MONTH = 0;
     var pkG_SIZE_KG = '';
     var matcode = '';
+    var matname = '';
     var line = '';
+    var line = '';
+    var qtys=0;
+    var batchNoLast="";
+    var batchSub = 0;
+    var shift='';
+    var ShiftID=0;
+    var MaterialType='';
+    var batchList=[];
     var LineConfig =localStorage.getItem('LineConfig');
     $(document).ready(function () {
         SetPagename('Loading');
         $('#selline').val(LineConfig).change();
+            $('#btsave').prop("disabled", true);
     });
     //$(document).on('change', '#txmfgdate', function (e) { // Change event for datepicker
     //    console.log('ss', e);
@@ -256,21 +183,58 @@
 
         var qty = $('#txtotalqty').val();
         if (qty>0){
+            qtys = qty;
+       
             $('#txqtyfrom').val(1);
             $('#txqtyto').val(qty);
+        
         }
     }
+
+    function setBatch(){
+        var qty = $('#txtotalqty').val();
+        if (qty > 0) {
+            qtys = qty;
+            batchNoLast = matcode + '.' + batchNo + '.' + line+'.' + qtys;
+            $('#txbatch').val(batchNoLast);
+        
+
+        }
+    
+    }
+
+
 
    function selectMat(){
             $.post('@Url.Action("GetMaterial", "LI")', {
                 MaterialCode: $('#selmatcode').val()
             }, function (data) {
                 if (data!=null) {
+                matcode = $('#selmatcode').val();
+                matname = data.materiaL_NAME;
+                MaterialType = data.materialType;
                 $('#txmatgroup').val(data.materiaL_GROUP);
                 $('#txmatname').val(data.materiaL_NAME);
                 $('#txpackage').val(data.pkG_SIZE_KG + ' ' + $('#seluom').val());
                     pkG_SIZE_KG = data.pkG_SIZE_KG;
                     SHELF_LIFT_MONTH = data.shelF_LIFT_MONTH;
+                if (data.defaulT_HOLD!=null){
+                    $('#txstatus').val('HOLD');
+                }
+                if (data.defaulT_PACKING_LINE_ID != null){
+                    $('#selline').val(data.defaulT_PACKING_LINE_ID).change();
+                }
+                if (data.defaulT_UOM != null) {
+                    $('#seluom').val(data.defaulT_UOM).change();
+                }
+                if (data.forM_NO != null) {
+                    $('#txtotalqty').val(data.forM_NO);
+                }
+                if (data.sloC_ID != null) {
+                    $('#selsloc').val(data.sloC_ID).change();
+                }
+                batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                selectDate();
                 } else {
                     Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
                 }
@@ -286,17 +250,35 @@
    }
 
     function Apply(){
+        batchList=[];
         var qty = $('#txtotalqty').val();
+        var txt='';
         if (qty > 0) {
-
+            for(var i=0;i<qty;i++){
+                batchList.push({ batchNo: batchNoLast ,item:i+1,checked:false});
+                txt += '<tr>'+
+                    '<td class="text-center" style = "width:45px;font-weight:normal" > <input type="checkbox" id ="cb1" class="cb1" onchange="singleCheck(this.checked,'+i+')"  /> </td>' +
+                    '<td class="text-center" style = "width:120px;font-weight:normal" > '+batchNoLast+' </td>' +
+                    '<td class="text-center" style = "width:80px;font-weight:normal" > '+line+' </td>' +
+                    '<td class="text-center" style = "width:80px;font-weight:normal" > ' + batchSub + ' </td>' +
+                    '<td class="text-center" > ' + MaterialType + ' </td>' +
+                    '<td class="text-center" > '+matcode+' </td>' +
+                    '<td class="text-left" > ' + matname + ' </td>' +
+                    '<td class="text-center" > ' + shift + ' </td>' +
+                    '<td class="text-center" > ' + $('#txmfgdate') .val()+ ' </td>' +
+                    '<td class="text-center" > ' + $('#txexpiredate').val() + ' </td>' +
+                                                            '</tr>';
+            } 
+            $('#bodyLiList').html(txt);
+            $('#btsave').prop("disabled", false);
         }else{
             Notiflix.Notify.warning('กรุณาระบุจำนวน');
         }
     }
 
     function selectLine() {
-
-        $('#selline').val();
+        line = $('#selline option:selected').text();
+       
     }
 
     function selectSloc() {
@@ -305,10 +287,11 @@
            batchNo: batchNo
             }, function (data) {
            if (data != null) {
-               $('#txsubbatch').val(parseInt(data.subBatch)+1)
-                    $('#txbatch').val(batchNo);
+                batchSub = parseInt(data.subBatch) + 1;
+                $('#txsubbatch').val(batchSub);
+                $('#txbatch').val(batchNoLast);
                 } else {
-                    $('#txbatch').val(batchNo);
+                $('#txbatch').val(batchNoLast);
                 }
             }).fail(function () {
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
@@ -319,25 +302,87 @@
     }
 
     function selectDate() {
-        var d = new Date();
-        d.setMonth(d.getMonth() + SHELF_LIFT_MONTH)
+        var date = moment($('#txmfgdate').val(), "DD-MM-YYYY");
+        date.add('months', SHELF_LIFT_MONTH);
         $('#txexpiredate').datepicker({
             format: 'dd/mm/yyyy',
             autoclose: true,
             todayHighlight: true,
             orientation: "auto"
 
-        }).datepicker("setDate", d);
+        }).datepicker("setDate", date.toDate());
           $.post('@Url.Action("CheckShift", "LI")', {
               date: moment($('#txmfgdate').val(), "DD-MM-YYYY").format("YYYY/MM/DD")
             }, function (data) {
            if (data != null) {
-               
+                shift = data.shift;
+                ShiftID = data.shiftID;
+                $('#txshift').val(shift);
                 } 
             }).fail(function () {
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
             });
        
+    }
+    function SaveData(){
+        if (batchNoLast==''){
+            Notiflix.Notify.warning('กรุณาป้อนข้อมูล');
+            return;
+        }
+        $.post('@Url.Action("SaveLIData", "LI")', {
+            BATCH_NO:batchNoLast,
+            SUB_BATCH: batchSub,
+            PACKING_LINE_ID: $('#selline').val(),
+            SLOC: $('#selsloc').val(),
+            WORK_SHIFT_ID: '',
+            MATERIAL_CODE:matcode,
+            QTY_TOTAL: qtys,
+            QTY_FROM: $('#txqtyfrom').val(),
+            QTY_TO:  $('#txqtyto').val(),
+            UOM: $('#seluom').val(),
+            PACKAGE: $('#txpackage').val(),
+            MFG_DATE: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
+            EXPIRE_DATE: moment($("#txexpiredate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
+            BATCH_STATUS: $('#txstatus').val(),
+            User: localStorage.getItem("Username"),
+        }, function (data) {
+            if(data.status){
+                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+            }else{
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            }
+         
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
+
+    function checkall(event){
+        var chlist = document.getElementsByClassName('cb1');
+        //  batchList.push({ batchNo: batchNoLast ,item:i+1,checked:false});
+        for (var i = 0; i < chlist.length; i++) {
+            batchList[i].checked = event;
+            chlist[i].checked = event;
+        }
+        if(event){
+          
+            }
+ 
+    }
+
+    function singleCheck(event,index) {
+        batchList[index].checked = event;
+        var ch = batchList.find(x => x.checked==false);
+        var all = document.getElementById('checkkall');
+        if (ch!=null){
+            all.checked=false;
+        }else{
+            all.checked = true;
+        }
+    }
+    function print(){
+        console.log('333', batchList);
     }
 </script>
