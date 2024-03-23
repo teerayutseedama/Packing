@@ -3298,30 +3298,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wutt\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\YUTZA\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\Packing.csproj",
+      "projectUniqueName": "C:\\Project\\Packing\\Packing.csproj",
       "projectName": "Packing",
-      "projectPath": "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\Packing.csproj",
-      "packagesPath": "C:\\Users\\wutt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\obj\\",
+      "projectPath": "C:\\Project\\Packing\\Packing.csproj",
+      "packagesPath": "C:\\Users\\YUTZA\\.nuget\\packages\\",
+      "outputPath": "C:\\Project\\Packing\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\wutt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\YUTZA\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
