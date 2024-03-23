@@ -28,7 +28,7 @@ namespace Packing.Function
         public async Task<IEnumerable<HistoryDataView>> GetHistoryDataViews(GetHistoryData data)
         {
             List<HistoryDataView> result = new List<HistoryDataView>();
-            Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.CREATE_DATE.Value >= data.ToDate.Value && x.CREATE_DATE.Value <= data.FromDate.Value);
+            Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.MFG_DATE.Date >= data.FromDate.Value.Date && x.MFG_DATE.Date <= data.ToDate.Value.Date);
             Expression<Func<tbm_plant, bool>> plantConds = PredicateBuilder.New<tbm_plant>(true);
             Expression<Func<tbm_material, bool>> materialConds = PredicateBuilder.New<tbm_material>(true);
             if (data.Line != null)
@@ -37,23 +37,23 @@ namespace Packing.Function
             }
             if (data.MaterialCode != null)
             {
-                batchConds.And(x => x.MATERIAL_CODE == data.MaterialCode);
+                batchConds = batchConds.And(x => x.MATERIAL_CODE == data.MaterialCode);
             }
             if (data.MaterialName != null)
             {
-                materialConds.And(x => x.MATERIAL_NAME == data.MaterialName);
+                materialConds= materialConds.And(x => x.MATERIAL_NAME == data.MaterialName);
             }
             if (data.BatchNo != null)
             {
-                batchConds.And(x => x.BATCH_NO == data.BatchNo);
+                batchConds= batchConds.And(x => x.BATCH_NO == data.BatchNo);
             }
+
+            var pl = await _context2.tbm_plants.FirstOrDefaultAsync(plantConds);
             var list = await(from nh in _context.tbt_pk_batch_no_header.Where(batchConds)
-                             from m in _context.tbm_material.Where(materialConds)
-                             from sloc in _context.tbm_pk_sloc.Where(x=>x.ID.ToString()==m.SLOC_ID)
+                             from m in _context.tbm_material.Where(x=>x.MATERIAL_CODE==nh.MATERIAL_CODE)
                              from pdl in _context.tbm_pk_production_line.Where(x=>x.PACKING_LINE_ID==nh.PACKING_LINE_ID)
-                             from pl in _context2.tbm_plants.Where(plantConds)
-                             from ws in _context.tbm_pk_work_shift.Where(x=>x.ID==nh.WORK_SHIFT_ID)
-                            from b in _context.tbm_pk_batch_status.Where(x=>x.ID==nh.BATCH_STATUS)
+                             from ws in _context.tbm_pk_work_shift.Where(x=>x.ID==nh.WORK_SHIFT_ID).DefaultIfEmpty()
+                             from b in _context.tbm_pk_batch_status.Where(x=>x.ID==nh.BATCH_STATUS).DefaultIfEmpty()
                              select new HistoryDataView
                              {
                                  BatchNo = nh.BATCH_NO,
@@ -62,13 +62,13 @@ namespace Packing.Function
                                  MaterialCode = nh.MATERIAL_CODE,
                                  MaterialName = m.MATERIAL_NAME,
                                  Package = nh.PACKAGE,
-                                 MFGDate = nh.MFG_DATE,
+                                 MFGDate = nh.MFG_DATE.ToString("dd/MM/yyyy"),
                                  Shift = ws.WORK_SHIFT,
                                  RunNo =m.FORM_NO,
                                  Qty =nh.QTY_TOTAL,
                                  UOM = nh.UOM,
                                  Stataus = b.BATCH_STATUS,
-                             }).ToListAsync();
+                             }).Distinct().ToListAsync();
             result = list.OrderBy(x=>x.BatchNo).ToList();
             //foreach (var item in group)
             //{

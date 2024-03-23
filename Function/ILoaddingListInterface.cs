@@ -33,24 +33,23 @@ namespace Packing.Function
                 Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.BATCH_STATUS == null || x.BATCH_STATUS == status.ID!);
                 Expression<Func<tbm_plant, bool>> plantConds = PredicateBuilder.New<tbm_plant>(true);
                 Expression<Func<tbm_material, bool>> materialConds = PredicateBuilder.New<tbm_material>(true);
-
                 if (data.MaterialCode != null)
                 {
-                    batchConds.And(x => x.MATERIAL_CODE == data.MaterialCode);
+                    batchConds = batchConds.And(x => x.MATERIAL_CODE == data.MaterialCode);
                 }
                 if (data.MaterialName != null)
                 {
-                    materialConds.And(x => x.MATERIAL_NAME == data.MaterialName);
+                    materialConds= materialConds.And(x => x.MATERIAL_NAME == data.MaterialName);
                 }
                 if (data.BatchNo != null)
                 {
-                    batchConds.And(x => x.BATCH_NO == data.BatchNo);
+                    batchConds = batchConds.And(x => x.BATCH_NO == data.BatchNo);
                 }
                 if (data.MFGDate != null)
                 {
-                    batchConds.And(x => x.CREATE_DATE.Value.Date == data.MFGDate.Value.Date);
+                    batchConds = batchConds.And(x => x.MFG_DATE.Date == data.MFGDate.Value.Date);
                 }
-                var test = await _context.tbt_pk_batch_no_header.Where(batchConds).ToListAsync();
+                //var test = await _context.tbt_pk_batch_no_header.Where(batchConds).ToListAsync();
                 var pl = await _context2.tbm_plants.FirstOrDefaultAsync(plantConds);
                 var list = await (from nh in _context.tbt_pk_batch_no_header.Where(batchConds)
                                   from m in _context.tbm_material.Where(x=>x.MATERIAL_CODE == nh.MATERIAL_CODE)

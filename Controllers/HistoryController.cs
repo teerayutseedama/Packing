@@ -4,15 +4,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Packing.Function;
 using Packing.Views.DataView;
+using System.IO;
 
 namespace Packing.Controllers
 {
     public class HistoryController : Controller
     {
         private readonly IHistoryInterface _historyInterface;
-        public HistoryController(IHistoryInterface historyInterface)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public HistoryController(IHistoryInterface historyInterface, IWebHostEnvironment webHostEnvironment )
         {
             _historyInterface = historyInterface;
+            _webHostEnvironment= webHostEnvironment;
         }
         // GET: HistoryController
         public ActionResult Index()
@@ -84,52 +87,63 @@ namespace Packing.Controllers
 
         public async Task<IActionResult> DownloadHistoryExcel(GetHistoryData data)
         {
-            var dataList = await _historyInterface.GetHistoryDataViews(data);
-            using (var workbook = new XLWorkbook())
+            try
             {
-                var worksheet = workbook.Worksheets.Add("History");
-                // สร้าง Header
-                worksheet.Cell(1, 1).Value = "BatchNo";
-                worksheet.Cell(1, 2).Value = "Plant";
-                worksheet.Cell(1, 3).Value = "Line";
-                worksheet.Cell(1, 4).Value = "MaterialCode";
-                worksheet.Cell(1, 5).Value = "MaterialName";
-                worksheet.Cell(1, 6).Value = "Package";
-                worksheet.Cell(1, 7).Value = "MFGDate";
-                worksheet.Cell(1, 8).Value = "Shift";
-                worksheet.Cell(1, 9).Value = "RunNo";
-                worksheet.Cell(1, 10).Value = "Qty";
-                worksheet.Cell(1, 11).Value = "UOM";
-                worksheet.Cell(1, 12).Value = "Stataus";
-        // เขียนข้อมูลจาก List ลงใน Excel
-        int row = 2;
-                foreach (var item in dataList)
+                var dataList = await _historyInterface.GetHistoryDataViews(data);
+                string path = _webHostEnvironment.WebRootPath + "/ExcelHistory/History.xlsx";
+                using (var workbook = new XLWorkbook())
                 {
-                    worksheet.Cell(row, 1).Value = item.BatchNo;
-                    worksheet.Cell(row, 2).Value = item.Plant;
-                    worksheet.Cell(row, 3).Value = item.Line;
-                    worksheet.Cell(row, 4).Value = item.MaterialCode;
-                    worksheet.Cell(row, 5).Value = item.MaterialName;
-                    worksheet.Cell(row, 6).Value = item.Package;
-                    worksheet.Cell(row, 7).Value = item.MFGDate;
-                    worksheet.Cell(row, 8).Value = item.Shift;
-                    worksheet.Cell(row, 9).Value = item.RunNo;
-                    worksheet.Cell(row, 10).Value = item.Qty;
-                    worksheet.Cell(row, 11).Value = item.UOM;
-                    worksheet.Cell(row, 12).Value = item.Stataus;
-                    row++;
-                }
+                    var worksheet = workbook.Worksheets.Add("History");
+                    // สร้าง Header
+                    worksheet.Cell(1, 1).Value = "BatchNo";
+                    worksheet.Cell(1, 2).Value = "Plant";
+                    worksheet.Cell(1, 3).Value = "Line";
+                    worksheet.Cell(1, 4).Value = "MaterialCode";
+                    worksheet.Cell(1, 5).Value = "MaterialName";
+                    worksheet.Cell(1, 6).Value = "Package";
+                    worksheet.Cell(1, 7).Value = "MFGDate";
+                    worksheet.Cell(1, 8).Value = "Shift";
+                    worksheet.Cell(1, 9).Value = "RunNo";
+                    worksheet.Cell(1, 10).Value = "Qty";
+                    worksheet.Cell(1, 11).Value = "UOM";
+                    worksheet.Cell(1, 12).Value = "Stataus";
+                    // เขียนข้อมูลจาก List ลงใน Excel
+                    int row = 2;
+                    foreach (var item in dataList)
+                    {
+                        worksheet.Cell(row, 1).Value = item.BatchNo;
+                        worksheet.Cell(row, 2).Value = item.Plant;
+                        worksheet.Cell(row, 3).Value = item.Line;
+                        worksheet.Cell(row, 4).Value = item.MaterialCode;
+                        worksheet.Cell(row, 5).Value = item.MaterialName;
+                        worksheet.Cell(row, 6).Value = item.Package;
+                        worksheet.Cell(row, 7).Value = item.MFGDate;
+                        worksheet.Cell(row, 8).Value = item.Shift;
+                        worksheet.Cell(row, 9).Value = item.RunNo;
+                        worksheet.Cell(row, 10).Value = item.Qty;
+                        worksheet.Cell(row, 11).Value = item.UOM;
+                        worksheet.Cell(row, 12).Value = item.Stataus;
+                        row++;
+                    }
+                    workbook.SaveAs(path);
+                    return Ok(true);
+                    // สร้าง MemoryStream เพื่อเก็บข้อมูล Excel
+                    //using (var stream = new MemoryStream())
+                    //{
 
-                // สร้าง MemoryStream เพื่อเก็บข้อมูล Excel
-                using (var stream = new MemoryStream())
-                {
-                    workbook.SaveAs(stream);
-                    var content = stream.ToArray();
+                    //    var content = stream.ToArray();
 
-                    // ส่งไฟล์ Excel กลับเป็น response
-                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employees.xlsx");
+                    //    // ส่งไฟล์ Excel กลับเป็น response
+                    //    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Employees.xlsx");
+                    //}
                 }
             }
+            catch (Exception ex)
+            {
+                return Ok(ex.Message);
+             
+            }
+           
         }
     }
 

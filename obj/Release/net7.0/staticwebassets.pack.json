@@ -173,12 +173,24 @@
       "PackagePath": "staticwebassets\\Buttons-2.4.2\\js\\dataTables.buttons.min.js"
     },
     {
+      "Id": "C:\\Project\\Packing\\wwwroot\\ExcelApproval\\Approval.xlsx",
+      "PackagePath": "staticwebassets\\ExcelApproval\\Approval.xlsx"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\ExcelHistory\\History.xlsx",
+      "PackagePath": "staticwebassets\\ExcelHistory\\History.xlsx"
+    },
+    {
       "Id": "C:\\Project\\Packing\\wwwroot\\ExcelLoading\\.xlsx",
       "PackagePath": "staticwebassets\\ExcelLoading\\.xlsx"
     },
     {
       "Id": "C:\\Project\\Packing\\wwwroot\\ExcelLoading\\Loadding.xlsx",
       "PackagePath": "staticwebassets\\ExcelLoading\\Loadding.xlsx"
+    },
+    {
+      "Id": "C:\\Project\\Packing\\wwwroot\\ExcelSummary\\Summary.xlsx",
+      "PackagePath": "staticwebassets\\ExcelSummary\\Summary.xlsx"
     },
     {
       "Id": "C:\\Project\\Packing\\wwwroot\\FixedColumns-4.3.0\\css\\fixedColumns.bootstrap.css",

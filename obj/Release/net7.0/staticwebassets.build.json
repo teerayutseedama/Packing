@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8f7VixQGGs9qiihkdQfNoPL3NlRoqRvWZ0cRpuLiGQo=",
+  "Hash": "Xn+mEP1m5Q3lWq70OOKOLXToaNnEOmgk4SSZF99n10Y=",
   "Source": "Packing",
   "BasePath": "_content/Packing",
   "Mode": "Default",
@@ -2652,6 +2652,40 @@
       "OriginalItemSpec": "wwwroot\\datepicker\\js\\bootstrap-datepicker.min.js"
     },
     {
+      "Identity": "C:\\Project\\Packing\\wwwroot\\ExcelApproval\\Approval.xlsx",
+      "SourceId": "Packing",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Project\\Packing\\wwwroot\\",
+      "BasePath": "_content/Packing",
+      "RelativePath": "ExcelApproval/Approval.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ExcelApproval\\Approval.xlsx"
+    },
+    {
+      "Identity": "C:\\Project\\Packing\\wwwroot\\ExcelHistory\\History.xlsx",
+      "SourceId": "Packing",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Project\\Packing\\wwwroot\\",
+      "BasePath": "_content/Packing",
+      "RelativePath": "ExcelHistory/History.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ExcelHistory\\History.xlsx"
+    },
+    {
       "Identity": "C:\\Project\\Packing\\wwwroot\\ExcelLoading\\.xlsx",
       "SourceId": "Packing",
       "SourceType": "Discovered",
@@ -2684,6 +2718,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\ExcelLoading\\Loadding.xlsx"
+    },
+    {
+      "Identity": "C:\\Project\\Packing\\wwwroot\\ExcelSummary\\Summary.xlsx",
+      "SourceId": "Packing",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Project\\Packing\\wwwroot\\",
+      "BasePath": "_content/Packing",
+      "RelativePath": "ExcelSummary/Summary.xlsx",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ExcelSummary\\Summary.xlsx"
     },
     {
       "Identity": "C:\\Project\\Packing\\wwwroot\\favicon.ico",

@@ -9,6 +9,7 @@ namespace Packing.Views.DataView
     public class ApprovalDataView
     {
         public string? BatchNo { get; set; }
+        public int? BatchSub { get; set; }
         public string? Plant { get; set; }
         public string? MaterialName { get; set; }
         public string? Line { get; set; }
@@ -16,8 +17,8 @@ namespace Packing.Views.DataView
         public string? RunNo { get; set; }
         public int? Qty { get; set; }
         public string? UOM { get; set; }
-        public DateTime? MFGDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        public string? MFGDate { get; set; }
+        public string? ExpireDate { get; set; }
         public string? Stataus { get; set; }
     }
 
@@ -37,6 +38,7 @@ namespace Packing.Views.DataView
     public class SaveApprovalData
     {
         public string? BatchNo { get; set; }
+        public int BatchSub { get; set; } = 0;
         public int? Status { get; set; }
         public string? Remark { get; set; }
         public string? User { get; set; }

@@ -237,10 +237,10 @@
                         '<td>' + d.materialGroup + ' </td>' +
                         '<td> ' + d.materialName + ' </td>' +
                         '<td> ' + d.package + ' </td>' +
-                        '<td class="text-center" >' + d.mFGDate + '</td>'+
+                        '<td class="text-center" >' + d.mfgDate + '</td>' +
                         '<td class="text-center" >' + d.expireDate + ' </td>' +
                         '<td class="text-right" >' + d.qty + ' </td>' +
-                        '<td class="text-center" > ' + d.uOM + ' </td>' +
+                        '<td class="text-center" > ' + d.uom + ' </td>' +
                         '</tr>';
          
                 }  
@@ -255,25 +255,35 @@
     }
 
     function GetExcel() {
-        $.post('@Url.Action("DownloadEmployeesExcel", "Summary")', {
-            Plant: $('#selplant').val(),
-            Line: $('#selline').val(),
-            MaterialCode: $('#selmatcode').val(),
-            MaterialName: $('#selmatname').val(),
-            BatchNo: $('#txbatch').val(),
-            Shift: $('#selshift').val(),
-            FromDate: moment($('#txfromdate').val(), "dd/mm/yyyy").toDate(),
-            ToDate: moment($('#txtodate').val(), "dd/mm/yyyy").toDate()
-        }, function (data) {
-            //if (data.status) {
-            //    Notiflix.Notify.Success(data.message);
+        $.ajax({
+            url: '@Url.Action("DownloadSummaryExcel", "Summary")',
+            type: 'POST',
+            data: {
+                Plant: $('#selplant').val(),
+                Line: $('#selline').val(),
+                MaterialCode: $('#selmatcode').val(),
+                MaterialName: $('#selmatname').val(),
+                BatchNo: $('#txbatch').val(),
+                Shift: $('#selshift').val(),
+                FromDate: moment($("#txfromdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
+                ToDate: moment($("#txtodate").val(), "DD-MM-YYYY").format("YYYY/MM/DD")
+            },
+            responseType: 'blob', // Set the response type to blob
+            success: function (response) {
+                // Create a Blob from the response
+                var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-            //} else {
-            //    Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
-            //}
-        }).fail(function () {
-            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
-
+                // Create a link element and trigger the download
+                var link = document.createElement('a');
+                link.href = '/ExcelSummary/Summary.xlsx'
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
         });
+  
     }
 </script>

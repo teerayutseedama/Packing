@@ -11,7 +11,7 @@ namespace Packing.Views.DataView
         public string? MaterialCode { get; set; }
         public string? MaterialName { get; set; }
         public string? Package { get; set; }
-        public DateTime? MFGDate { get; set; }
+        public string? MFGDate { get; set; }
         public string? Shift { get; set; }
         public string? RunNo { get; set; }
         public int Qty { get; set; }

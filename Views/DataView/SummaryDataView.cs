@@ -8,8 +8,8 @@ namespace Packing.Views.DataView
         public string? MaterialGroup { get; set; }
         public string? MaterialName { get; set; }
         public string? Package { get; set; }
-        public DateTime? MFGDate { get; set; }
-        public DateTime? ExpireDate { get; set; }
+        public string? MFGDate { get; set; }
+        public string? ExpireDate { get; set; }
         public int? Qty { get; set; }
         public string? UOM { get; set; }
     }

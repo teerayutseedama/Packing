@@ -83,9 +83,13 @@
             @*tbm_pk_batch_status*@
             <select id="selstatus" class="form-control select2" style="width:100%">
                 <option></option>
-                <option>PASS</option>
-                <option>HOLD</option>
-                <option>REJECT</option>
+                @if (masterData.StatausList!.Count() > 0)
+                {
+                    foreach (var item in masterData.StatausList!)
+                    {
+                        <option value="@item.ID">@item.BATCH_STATUS</option>
+                    }
+                }
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
@@ -97,9 +101,9 @@
             <input id="txrunno" class="form-control" />
         </div>
         <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:27px">
-            <button type="button" class="btn btn-primary">@localizer["Search"]</button>
+            <button type="button" class="btn btn-primary" onclick="GetApprovalyList()">@localizer["Search"]</button>
             <button type="button" class="btn btn-success" id="btupdate" onclick="showmodal(1)">@localizer["Update"]</button>
-            <button type="button" class="btn btn-secondary">@localizer["Excel"]</button>
+            <button type="button" class="btn btn-secondary" onclick="GetExcel()">@localizer["Excel"]</button>
         </div>
         <div class="form-group col-md-12">
             <div class="form-inline">
@@ -107,7 +111,7 @@
                     <thead>
                         <tr>
                             <th style="width:50px">
-                                <input type="checkbox" id="checlapp" />
+                                <input type="checkbox" id="checkkall" onchange="checkall(this.checked)" />
                             </th>
                             <th style="width:120px">@localizer["BatchNo"]</th>
                             <th>@localizer["Plant"]</th>
@@ -148,9 +152,13 @@
                         @*tbm_pk_batch_status*@
                         <select id="selupdatestatus" class="form-control select2" style="width:100%">
                             <option></option>
-                            <option>PASS</option>
-                            <option>HOLD</option>
-                            <option>REJECT</option>
+                            @if (masterData.StatausList!.Count() > 0)
+                            {
+                                foreach (var item in masterData.StatausList!)
+                                {
+                                    <option value="@item.ID">@item.BATCH_STATUS</option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="form-group col-md-12">
@@ -160,24 +168,32 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="showmodal(0)">Update</button>
+                <button type="button" class="btn btn-primary" onclick="Approval()">Update</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="showmodal(0)">Close</button>
             </div>
             </div>
     </div>
 </div>
 <script>
-
+    batchList=[];
     $(document).ready(function () {
         SetPagename('Approval');
     });
 
     function showmodal(flagshow) {
-        if (flagshow == 1) {
-            $('#modalapproval').show();
-        } else {
+        var ch = batchList.find(f=>f.checked);
+        if(ch!=null){
+            if (flagshow == 1) {
+                $('#modalapproval').show();
+            } else {
+                $('#modalapproval').hide();
+            }
+
+        }else{
+            Notiflix.Notify.warning('กรุณาเลือกข้อมูล');
             $('#modalapproval').hide();
         }
+        
     }
     $(function () {
         var d = new Date();
@@ -189,7 +205,9 @@
         }).datepicker("setDate", d);
     });
 
-    function GetSummaryList() {
+    function GetApprovalyList() {
+        batchList=[];
+        document.getElementById('checkkall').checked=false;
         var txt = '';
         $.post('@Url.Action("GetApprovalDataViews", "Approval")', {
             Plant: $('#selplant').val(),
@@ -205,20 +223,22 @@
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 var d = data[i];
+                    batchList.push({ batchNo: d.batchNo, item: i + 1, checked: false, batchSub: d.batchSub });
                 txt += '<tr>'+
-                    '<td class="text-center" > <input type="checkbox" id = "cb1" name = "cb1"/> </td>' +
+                        '<td class="text-center" > <input type="checkbox" id ="cb1" name="cb1" class="cb1" onchange="singleCheck(this.checked,' + i + ')"/> </td>' +
                     '<td class="text-center" > ' + d.batchNo + ' </td>' +
                     '<td class="text-center" > ' + d.plant+ ' </td>' +
                     '<td> ' + d.materialName + ' </td>' +
                     '<td class="text-center" > ' + d.line+ ' </td>' +
                     '<td class="text-center" > ' + d.package + ' </td>' +
-                    '<td class="text-right" > ' + d.runNo+ ' </td>' +
+                        '<td class="text-right" > ' + d.runNo + ' </td>' +
                     '<td class="text-right" > ' + d.qty + ' </td>' +
-                    '<td class="text-center" > ' + d.uOM + ' </td>' +
-                    '<td class="text-center" > ' + d.mFGDate + ' </td>' +
-                    '<td class="text-center" > ' + d.expireDate+ ' </td>' +
-                    '<td class="text-center" style = "color:gold" > ' + d.Stataus + ' </td>' +
+                    '<td class="text-center" > ' + d.uom + ' </td>' +
+                        '<td class="text-center" > ' + d.mfgDate + ' </td>' +
+                        '<td class="text-center" > ' + d.expireDate + ' </td>' +
+                        '<td class="text-center" style = "color:gold" > ' + d.stataus + ' </td>' +
                     '</tr>';
+                    }
             $('#approvalbody').html(txt);
         } else {
             Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา');
@@ -230,25 +250,92 @@
     }
 
     function GetExcel() {
-        $.post('@Url.Action("DownloadApprovalExcel", "Approval")', {
-            Plant: $('#selplant').val(),
-            MaterialCode: $('#selmatcode').val(),
-            MaterialName: $('#selmatname').val(),
-            Shift: $('#selshift').val(),
-            MFGDate: moment($('#txmfgdate').val(), "dd/mm/yyyy").toDate(),
-            Line: $('#selline').val(),
-            Stataus: $('#selstatus').val(),
-            BatchNo: $('#txbatch').val(),
-            RunNo: $('#txrunno').val()
-        }, function (data) {
-            //if (data.status) {
-            //    Notiflix.Notify.Success(data.message);
+        $.ajax({
+            url: '@Url.Action("DownloadApprovalExcel", "Approval")',
+            type: 'POST',
+            data: {
+                Plant: $('#selplant').val(),
+                MaterialCode: $('#selmatcode').val(),
+                MaterialName: $('#selmatname').val(),
+                Shift: $('#selshift').val(),
+                MFGDate: moment($('#txmfgdate').val(), "dd/mm/yyyy").toDate(),
+                Line: $('#selline').val(),
+                Stataus: $('#selstatus').val(),
+                BatchNo: $('#txbatch').val(),
+                RunNo: $('#txrunno').val()
+            },
+            responseType: 'blob', // Set the response type to blob
+            success: function (response) {
+                // Create a Blob from the response
+                var blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-            //} else {
-            //    Notiflix.Notify.Failure('เกิดข้อผิดพลาด' + data.message);
-            //}
+                // Create a link element and trigger the download
+                var link = document.createElement('a');
+                link.href = '/ExcelApproval/Approval.xlsx'
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+       
+    }
+
+    function checkall(event) {
+        var chlist = document.getElementsByClassName('cb1');
+        //  batchList.push({ batchNo: batchNoLast ,item:i+1,checked:false});
+        for (var i = 0; i < chlist.length; i++) {
+            batchList[i].checked = event;
+            chlist[i].checked = event;
+        }
+        if (event) {
+
+        }
+
+    }
+
+    function singleCheck(event, index) {
+        batchList[index].checked = event;
+        var ch = batchList.find(x => x.checked == false);
+        var all = document.getElementById('checkkall');
+        if (ch != null) {
+            all.checked = false;
+        } else {
+            all.checked = true;
+        }
+    }
+
+    function Approval(){
+        var dataSave=[];
+        document.getElementById('checkkall').checked = false;
+        var txt = '';
+        for (var i = 0; i < batchList.length; i++) {
+            var d = batchList[i];
+            if(d.checked){
+                dataSave.push({
+                    BatchNo: d.batchNo,
+                    BatchSub: d.batchSub,
+                    Status: $("#selupdatestatus").val(),
+                    Remark: $('#txremark').val(),
+                    User: localStorage.getItem('Username'),
+                })
+            }
+        } 
+        $.post('@Url.Action("SaveApprovalData", "Approval")', {
+            data: dataSave
+        }, function (data) {
+            if(data.status){
+                $('#modalapproval').hide();
+                $('#approvalbody').html('');
+                GetApprovalyList();
+                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+            }else{
+            Notiflix.Notify.warning(data.error);
+            }
         }).fail(function () {
-            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่');
 
         });
     }

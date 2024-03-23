@@ -16,6 +16,7 @@ namespace Packing.Function
         Task<LiCheckBatchNo> CheckBatchNo(string batchNo);
         Task<LiCheckDate> CheckShift(DateTime date);
         Task<ResponseMessage> SaveLIData(SaveLiData data);
+        Task<LiDataView> LoadLiDataView(string batchNo,int subBatch);
     }
 
     public class LiInterface: ILiInterface
@@ -75,6 +76,45 @@ namespace Packing.Function
             return list;
         }
 
+        public async Task<LiDataView> LoadLiDataView(string batchNo, int subBatch)
+        {
+            LiDataView result = new LiDataView();
+            try
+            {
+                var data=await _context.tbt_pk_batch_no_header.FirstOrDefaultAsync(x=>x.BATCH_NO==batchNo && x.SUB_BATCH==subBatch);
+                if (data != null)
+                {
+                    var status = await _context.tbm_pk_batch_status.FirstOrDefaultAsync(x => x.ID == data.BATCH_STATUS);
+                    result.BATCH_NO = data.BATCH_NO;
+                    result.SUB_BATCH = data.SUB_BATCH;
+                    result.PACKING_LINE_ID = data.PACKING_LINE_ID;
+                    result.SLOC = data.SLOC;
+                    result.WORK_SHIFT_ID = data.WORK_SHIFT_ID;
+                    result.MATERIAL_CODE = data.MATERIAL_CODE;
+                    result.QTY_TOTAL = data.QTY_TOTAL;
+                    result.QTY_FROM = data.QTY_FROM;
+                    result.QTY_TO = data.QTY_TO;
+                    result.UOM = data.UOM;
+                    result.PACKAGE = data.PACKAGE;
+                    result.MFG_DATE = data.MFG_DATE;
+                    result.EXPIRE_DATE = data.EXPIRE_DATE;
+                    if (status != null)
+                    {
+                        result.BATCH_STATUS = status!.BATCH_STATUS;
+                    }
+                  
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+      
+
         public async Task<ResponseMessage> SaveLIData(SaveLiData data)
         {
             try
@@ -96,9 +136,9 @@ namespace Packing.Function
                 save.BATCH_STATUS = data.BATCH_STATUS;
                 save.CREATE_BY = data.User;
                 save.CREATE_DATE = DateTime.Now;
-                save.UPDATE_BY = "";
+                save.UPDATE_BY = null;
                 save.UPDATE_DATE = null;
-                save.APPROVE_BY = "";
+                save.APPROVE_BY =null;
                 save.APPROVE_DATE = null;
                 await _context.tbt_pk_batch_no_header.AddAsync(save);
                 var detailList = new List<tbt_pk_batch_no_detail>();
@@ -115,9 +155,9 @@ namespace Packing.Function
                     detail.REMARK_HOLD_TO_PASS = "";
                     detail.CREATE_BY = data.User;
                     detail.CREATE_DATE = DateTime.Now;
-                    detail.UPDATE_BY = "";
+                    detail.UPDATE_BY = null;
                     detail.UPDATE_DATE = null;
-                    detail.APPROVE_BY = "";
+                    detail.APPROVE_BY = null;
                     detail.APPROVE_DATE = null;
                     detailList.Add(detail);
                 }

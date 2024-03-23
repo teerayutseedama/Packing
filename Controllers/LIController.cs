@@ -28,10 +28,26 @@ namespace Loadin.Controllers
             _liInterface= liInterface;
         }
         
-        public async Task<IActionResult> Li()
+        public async Task<IActionResult> Li(string id)
         {
+           
+            ViewBag.Id = id;
             ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
+        }
+
+        public async Task<IActionResult> LoadLiData(string id)
+        {
+            LiDataView data = new LiDataView();
+            if (id != null)
+            {
+                var bat = id.Split(' ');
+                if (bat.Length > 0)
+                {
+                    data = await _liInterface.LoadLiDataView(bat[0], Convert.ToInt32(bat[1]));
+                }
+            }
+            return Ok(data);
         }
         public async Task<IActionResult> Configure() { 
             var data=await _configure.GetMaterialList();
@@ -40,9 +56,9 @@ namespace Loadin.Controllers
             ViewBag.WorkSlift=await _configure.Get_Work_Shifts();
             return View();
         }
-        public async Task<IActionResult> Loading(string id)
+        public async Task<IActionResult> Loading()
         {
-            ViewBag.Id = id;
+         
             ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }

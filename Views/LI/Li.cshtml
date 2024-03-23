@@ -6,8 +6,9 @@
 @{
     MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
     string BatchNo = DateTime.Now.ToString("ddMMyy");
-
+    string id = ViewBag.id;
 }
+
 <div class="row" style="padding-top:10px">
     <div class="form-row">
         <div class="form-group col-md-3" style="margin-bottom:3px">
@@ -38,7 +39,7 @@
         </div>
         <div class="form-group col-md-1" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txbatch">@localizer["BatchNo"]</label>
-            <input type="text" class="form-control text-center" id="txbatch" readonly>
+            <input type="text" class="form-control text-center" id="txbatch"  readonly>
         </div>
         <div class="form-group col-md-1" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txbatch">@localizer["SubBatch"]</label>
@@ -69,7 +70,7 @@
         </div>
         <div class="form-group col-md-3" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selprod">@localizer["MaterialGroup"]</label>
-            <input id="txmatgroup" class="form-control" readonly />
+            <input id="txmatgroup" class="form-control"  readonly />
         </div>
         <div class="form-group col-md-4" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selprod">@localizer["MaterialName"]</label>
@@ -77,16 +78,16 @@
         </div>
         <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txstatus">@localizer["Hold"]</label>
-            <input type="text" class="form-control" id="txstatus" readonly>
+            <input type="text" class="form-control" id="txstatus"  readonly>
         </div>
 
 
         <div class="form-group col-md-3" style="margin-bottom:10px">
             <label style="font-weight:normal;margin-bottom:3px"  for="txqty">@localizer["Qty"]</label>
             <div class="row">
-                <div class="col-md-4"><input type="number" class="form-control text-center" onkeyup="setQty()" onfocus="setBatch()" id="txtotalqty"></div>
+                <div class="col-md-4"><input type="number" class="form-control text-center" onkeyup="setQty()" onfocus="setBatch()" onchange="setBatch()w" id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
-                <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto" readonly></div>
+                <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto"  readonly></div>
             </div>            
         </div>
 @*        <div class="form-group col-md-1">
@@ -112,7 +113,7 @@
         </div>
         <div class="form-group col-md-1" style="margin-bottom:10px">
             <label style="font-weight:normal;margin-bottom:3px" for="txqrcode">@localizer["Shift"]</label>
-            <input type="text" class="form-control" id="txshift" readonly>
+            <input type="text" class="form-control" id="txshift"  readonly>
         </div>
 
         <div class="form-group col-md-4" style="margin-bottom:10px;padding-top:22px">
@@ -165,10 +166,54 @@
         SetPagename('Loading');
         $('#selline').val(LineConfig).change();
             $('#btsave').prop("disabled", true);
+        LoadData();
     });
-    //$(document).on('change', '#txmfgdate', function (e) { // Change event for datepicker
-    //    console.log('ss', e);
-    //});
+function LoadData(){
+        var dataID = '@id';
+        if (dataID!=''){
+            $.post('@Url.Action("LoadLiData", "LI")', {
+                id: dataID
+            }, function (data) {
+                if (data != null) {
+                    batchNoLast = data?.batcH_NO;
+                    batchSub = data?.suB_BATCH;
+                    $('#selline').val(data.packinG_LINE_ID).change();
+                    $('#selsloc').val(data.sloc).change();
+                    $('#selmatcode').val(data.materiaL_CODE).change();
+                    $('#seluom').val(data.uom).change();
+                    $('#txtotalqty').val(data.qtY_TOTAL);
+                    qtys = data.qtY_TOTAL;
+                            $('#txqtyfrom').val(data.qtY_FROM);
+                    $('#txqtyto').val(data.qtY_TO);
+                    //$('#txmfgdate').datepicker({
+                    //    format: 'dd/mm/yyyy',
+                    //    autoclose: true,
+                    //    todayHighlight: true,
+                    //    orientation: "auto"
+
+                    //}).datepicker("setDate", moment(data.mfG_DATE));
+                    //$('#txexpiredate').datepicker({
+                    //    format: 'dd/mm/yyyy',
+                    //    autoclose: true,
+                    //    todayHighlight: true,
+                    //    orientation: "auto"
+
+                    //}).datepicker("setDate", moment(data.expirE_DATE));
+                    $('#txstatus').val(data.batcH_STATUS);
+                    $('#txpackage').val(data.package);
+                    //selectDate();
+                    Apply();
+                } else {
+                    Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
+                }
+            }).fail(function () {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+            });
+        }
+     
+        
+}
     $(function () {
         var d = new Date();
         $('#txmfgdate').datepicker({
