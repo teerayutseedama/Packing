@@ -1,7 +1,10 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
+﻿using System.Collections.Generic;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Newtonsoft.Json;
 using Packing.Controllers;
 using Packing.Function;
 using Packing.Models;
@@ -35,7 +38,20 @@ namespace Loadin.Controllers
             ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
+        public async Task<IActionResult> LoadQrData(GetQrCodeData data)
+        {
+            var list = await _liInterface.GetQrCodeData(data);
+            HttpContext.Session.SetString("QrData", JsonConvert.SerializeObject(list));
+            return Ok(list.Count()>0);
+        }
 
+        public async Task<IActionResult> QrCode()
+        {
+        var data= JsonConvert.DeserializeObject<IEnumerable<QrCodeData>>(HttpContext.Session.GetString("QrData"));
+            ViewBag.QrData = data;
+        ViewBag.Config = await _liInterface.GetConfig();
+            return View();
+        }
         public async Task<IActionResult> LoadLiData(string id)
         {
             LiDataView data = new LiDataView();
@@ -114,7 +130,13 @@ namespace Loadin.Controllers
         {
             return Ok(await _liInterface.SaveLIData(data));
         }
-       
+        public async Task<IActionResult> CloseJob(LiCloseJob data)
+        {
+            return Ok(await _liInterface.CloseJob(data));
+        }
+        
+
+
 
     }
 }
