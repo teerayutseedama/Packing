@@ -283,8 +283,10 @@ function LoadData(){
                    // $('#selsloc').val(data.sloC_ID).change();
                    // console.log('ss1',$('#selsloc').val());
                 }
+                if ('@id'==''){
+                    batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                }
               
-                batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
                 selectSloc();
                 selectDate();
                 } else {
@@ -455,8 +457,10 @@ function LoadData(){
               SUB_BATCH: batchSub,
             BATCH_RUNNING_NO: number,
         }, function (data) {
-            if (data.status) {
-                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+            if (data) {
+                var url = '@Url.Action("QrCode", "LI")';
+                window.open(url, '_blank');
+                //location.href=url;
             } else {
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
             }

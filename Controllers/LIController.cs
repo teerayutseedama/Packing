@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Newtonsoft.Json;
 using Packing.Controllers;
 using Packing.Function;
 using Packing.Models;
@@ -39,14 +41,14 @@ namespace Loadin.Controllers
         public async Task<IActionResult> LoadQrData(GetQrCodeData data)
         {
             var list = await _liInterface.GetQrCodeData(data);
-           // TempData["QrData"] = list;
-
-            return RedirectToAction("QrCode");
+            HttpContext.Session.SetString("QrData", JsonConvert.SerializeObject(list));
+            return Ok(list.Count()>0);
         }
 
         public async Task<IActionResult> QrCode()
         {
-            ViewBag.QrData = TempData["QrData"] as IEnumerable<QrCodeData>;
+        var data= JsonConvert.DeserializeObject<IEnumerable<QrCodeData>>(HttpContext.Session.GetString("QrData"));
+            ViewBag.QrData = data;
         ViewBag.Config = await _liInterface.GetConfig();
             return View();
         }

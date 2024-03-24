@@ -7,6 +7,11 @@ using Packing.Views;
 using System.IO.Packaging;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Imaging;
+using System.Drawing;
+using QRCoder;
+
 
 namespace Packing.Function
 {
@@ -121,26 +126,49 @@ namespace Packing.Function
 
             try
             {
-                var ssss = await _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH).ToListAsync();
+      
                 var list= await (from he in _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH)
                                  from m in _context.tbm_material.Where(x => x.MATERIAL_CODE == he.MATERIAL_CODE).DefaultIfEmpty()
                                  from mt in _context.tbm_materail_type.Where(x => x.ID.ToString() == m.MATERIAL_TYPE_ID).DefaultIfEmpty()
                                  from s in _context.tbm_pk_work_shift.Where(x => x.ID == he.WORK_SHIFT_ID).DefaultIfEmpty()
                               from d in _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH && data.BATCH_RUNNING_NO.Contains(x.BATCH_RUNNING_NO))
-                              select new QrCodeData
+                              select new 
                               {
                                   Material_GROUP = m.MATERIAL_GROUP,
                                   Material_Type = mt.MATERIAL_TYPE ?? "",
                                   BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
-                                  CodeQR = he.BATCH_NO + "." + d.BATCH_RUNNING_NO,
-                                  WORK_SHIFT​ = s.WORK_SHIFT,
+                                  CodeQR =  he.BATCH_NO + "." + d.BATCH_RUNNING_NO ,
+                                  WORK_SHIFT​ = s.WORK_SHIFT ?? "WORK_SHIFT",
                                   BATCH_NO = he.BATCH_NO,
                                   MFG_DATE = he.MFG_DATE,
                                   EXPIRE_DATE​ = he.EXPIRE_DATE,
-                                  FORM_NO​ = m.FORM_NO ?? "",
-                                  REV = m.REV ?? "",
-                              }).ToListAsync();
-                return list;
+                                  FORM_NO​ = m.FORM_NO ?? "FORM_NO",
+                                  REV = m.REV ?? "REV",
+                              }).Distinct().ToListAsync();
+                var qr = new List<QrCodeData>();
+                foreach (var item in list)
+                {
+                    // สร้าง QR Code จากข้อมูล BATCH_NO และ BATCH_RUNNING_NO
+                    var qrCode = await GenerateQRCode(item.CodeQR);
+
+                    // สร้าง QrCodeData จากข้อมูลที่ได้
+                    var qrCodeData = new QrCodeData
+                    {
+                        Material_GROUP = item.Material_GROUP,
+                        Material_Type = item.Material_Type,
+                        BATCH_RUNNING_NO = item.BATCH_RUNNING_NO,
+                        CodeQR = qrCode,
+                        WORK_SHIFT = item.WORK_SHIFT,
+                        BATCH_NO = item.BATCH_NO,
+                        MFG_DATE = item.MFG_DATE,
+                        EXPIRE_DATE = item.EXPIRE_DATE,
+                        FORM_NO = item.FORM_NO,
+                        REV = item.REV ,
+                    };
+
+                    qr.Add(qrCodeData);
+                }
+                return qr.AsEnumerable();
             }
             catch (Exception ex)
             {
@@ -245,6 +273,29 @@ namespace Packing.Function
                 throw;
             }
             return _response;
+        }
+
+
+        public async  Task<byte[]> GenerateQRCode(string value)
+        {
+            byte[] qrCodeImageBytes = await Task.Run(() =>
+            {
+                // สร้าง QR Code
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(value, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+
+                // แปลง QR Code เป็น Bitmap
+                Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+                // แปลง Bitmap เป็น byte array
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    qrCodeImage.Save(stream, ImageFormat.Png);
+                    return stream.ToArray();
+                }
+            });
+            return qrCodeImageBytes;
         }
     }
 }
