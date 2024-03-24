@@ -11,7 +11,7 @@
     "Packing": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:50726",
+      "applicationUrl": "http://localhost:4434",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

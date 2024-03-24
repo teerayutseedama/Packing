@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Office2010.Excel;
+﻿using System.Collections.Generic;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -35,7 +36,20 @@ namespace Loadin.Controllers
             ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
+        public async Task<IActionResult> LoadQrData(GetQrCodeData data)
+        {
 
+            TempData["QrData"] = await _liInterface.GetQrCodeData(data);
+
+            return RedirectToAction("QrCode");
+        }
+
+        public async Task<IActionResult> QrCode()
+        {
+            ViewBag.QrData = TempData["QrData"] as IEnumerable<QrCodeData>;
+        ViewBag.Config = await _liInterface.GetConfig();
+            return View();
+        }
         public async Task<IActionResult> LoadLiData(string id)
         {
             LiDataView data = new LiDataView();

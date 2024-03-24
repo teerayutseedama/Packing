@@ -17,6 +17,8 @@ namespace Packing.Function
         Task<LiCheckDate> CheckShift(DateTime date);
         Task<ResponseMessage> SaveLIData(SaveLiData data);
         Task<LiDataView> LoadLiDataView(string batchNo,int subBatch);
+        Task<IEnumerable<QrCodeData>> GetQrCodeData(GetQrCodeData data);
+        Task<tbm_pk_batch_slip> GetConfig();
 
         Task<ResponseMessage> CloseJob(LiCloseJob data);
     }
@@ -85,6 +87,11 @@ namespace Packing.Function
             return _response;
         }
 
+        public async Task<tbm_pk_batch_slip> GetConfig()
+        {
+            return await _context.tbm_pk_batch_slip.FirstOrDefaultAsync();
+        }
+
         public async Task<LiMaterial> GetMaterial(string MaterialCode)
         {
             var list = await (from m in _context.tbm_material.Where(x => x.MATERIAL_CODE == MaterialCode)
@@ -107,6 +114,31 @@ namespace Packing.Function
                                   STATUS = m.STATUS,
                               }).FirstOrDefaultAsync();
             return list;
+        }
+
+        public async Task<IEnumerable<QrCodeData>> GetQrCodeData(GetQrCodeData data)
+        {
+           
+           
+            
+             return     await (from h in _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO==data.BATCH_NO && x.SUB_BATCH==data.SUB_BATCH)
+                                  from m in _context.tbm_material.Where(x=>x.MATERIAL_CODE==h.MATERIAL_CODE)
+                                  from mt in _context.tbm_materail_type.Where(x=>x.ID.ToString()==m.MATERIAL_TYPE_ID)
+                                  from s in _context.tbm_pk_work_shift.Where(x=>x.ID==h.WORK_SHIFT_ID)
+                                  from d in _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH && data.BATCH_RUNNING_NO.Contains(x.BATCH_RUNNING_NO))
+                                  select new QrCodeData {
+                                       Material_GROUP=m.MATERIAL_GROUP,
+                                      Material_Type = mt.MATERIAL_TYPE,
+                                      BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
+                                      CodeQR = h.BATCH_NO+"."+d.BATCH_RUNNING_NO,
+                                      WORK_SHIFT​ = s.WORK_SHIFT,
+                                      BATCH_NO = h.BATCH_NO,
+                                      MFG_DATE = h.MFG_DATE,
+                                      EXPIRE_DATE​ =h.EXPIRE_DATE ,
+                                      FORM_NO​ =m.FORM_NO ,
+                                      REV = m.REV,
+                                  }).ToListAsync();
+        
         }
 
         public async Task<LiDataView> LoadLiDataView(string batchNo, int subBatch)

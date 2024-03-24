@@ -120,8 +120,8 @@
             <button type="button" onclick="Apply()" class="btn btn-info" id="btapply">@localizer["Apply"]</button>
             <button type="button" class="btn btn-primary"  onclick="SaveData()" id="btsave">@localizer["Save"]</button>
             <button type="button" class="btn btn-success" disabled onclick="CloseJob()" id="btclose">@localizer["CloseJob"]</button>
-            <button type="button" class="btn btn-secondary">@localizer["PrintQRCode"]</button>
-            <button type="button" class="btn btn-warning">@localizer["ClearData"]</button>
+            <button type="button" class="btn btn-secondary" onclick="print()">@localizer["PrintQRCode"]</button>
+            <button type="button" class="btn btn-warning" onclick="Reset()">@localizer["ClearData"]</button>
         </div>
         <div class="form-group col-md-12" style="text-align:center">
             <table class="isr-table" id="tblbatch">
@@ -212,8 +212,8 @@ function LoadData(){
 
             });
         }
-     
-        
+
+
 }
     $(function () {
         var d = new Date();
@@ -230,10 +230,10 @@ function LoadData(){
         var qty = $('#txtotalqty').val();
         if (qty>0){
             qtys = qty;
-       
+
             $('#txqtyfrom').val(1);
             $('#txqtyto').val(qty);
-        
+
         }
     }
 
@@ -243,10 +243,10 @@ function LoadData(){
             qtys = qty;
             batchNoLast = matcode + '.' + batchNo + '.' + line+'.' + qtys;
             $('#txbatch').val(batchNoLast);
-        
+
 
         }
-    
+
     }
 
 
@@ -300,13 +300,15 @@ function LoadData(){
         var qty = $('#txtotalqty').val();
         var txt='';
         if (qty > 0) {
-            for(var i=0;i<qty;i++){
-                batchList.push({ batchNo: batchNoLast ,item:i+1,checked:false});
+            var fqty = $('#txqtyfrom').val();;
+            for (var i = 0; i < qty; i++){
+                fqty++;
+                batchList.push({ batchNo: batchNoLast, item: fqty,checked:false});
                 txt += '<tr>'+
                     '<td class="text-center" style = "width:45px;font-weight:normal" > <input type="checkbox" id ="cb1" class="cb1" onchange="singleCheck(this.checked,'+i+')"  /> </td>' +
                     '<td class="text-center" style = "width:120px;font-weight:normal" > '+batchNoLast+' </td>' +
                     '<td class="text-center" style = "width:80px;font-weight:normal" > '+line+' </td>' +
-                    '<td class="text-center" style = "width:80px;font-weight:normal" > ' + (i+1) + ' </td>' +
+                    '<td class="text-center" style = "width:80px;font-weight:normal" > ' + fqty + ' </td>' +
                     '<td class="text-center" > ' + MaterialType + ' </td>' +
                     '<td class="text-center" > '+matcode+' </td>' +
                     '<td class="text-left" > ' + matname + ' </td>' +
@@ -314,7 +316,7 @@ function LoadData(){
                     '<td class="text-center" > ' + $('#txmfgdate') .val()+ ' </td>' +
                     '<td class="text-center" > ' + $('#txexpiredate').val() + ' </td>' +
                                                             '</tr>';
-            } 
+            }
             $('#bodyLiList').html(txt);
             $('#btsave').prop("disabled", false);
         }else{
@@ -324,7 +326,7 @@ function LoadData(){
 
     function selectLine() {
         line = $('#selline option:selected').text();
-       
+
     }
 
     function selectSloc() {
@@ -364,12 +366,12 @@ function LoadData(){
                 shift = data.shift;
                 ShiftID = data.shiftID;
                 $('#txshift').val(shift);
-                } 
+                }
             }).fail(function () {
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
             });
-       
+
     }
     function SaveData(){
         if (batchNoLast==''){
@@ -399,7 +401,7 @@ function LoadData(){
             }else{
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
             }
-         
+
         }).fail(function () {
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
@@ -414,9 +416,9 @@ function LoadData(){
             chlist[i].checked = event;
         }
         if(event){
-          
+
             }
- 
+
     }
 
     function singleCheck(event,index) {
@@ -429,12 +431,31 @@ function LoadData(){
             all.checked = true;
         }
     }
-    function print(){
-        console.log('333', batchList);
+    function print() {
+        var number = [];
+        var ch = batchList.f
+        console.log('sss', batchList);
+        return;
+          $.post('@Url.Action("LoadQrData", "LI")', {
+            BATCH_NO: batchNoLast,
+              SUB_BATCH: batchSub,
+        BATCH_RUNNING_NO:[],
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            }
+
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+        
     }
 
     function CloseJob(){
-        
+
         if (batchNoLast == '') {
             Notiflix.Notify.warning('กรุณาป้อนข้อมูล');
             return;
@@ -454,5 +475,9 @@ function LoadData(){
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
         });
+    }
+    function Reset() {
+         var url = '@Url.Action("Li", "LI")';
+        location.href = url;
     }
 </script>

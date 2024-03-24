@@ -1,0 +1,16 @@
+﻿
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@using Packing.Views.DataView;
+@using Packing.vmsPackingDB;
+@{
+    IEnumerable<QrCodeData> QRDataList = (IEnumerable<QrCodeData>)ViewBag.QrData;
+    tbm_pk_batch_slip Config = (tbm_pk_batch_slip)ViewBag.Config;
+
+}
+
+
+<div>
+    test qrcode
+</div>
