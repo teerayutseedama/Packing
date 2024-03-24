@@ -38,8 +38,8 @@ namespace Loadin.Controllers
         }
         public async Task<IActionResult> LoadQrData(GetQrCodeData data)
         {
-
-            TempData["QrData"] = await _liInterface.GetQrCodeData(data);
+            var list = await _liInterface.GetQrCodeData(data);
+           // TempData["QrData"] = list;
 
             return RedirectToAction("QrCode");
         }
