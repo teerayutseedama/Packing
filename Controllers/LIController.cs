@@ -114,7 +114,13 @@ namespace Loadin.Controllers
         {
             return Ok(await _liInterface.SaveLIData(data));
         }
-       
+        public async Task<IActionResult> CloseJob(LiCloseJob data)
+        {
+            return Ok(await _liInterface.CloseJob(data));
+        }
+        
+
+
 
     }
 }

@@ -17,6 +17,8 @@ namespace Packing.Function
         Task<LiCheckDate> CheckShift(DateTime date);
         Task<ResponseMessage> SaveLIData(SaveLiData data);
         Task<LiDataView> LoadLiDataView(string batchNo,int subBatch);
+
+        Task<ResponseMessage> CloseJob(LiCloseJob data);
     }
 
     public class LiInterface: ILiInterface
@@ -50,6 +52,37 @@ namespace Packing.Function
             result.ExpiredDate = date.AddMonths(0);
             return result;
 
+        }
+
+        public async Task<ResponseMessage> CloseJob(LiCloseJob data)
+        {
+            try
+            {
+                
+                var head = await _context.tbt_pk_batch_no_header.FirstOrDefaultAsync(x => x.SUB_BATCH == data.SUB_BATCH && x.BATCH_NO==data.BATCH_NO);
+                var detail = await _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH).ToListAsync();
+                if (head != null && detail.Count>0)
+                {
+                    var status = await _context.tbm_pk_batch_status.FirstOrDefaultAsync(x => x.BATCH_STATUS == data.Status);
+                    if (status != null)
+                    {
+                        head.BATCH_STATUS = status.ID;
+                        detail.ForEach(x => {
+                            x.BATCH_STATUS = status.ID;
+                        });
+                    }
+                     _context.tbt_pk_batch_no_header.Update(head);
+                     _context.tbt_pk_batch_no_detail.UpdateRange(detail);
+                }
+                _response.Status = await _context.SaveChangesAsync()>0;
+            
+            }
+            catch (Exception ex)
+            {
+                _response.Status = false;
+                _response.Error = ex.Message;
+            }
+            return _response;
         }
 
         public async Task<LiMaterial> GetMaterial(string MaterialCode)

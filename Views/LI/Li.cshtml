@@ -85,7 +85,7 @@
         <div class="form-group col-md-3" style="margin-bottom:10px">
             <label style="font-weight:normal;margin-bottom:3px"  for="txqty">@localizer["Qty"]</label>
             <div class="row">
-                <div class="col-md-4"><input type="number" class="form-control text-center" onkeyup="setQty()" onfocus="setBatch()" onchange="setBatch()w" id="txtotalqty"></div>
+                <div class="col-md-4"><input type="number" class="form-control text-center" onfocus="setBatch()" onblur="setQty();setBatch();"  id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto"  readonly></div>
             </div>            
@@ -119,7 +119,7 @@
         <div class="form-group col-md-4" style="margin-bottom:10px;padding-top:22px">
             <button type="button" onclick="Apply()" class="btn btn-info" id="btapply">@localizer["Apply"]</button>
             <button type="button" class="btn btn-primary"  onclick="SaveData()" id="btsave">@localizer["Save"]</button>
-            <button type="button" class="btn btn-success" disabled id="btclose">@localizer["CloseJob"]</button>
+            <button type="button" class="btn btn-success" disabled onclick="CloseJob()" id="btclose">@localizer["CloseJob"]</button>
             <button type="button" class="btn btn-secondary">@localizer["PrintQRCode"]</button>
             <button type="button" class="btn btn-warning">@localizer["ClearData"]</button>
         </div>
@@ -175,6 +175,7 @@ function LoadData(){
                 id: dataID
             }, function (data) {
                 if (data != null) {
+                    document.getElementById('btclose').disabled = false;
                     batchNoLast = data?.batcH_NO;
                     batchSub = data?.suB_BATCH;
                     $('#selline').val(data.packinG_LINE_ID).change();
@@ -305,7 +306,7 @@ function LoadData(){
                     '<td class="text-center" style = "width:45px;font-weight:normal" > <input type="checkbox" id ="cb1" class="cb1" onchange="singleCheck(this.checked,'+i+')"  /> </td>' +
                     '<td class="text-center" style = "width:120px;font-weight:normal" > '+batchNoLast+' </td>' +
                     '<td class="text-center" style = "width:80px;font-weight:normal" > '+line+' </td>' +
-                    '<td class="text-center" style = "width:80px;font-weight:normal" > ' + batchSub + ' </td>' +
+                    '<td class="text-center" style = "width:80px;font-weight:normal" > ' + (i+1) + ' </td>' +
                     '<td class="text-center" > ' + MaterialType + ' </td>' +
                     '<td class="text-center" > '+matcode+' </td>' +
                     '<td class="text-left" > ' + matname + ' </td>' +
@@ -393,6 +394,7 @@ function LoadData(){
             User: localStorage.getItem("Username"),
         }, function (data) {
             if(data.status){
+                document.getElementById('btclose').disabled=false;
                 Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
             }else{
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
@@ -429,5 +431,28 @@ function LoadData(){
     }
     function print(){
         console.log('333', batchList);
+    }
+
+    function CloseJob(){
+        
+        if (batchNoLast == '') {
+            Notiflix.Notify.warning('กรุณาป้อนข้อมูล');
+            return;
+        }
+        $.post('@Url.Action("CloseJob", "LI")', {
+            BATCH_NO: batchNoLast,
+            SUB_BATCH: batchSub,
+            Status: $('#txstatus').val(),
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            }
+
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
     }
 </script>

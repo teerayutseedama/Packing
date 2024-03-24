@@ -73,5 +73,13 @@ namespace Packing.Views.DataView
         public string? User { get; set; }
 
     }
+
+    public class LiCloseJob
+    {
+        public string BATCH_NO { get; set; } = null!;
+
+        public int SUB_BATCH { get; set; } = 0;
+        public string? Status { get; set; }
+    }
 }
 
