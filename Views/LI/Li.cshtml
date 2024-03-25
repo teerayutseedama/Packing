@@ -244,7 +244,7 @@ function LoadData(){
         var qty = $('#txtotalqty').val();
         if (qty > 0) {
             qtys = qty;
-            batchNoLast = matcode + '.' + batchNo + '.' + line+'.' + qtys;
+            batchNoLast = batchNo;
             $('#txbatch').val(batchNoLast);
 
 
@@ -284,7 +284,8 @@ function LoadData(){
                    // console.log('ss1',$('#selsloc').val());
                 }
                 if ('@id'==''){
-                    batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                   // batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                    batchNoLast = batchNo;
                 }
               
                 selectSloc();
@@ -327,6 +328,14 @@ function LoadData(){
             }
             $('#bodyLiList').html(txt);
             $('#btsave').prop("disabled", false);
+            var chlist = document.getElementsByClassName('cb1');
+            var all = document.getElementById('checkkall');
+            all.checked = true;
+            for (var i = 0; i < chlist.length; i++) {
+                batchList[i].checked = true;
+                chlist[i].checked = true;
+       
+            }
         }else{
             Notiflix.Notify.warning('กรุณาระบุจำนวน');
         }
@@ -343,11 +352,13 @@ function LoadData(){
        $.post('@Url.Action("CheckBatchNo", "LI")', {
            batchNo: batchNo
             }, function (data) {
-           if (data != null) {
-                batchSub = parseInt(data.subBatch) + 1;
+           if (data != undefined) {
+           
+                batchSub = parseInt(data.subBatch??0) + 1;
                 $('#txsubbatch').val(batchSub);
                 $('#txbatch').val(batchNoLast);
                 } else {
+                $('#txsubbatch').val(1);
                 $('#txbatch').val(batchNoLast);
                 }
             }).fail(function () {

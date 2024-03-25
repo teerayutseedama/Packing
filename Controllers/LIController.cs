@@ -70,6 +70,7 @@ namespace Loadin.Controllers
             ViewBag.Data = data;
             ViewBag.BatchSlip = await _configure.Get_Batch_Slip();
             ViewBag.WorkSlift=await _configure.Get_Work_Shifts();
+            ViewBag.MasterData = await _masterData.GetMasterDataView();
             return View();
         }
         public async Task<IActionResult> Loading()

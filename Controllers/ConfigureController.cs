@@ -35,8 +35,14 @@ namespace Packing.Controllers
         {
             return Ok(await _configure.SaveWorkShift(DataSave));
         }
-
+        public async Task<IActionResult> SaveConfigureMaterial(SaveConfigureMaterial data)
+        {
+            return Ok(await _configure.SaveConfigureMaterial(data));
+        }
        
+
+
+
     }
 }
 
