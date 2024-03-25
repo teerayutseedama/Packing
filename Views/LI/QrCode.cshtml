@@ -8,6 +8,7 @@
     IEnumerable<QrCodeData> QRDataList = (IEnumerable<QrCodeData>)ViewBag.QrData;
     tbm_pk_batch_slip Config = (tbm_pk_batch_slip)ViewBag.Config;
 }
+
 @functions {
     public string mapW(string value)
     {
@@ -19,19 +20,20 @@
     }
 }
 <style>
-    .printme {
-	display: none;
-}
 @@media print {
-	.no-printme  {
-		display: none;
-	}
-	.printme  {
-		display: block;
-	}
+  body {
+    visibility: hidden;
+  }
+  #section-to-print {
+    visibility: visible;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
 }
 </style>
-<div  class="container-fluid p-2 d-flex flex-wrap printme">
+<div id="section-to-print" class="container-fluid p-2  printme">
     @if (QRDataList.Count() > 0)
     {
         @foreach (var item in QRDataList)

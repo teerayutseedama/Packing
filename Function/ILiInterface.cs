@@ -131,6 +131,7 @@ namespace Packing.Function
                                  from m in _context.tbm_material.Where(x => x.MATERIAL_CODE == he.MATERIAL_CODE).DefaultIfEmpty()
                                  from mt in _context.tbm_materail_type.Where(x => x.ID.ToString() == m.MATERIAL_TYPE_ID).DefaultIfEmpty()
                                  from s in _context.tbm_pk_work_shift.Where(x => x.ID == he.WORK_SHIFT_ID).DefaultIfEmpty()
+                                 from li in _context.tbm_pk_production_line.Where(x=>x.PACKING_LINE_ID==he.PACKING_LINE_ID).DefaultIfEmpty()
                               from d in _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH && data.BATCH_RUNNING_NO.Contains(x.BATCH_RUNNING_NO))
                               select new 
                               {
@@ -139,12 +140,13 @@ namespace Packing.Function
                                   BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
                                   CodeQR =  he.BATCH_NO + "." + d.BATCH_RUNNING_NO ,
                                   WORK_SHIFT​ = s.WORK_SHIFT ?? "WORK_SHIFT",
-                                  BATCH_NO = he.BATCH_NO,
+                                  BATCH_NO = m.MATERIAL_CODE+"."+ he.BATCH_NO+"."+li.PK_LINE_NAME+"."+d.BATCH_RUNNING_NO,
                                   MFG_DATE = he.MFG_DATE,
                                   EXPIRE_DATE​ = he.EXPIRE_DATE,
                                   FORM_NO​ = m.FORM_NO ?? "FORM_NO",
                                   REV = m.REV ?? "REV",
                               }).Distinct().ToListAsync();
+           
                 var qr = new List<QrCodeData>();
                 foreach (var item in list)
                 {

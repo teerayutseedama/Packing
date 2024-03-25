@@ -59,7 +59,7 @@ public partial class vms_packingContext : DbContext
 
         modelBuilder.Entity<tbm_material>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e=>e.id);
 
             entity.Property(e => e.BUN).HasMaxLength(10);
             entity.Property(e => e.DEFAULT_UOM).HasMaxLength(3);
