@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Drawing.Imaging;
 using System.Drawing;
 using QRCoder;
-
+using System.Globalization;
 
 namespace Packing.Function
 {
@@ -223,6 +223,10 @@ namespace Packing.Function
         {
             try
             {
+                var yy = DateTime.Now.Year; 
+
+                DateTime now = new DateTime(yy,DateTime.Now.Month,DateTime.Now.Day);
+
                 var save = new tbt_pk_batch_no_header();
                 save.BATCH_NO = data.BATCH_NO;
                 save.SUB_BATCH = data.SUB_BATCH;
@@ -239,7 +243,7 @@ namespace Packing.Function
                 save.EXPIRE_DATE = data.EXPIRE_DATE;
                 save.BATCH_STATUS = data.BATCH_STATUS;
                 save.CREATE_BY = data.User;
-                save.CREATE_DATE = DateTime.Now;
+                save.CREATE_DATE = now;
                 save.UPDATE_BY = null;
                 save.UPDATE_DATE = null;
                 save.APPROVE_BY =null;
@@ -258,7 +262,7 @@ namespace Packing.Function
                     detail.REMARK_HOLD = "";
                     detail.REMARK_HOLD_TO_PASS = "";
                     detail.CREATE_BY = data.User;
-                    detail.CREATE_DATE = DateTime.Now;
+                    detail.CREATE_DATE = now;
                     detail.UPDATE_BY = null;
                     detail.UPDATE_DATE = null;
                     detail.APPROVE_BY = null;
