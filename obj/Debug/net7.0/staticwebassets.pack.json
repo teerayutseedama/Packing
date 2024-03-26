@@ -173,6 +173,26 @@
       "PackagePath": "staticwebassets/Buttons-2.4.2/js/dataTables.buttons.min.js"
     },
     {
+      "Id": "/Users/teerayutseedama/Documents/Packing/wwwroot/ExcelApproval/Approval.xlsx",
+      "PackagePath": "staticwebassets/ExcelApproval/Approval.xlsx"
+    },
+    {
+      "Id": "/Users/teerayutseedama/Documents/Packing/wwwroot/ExcelHistory/History.xlsx",
+      "PackagePath": "staticwebassets/ExcelHistory/History.xlsx"
+    },
+    {
+      "Id": "/Users/teerayutseedama/Documents/Packing/wwwroot/ExcelLoading/.xlsx",
+      "PackagePath": "staticwebassets/ExcelLoading/.xlsx"
+    },
+    {
+      "Id": "/Users/teerayutseedama/Documents/Packing/wwwroot/ExcelLoading/Loadding.xlsx",
+      "PackagePath": "staticwebassets/ExcelLoading/Loadding.xlsx"
+    },
+    {
+      "Id": "/Users/teerayutseedama/Documents/Packing/wwwroot/ExcelSummary/Summary.xlsx",
+      "PackagePath": "staticwebassets/ExcelSummary/Summary.xlsx"
+    },
+    {
       "Id": "/Users/teerayutseedama/Documents/Packing/wwwroot/FixedColumns-4.3.0/css/fixedColumns.bootstrap.css",
       "PackagePath": "staticwebassets/FixedColumns-4.3.0/css/fixedColumns.bootstrap.css"
     },

@@ -1,42 +1,36 @@
 ﻿<Properties StartupConfiguration="{DC52E703-D58A-4B45-8570-957EAE6C08C2}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Function/IConfigureInterface.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Views/LI/Li.cshtml">
     <Files>
-      <File FileName="Controllers/ConfigureController.cs" Line="16" Column="32" />
-      <File FileName="vmsPackingDB/vms_packingContext.cs" Line="1" Column="1" />
-      <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="Function/IConfigureInterface.cs" Line="75" Column="58" />
-      <File FileName="vmsPackingDB/tbm_pk_work_shift.cs" Line="8" Column="4" />
-      <File FileName="Views/DataView/SaveShipDataView.cs" Line="33" Column="55" />
-      <File FileName="vmsPackingDB/tbm_pk_batch_slip.cs" Line="8" Column="3" />
+      <File FileName="Views/LI/Li.cshtml" Line="434" Column="23" />
+      <File FileName="Function/ILiInterface.cs" />
+      <File FileName="Views/DataView/LiDataView.cs" />
+      <File FileName="Controllers/LIController.cs" />
+      <File FileName="Views/LI/QrCode.cshtml" />
+      <File FileName="Function/IHistoryInterface.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Packing">
             <Node name="Packing">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Function" expanded="True">
-                <Node name="IConfigureInterface.cs" selected="True" />
-              </Node>
-              <Node name="Properties" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="DataView" expanded="True" />
+                <Node name="LI" expanded="True">
+                  <Node name="Li.cshtml" selected="True" />
+                </Node>
               </Node>
               <Node name="vmsPackingDB" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
             </Node>
           </Node>
         </State>
-      </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Packing PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.Packing PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
 </Properties>
