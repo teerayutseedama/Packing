@@ -12,13 +12,15 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using QRCoder;
 using System.Globalization;
+using System.Data.Common;
+using System.Linq;
 
 namespace Packing.Function
 {
     public interface ILiInterface
     {
         Task<LiMaterial> GetMaterial(string MaterialCode);
-        Task<LiCheckBatchNo> CheckBatchNo(string batchNo);
+        Task<LiCheckBatchNo> CheckBatchNo(string batchNo ,int SubBatch);
         Task<LiCheckDate> CheckShift(DateTime date);
         Task<ResponseMessage> SaveLIData(SaveLiData data);
         Task<LiDataView> LoadLiDataView(string batchNo,int subBatch);
@@ -40,9 +42,13 @@ namespace Packing.Function
             _response = new ResponseMessage();
         }
 
-        public async Task<LiCheckBatchNo> CheckBatchNo(string batchNo)
+        public async Task<LiCheckBatchNo> CheckBatchNo(string batchNo,int SubBatch)
         {
-            return await _context.tbt_pk_batch_no_header.Select(x => new LiCheckBatchNo { BatchNo = x.BATCH_NO, SubBatch = x.SUB_BATCH }).FirstOrDefaultAsync(x => x.BatchNo == batchNo)!;
+            // 
+           
+            var list = await _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO == batchNo).OrderByDescending(x=>x.SUB_BATCH).ToListAsync();
+
+            return list.Select(x=> new LiCheckBatchNo { BatchNo = x.BATCH_NO, SubBatch = x.SUB_BATCH, QTY_FROM = x.QTY_FROM, QTY_TO = x.QTY_TO, QTY_TOTAL = list.Sum(x=>x.QTY_TOTAL)}).FirstOrDefault()!;
         }
 
         public async Task<LiCheckDate> CheckShift(DateTime date)
@@ -138,9 +144,9 @@ namespace Packing.Function
                                   Material_GROUP = m.MATERIAL_GROUP,
                                   Material_Type = mt.MATERIAL_TYPE ?? "",
                                   BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
-                                  CodeQR =  he.BATCH_NO + "." + d.BATCH_RUNNING_NO ,
+                                  CodeQR = m.MATERIAL_CODE + "." + he.BATCH_NO + "." + li.PK_LINE_NAME + "." + d.BATCH_RUNNING_NO,
                                   WORK_SHIFT​ = s.WORK_SHIFT ?? "WORK_SHIFT",
-                                  BATCH_NO = m.MATERIAL_CODE+"."+ he.BATCH_NO+"."+li.PK_LINE_NAME+"."+d.BATCH_RUNNING_NO,
+                                  BATCH_NO = he.BATCH_NO,
                                   MFG_DATE = he.MFG_DATE,
                                   EXPIRE_DATE​ = he.EXPIRE_DATE,
                                   FORM_NO​ = m.FORM_NO ?? "FORM_NO",
@@ -255,7 +261,7 @@ namespace Packing.Function
                     var detail = new tbt_pk_batch_no_detail();
                     detail.BATCH_NO = data.BATCH_NO;
                     detail.SUB_BATCH = data.SUB_BATCH;
-                    detail.BATCH_RUNNING_NO = i+1;
+                    detail.BATCH_RUNNING_NO = i+data.QTY_FROM;
                     detail.WORK_SHIFT_ID = data.WORK_SHIFT_ID;
                     detail.BATCH_STATUS = data.BATCH_STATUS;
                     detail.REMARK_REJECT = "";

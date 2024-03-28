@@ -25,7 +25,10 @@ namespace Packing.Views.DataView
 	{
 		public string? BatchNo { get; set; }
 		public int SubBatch { get; set; }
-	}
+        public int QTY_TOTAL { get; set; }
+        public int QTY_FROM { get; set; }
+        public int QTY_TO { get; set; }
+    }
 
 	public class LiCheckDate
 	{

@@ -161,6 +161,7 @@
     var ShiftID=0;
     var MaterialType='';
     var batchList=[];
+    var QtyALl=0;
     var LineConfig =localStorage.getItem('LineConfig');
     $(document).ready(function () {
         SetPagename('Loading');
@@ -186,20 +187,7 @@ function LoadData(){
                     qtys = data.qtY_TOTAL;
                             $('#txqtyfrom').val(data.qtY_FROM);
                     $('#txqtyto').val(data.qtY_TO);
-                    //$('#txmfgdate').datepicker({
-                    //    format: 'dd/mm/yyyy',
-                    //    autoclose: true,
-                    //    todayHighlight: true,
-                    //    orientation: "auto"
-
-                    //}).datepicker("setDate", moment(data.mfG_DATE));
-                    //$('#txexpiredate').datepicker({
-                    //    format: 'dd/mm/yyyy',
-                    //    autoclose: true,
-                    //    todayHighlight: true,
-                    //    orientation: "auto"
-
-                    //}).datepicker("setDate", moment(data.expirE_DATE));
+                 
                     $('#txstatus').val(data.batcH_STATUS);
                     $('#txpackage').val(data.package);
                     batchNoLast = data?.batcH_NO.trim();
@@ -230,14 +218,23 @@ function LoadData(){
     });
     function setQty(){
 
-        var qty = $('#txtotalqty').val();
+        var qty = parseInt($('#txtotalqty').val());
         if (qty>0){
+            console.log('QtyALl', QtyALl);
+            if(QtyALl>0){
+                $('#txtotalqty').val();
+                $('#txqtyfrom').val(QtyALl+1);
+                $('#txqtyto').val(QtyALl + qty);
+            }else{
+                $('#txqtyfrom').val(1);
+                $('#txqtyto').val(qty);
+            }
             qtys = qty;
 
-            $('#txqtyfrom').val(1);
-            $('#txqtyto').val(qty);
+        
 
         }
+
     }
 
     function setBatch(){
@@ -287,8 +284,31 @@ function LoadData(){
                    
                     batchNoLast = batchNo;
                 }
-              
-                selectSloc();
+                if (batchSub==0){
+                    batchSub=1;
+                }
+                $.post('@Url.Action("CheckBatchNo", "LI")', {
+                    batchNo: batchNo,
+                    SubBatch: batchSub
+                }, function (data) {
+                    if (data != undefined) {
+                        batchSub = parseInt(data.subBatch ?? 0) + 1;
+                        $('#txsubbatch').val(batchSub);
+                        $('#txbatch').val(batchNoLast);
+                        QtyALl = parseInt(data.qtY_TOTAL)
+                    } else {
+                        batchSub + 1;
+                    
+                        //$('#txtotalqty').val();
+                        //$('#txqtyto').val();
+                        //$('#txqtyfrom').val();
+                        $('#txsubbatch').val(batchSub);
+                        $('#txbatch').val(batchNoLast);
+                    }
+                }).fail(function () {
+                    Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+                });
                 selectDate();
                 } else {
                     Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
@@ -349,24 +369,7 @@ function LoadData(){
     function selectSloc() {
         batchNo.replace($('#selsloc option:selected').text(), '');
         batchNo += $('#selsloc option:selected').text();
-       $.post('@Url.Action("CheckBatchNo", "LI")', {
-           batchNo: batchNo
-            }, function (data) {
-           if (data != undefined) {
-           
-                batchSub = parseInt(data.subBatch??0) + 1;
-                $('#txsubbatch').val(batchSub);
-                $('#txbatch').val(batchNoLast);
-                } else {
-                batchSub+1;
-                $('#txsubbatch').val(1);
-
-                $('#txbatch').val(batchNoLast);
-                }
-            }).fail(function () {
-                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
-
-            });
+     
 
        // console.log('ss3', $('#selsloc').val());
     }
@@ -405,7 +408,7 @@ function LoadData(){
             SUB_BATCH: $('#txsubbatch').val(),
             PACKING_LINE_ID: $('#selline').val(),
             SLOC: $('#selsloc').val(),
-            WORK_SHIFT_ID: '',
+            WORK_SHIFT_ID: ShiftID,
             MATERIAL_CODE:matcode,
             QTY_TOTAL: qtys,
             QTY_FROM: $('#txqtyfrom').val(),
@@ -467,7 +470,7 @@ function LoadData(){
      
           $.post('@Url.Action("LoadQrData", "LI")', {
             BATCH_NO: batchNoLast.trim(),
-              SUB_BATCH: batchSub,
+            SUB_BATCH: $('#txsubbatch').val(),
             BATCH_RUNNING_NO: number,
         }, function (data) {
             if (data) {

@@ -119,9 +119,9 @@ namespace Loadin.Controllers
         {
             return Ok(await _liInterface.GetMaterial(MaterialCode));
         }
-        public async Task<IActionResult> CheckBatchNo(string batchNo)
+        public async Task<IActionResult> CheckBatchNo(string batchNo,int SubBatch)
         {
-            return Ok(await _liInterface.CheckBatchNo(batchNo));
+            return Ok(await _liInterface.CheckBatchNo(batchNo, SubBatch));
         }
         public async Task<IActionResult> CheckShift(DateTime date)
         {
