@@ -85,7 +85,7 @@
         <div class="form-group col-md-3" style="margin-bottom:10px">
             <label style="font-weight:normal;margin-bottom:3px"  for="txqty">@localizer["Qty"]</label>
             <div class="row">
-                <div class="col-md-4"><input type="number" class="form-control text-center" onfocus="setBatch()" onblur="setQty();setBatch();"  id="txtotalqty"></div>
+                <div class="col-md-4"><input type="number" class="form-control text-center"  onblur="setQty();setBatch();"  id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto"  readonly></div>
             </div>            
@@ -244,7 +244,7 @@ function LoadData(){
         var qty = $('#txtotalqty').val();
         if (qty > 0) {
             qtys = qty;
-            batchNoLast = batchNo;
+            //batchNoLast = batchNo;
             $('#txbatch').val(batchNoLast);
 
 
@@ -284,7 +284,7 @@ function LoadData(){
                    // console.log('ss1',$('#selsloc').val());
                 }
                 if ('@id'==''){
-                   // batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                   
                     batchNoLast = batchNo;
                 }
               
@@ -358,7 +358,9 @@ function LoadData(){
                 $('#txsubbatch').val(batchSub);
                 $('#txbatch').val(batchNoLast);
                 } else {
+                batchSub+1;
                 $('#txsubbatch').val(1);
+
                 $('#txbatch').val(batchNoLast);
                 }
             }).fail(function () {
@@ -400,7 +402,7 @@ function LoadData(){
         }
         $.post('@Url.Action("SaveLIData", "LI")', {
             BATCH_NO: batchNoLast.trim(),
-            SUB_BATCH: batchSub,
+            SUB_BATCH: $('#txsubbatch').val(),
             PACKING_LINE_ID: $('#selline').val(),
             SLOC: $('#selsloc').val(),
             WORK_SHIFT_ID: '',
@@ -491,7 +493,7 @@ function LoadData(){
         }
         $.post('@Url.Action("CloseJob", "LI")', {
             BATCH_NO: batchNoLast,
-            SUB_BATCH: batchSub,
+            SUB_BATCH: $('#txsubbatch').val(),
             Status: $('#txstatus').val(),
         }, function (data) {
             if (data.status) {
