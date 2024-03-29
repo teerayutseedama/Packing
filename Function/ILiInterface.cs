@@ -14,6 +14,7 @@ using QRCoder;
 using System.Globalization;
 using System.Data.Common;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace Packing.Function
 {
@@ -229,9 +230,9 @@ namespace Packing.Function
         {
             try
             {
-                var yy = DateTime.Now.Year; 
 
-                DateTime now = new DateTime(yy,DateTime.Now.Month,DateTime.Now.Day);
+                DateTime now = DateTime.Now;
+
 
                 var save = new tbt_pk_batch_no_header();
                 save.BATCH_NO = data.BATCH_NO;

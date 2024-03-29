@@ -413,6 +413,10 @@ function LoadData(){
             Notiflix.Notify.warning('กรุณาป้อนข้อมูล');
             return;
         }
+
+        //console.log(moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY-MM-DD"))
+        //return
+
         $.post('@Url.Action("SaveLIData", "LI")', {
             BATCH_NO: batchNoLast.trim(),
             SUB_BATCH: $('#txsubbatch').val(),
@@ -425,8 +429,8 @@ function LoadData(){
             QTY_TO:  $('#txqtyto').val(),
             UOM: $('#seluom').val(),
             PACKAGE: $('#txpackage').val(),
-            MFG_DATE: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
-            EXPIRE_DATE: moment($("#txexpiredate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
+            MFG_DATE: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY-MM-DD"),
+            EXPIRE_DATE: moment($("#txexpiredate").val(), "DD-MM-YYYY").format("YYYY-MM-DD"),
             BATCH_STATUS: $('#txstatus').val(),
             User: localStorage.getItem("Username"),
         }, function (data) {
