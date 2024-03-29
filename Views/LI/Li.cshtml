@@ -180,7 +180,7 @@ function LoadData(){
                
                     $('#selline').val(data.packinG_LINE_ID).change();
                     $('#selsloc').val(data.sloc).change();
-                    console.log('ss2', $('#selsloc').val());
+                 
                     $('#selmatcode').val(data.materiaL_CODE).change();
                     $('#seluom').val(data.uom).change();
                     $('#txtotalqty').val(data.qtY_TOTAL);
@@ -256,26 +256,30 @@ function LoadData(){
                 MaterialCode: $('#selmatcode').val()
             }, function (data) {
                 if (data!=null) {
-                matcode = $('#selmatcode').val();
-                matname = data.materiaL_NAME;
-                MaterialType = data.materialType;
-                $('#txmatgroup').val(data.materiaL_GROUP);
-                $('#txmatname').val(data.materiaL_NAME);
-                $('#txpackage').val(data.pkG_SIZE_KG + ' ' + $('#seluom').val());
+                if ('@id' == '') {
+                    matcode = $('#selmatcode').val();
+                    matname = data.materiaL_NAME;
+                    MaterialType = data.materialType;
+                    $('#txmatgroup').val(data.materiaL_GROUP);
+                    $('#txmatname').val(data.materiaL_NAME);
+                    $('#txpackage').val(data.pkG_SIZE_KG + ' ' + $('#seluom').val());
                     pkG_SIZE_KG = data.pkG_SIZE_KG;
                     SHELF_LIFT_MONTH = data.shelF_LIFT_MONTH;
-                if (data.defaulT_HOLD!=null){
-                    $('#txstatus').val('HOLD');
+                    if (data.defaulT_HOLD != null) {
+                        $('#txstatus').val('HOLD');
+                    }
+                    if (data.defaulT_PACKING_LINE_ID != null) {
+                        $('#selline').val(data.defaulT_PACKING_LINE_ID).change();
+                    }
+                    if (data.defaulT_UOM != null) {
+                        $('#seluom').val(data.defaulT_UOM).change();
+                    }
+                    if (data.forM_NO != null) {
+                        $('#txtotalqty').val(data.forM_NO);
+                    }
                 }
-                if (data.defaulT_PACKING_LINE_ID != null){
-                    $('#selline').val(data.defaulT_PACKING_LINE_ID).change();
-                }
-                if (data.defaulT_UOM != null) {
-                    $('#seluom').val(data.defaulT_UOM).change();
-                }
-                if (data.forM_NO != null) {
-                    $('#txtotalqty').val(data.forM_NO);
-                }
+             
+
                 if (data.sloC_ID != null) {
                    // $('#selsloc').val(data.sloC_ID).change();
                    // console.log('ss1',$('#selsloc').val());
@@ -287,28 +291,34 @@ function LoadData(){
                 if (batchSub==0){
                     batchSub=1;
                 }
-                $.post('@Url.Action("CheckBatchNo", "LI")', {
-                    batchNo: batchNo,
-                    SubBatch: batchSub
-                }, function (data) {
-                    if (data != undefined) {
-                        batchSub = parseInt(data.subBatch ?? 0) + 1;
-                        $('#txsubbatch').val(batchSub);
-                        $('#txbatch').val(batchNoLast);
-                        QtyALl = parseInt(data.qtY_TOTAL)
-                    } else {
+           
+                    $.post('@Url.Action("CheckBatchNo", "LI")', {
+                        batchNo: batchNo,
+                        SubBatch: batchSub
+                    }, function (data) {
+                        if (data != undefined) {
+                        if ('@id' == '') {
+                            batchSub = parseInt(data.subBatch ?? 0) + 1;
+                        }
+                          
+                            $('#txsubbatch').val(batchSub);
+                            $('#txbatch').val(batchNoLast);
+                            QtyALl = parseInt(data.qtY_TOTAL)
+                        } else {
                         batchSub + 1;
-                    
-                        //$('#txtotalqty').val();
-                        //$('#txqtyto').val();
-                        //$('#txqtyfrom').val();
-                        $('#txsubbatch').val(batchSub);
-                        $('#txbatch').val(batchNoLast);
-                    }
-                }).fail(function () {
-                    Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+                            //$('#txtotalqty').val();
+                            //$('#txqtyto').val();
+                            //$('#txqtyfrom').val();
+                            $('#txsubbatch').val(batchSub);
+                            $('#txbatch').val(batchNoLast);
+                        }
+                    }).fail(function () {
+                        Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
-                });
+                    });
+                
+              
+
                 selectDate();
                 } else {
                     Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')

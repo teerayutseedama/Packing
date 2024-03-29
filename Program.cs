@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Packing;
 using Packing.Function;
+using Packing.Middlewares;
 using Packing.Models;
 using Packing.vmsPackingDB;
 using System.Globalization;
@@ -81,10 +82,12 @@ app.UseRouting();
 //Configure multi langnage
 var supportedCultures = new[] { "th-TH","en-US" };
 var localizationOptions = new RequestLocalizationOptions()
-    .AddSupportedCultures(supportedCultures)
+    .AddSupportedCultures("en-US")
     .AddSupportedUICultures(supportedCultures)
-    .SetDefaultCulture(supportedCultures[0]);
+    .SetDefaultCulture("en-US");
 app.UseRequestLocalization(localizationOptions);
+
+
 //*******************************************************
 
 app.UseAuthorization();

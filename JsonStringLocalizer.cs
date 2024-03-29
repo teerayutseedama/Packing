@@ -37,7 +37,7 @@ namespace Packing
 
         public IEnumerable<LocalizedString> GetAllStrings(bool includeParentCultures)
         {
-            var filePath = $"Resources/{Thread.CurrentThread.CurrentCulture.Name}.json";
+            var filePath = $"Resources/{Thread.CurrentThread.CurrentUICulture.Name}.json";
 
             using FileStream stream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             using StreamReader streamReader = new(stream);
@@ -57,12 +57,12 @@ namespace Packing
 
         private string GetString(string key)
         {
-            var filePath = $"Resources/{Thread.CurrentThread.CurrentCulture.Name}.json";
+            var filePath = $"Resources/{Thread.CurrentThread.CurrentUICulture.Name}.json";
             var fullFilePath = Path.GetFullPath(filePath);
 
             if (File.Exists(fullFilePath))
             {
-                var cacheKey = $"locale_{Thread.CurrentThread.CurrentCulture.Name}_{key}";
+                var cacheKey = $"locale_{Thread.CurrentThread.CurrentUICulture.Name}_{key}";
                 var cacheValue = _cache.GetString(cacheKey);
 
                 if (!string.IsNullOrEmpty(cacheValue))

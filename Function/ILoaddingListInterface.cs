@@ -5,6 +5,7 @@ using Packing.Models;
 using Packing.Views;
 using Packing.Views.DataView;
 using Packing.vmsPackingDB;
+using System.Globalization;
 using System.Linq.Expressions;
 
 namespace Packing.Function
@@ -28,6 +29,15 @@ namespace Packing.Function
         {
             try
             {
+
+                CultureInfo englishCulture = new CultureInfo("en-US");
+                var st =SystemClass.ToTimeStampTz(DateTime.Now);
+                var sts = DateTime.Now;
+
+                foreach (TimeZoneInfo z in TimeZoneInfo.GetSystemTimeZones())
+                {
+                  string sssss= z.Id.ToString();
+                }
                 var status = await _context.tbm_pk_batch_status.FirstOrDefaultAsync(x => x.BATCH_STATUS == "HOLD");
                 List<LoaddingDataView> result = new List<LoaddingDataView>();
                 Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.BATCH_STATUS == null || x.BATCH_STATUS == status.ID!);

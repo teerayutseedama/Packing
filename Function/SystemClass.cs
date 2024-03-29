@@ -17,7 +17,13 @@ namespace Packing.Function
            
             return date;
         }
+        public static DateTime ToTimeStampTz(this DateTime dateTime)
+        {
+            return TimeZoneInfo.ConvertTimeBySystemTimeZoneId(dateTime, "Dateline Standard Time");
+        }
     }
+    
+   
 
- 
+
 }
