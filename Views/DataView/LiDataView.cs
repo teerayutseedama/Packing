@@ -18,7 +18,13 @@ namespace Packing.Views.DataView
         public DateTime MFG_DATE { get; set; }
         public DateTime EXPIRE_DATE { get; set; }
         public string? BATCH_STATUS { get; set; }
-    
+        public string? MATERIAL_TYPE { get; set; }
+        public string? MATERIAL_NAME { get; set; }
+        public string? MATERIAL_GROUP { get; set; }
+        public string? HOLD { get; set; }
+        public string? SHIFT { get; set; }
+        public int SHIFT_ID { get; set; }
+        public string SHELF_LIFT_MONTH { get; set; }
     }
 
 	public class LiCheckBatchNo
@@ -89,13 +95,14 @@ namespace Packing.Views.DataView
         public string Material_GROUP { get; set; } = null!;
         public string Material_Type { get; set; } = null!;
         public int BATCH_RUNNING_NO { get; set; }
+        public string Line { get; set; }
         public byte[] CodeQR { get; set; } = null!;
         public string WORK_SHIFT​ { get; set; } = null!;
         public string BATCH_NO { get; set; } = null!;
-          public DateTime? MFG_DATE { get; set; }
-    public DateTime? EXPIRE_DATE​ { get; set; }
-    public string FORM_NO​ { get; set; } = null!;
-    public string REV { get; set; } = null!;
+        public DateTime? MFG_DATE { get; set; }
+        public DateTime? EXPIRE_DATE​ { get; set; }
+        public string FORM_NO​ { get; set; } = null!;
+        public string REV { get; set; } = null!;
     }
 
 

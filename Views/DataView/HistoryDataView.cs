@@ -6,7 +6,8 @@ namespace Packing.Views.DataView
     public class HistoryDataView
     {
       public string?  BatchNo { get; set; }
-       public string? Plant { get; set; }
+        public int sub_batch { get; set; }
+        public string? Plant { get; set; }
         public string? Line { get; set; }
         public string? MaterialCode { get; set; }
         public string? MaterialName { get; set; }
@@ -26,7 +27,7 @@ namespace Packing.Views.DataView
         public string? MaterialCode { get; set; }
         public string? MaterialName { get; set; }
         public string? BatchNo { get; set; }
-        public string? Stataus { get; set; }
+        public string? Status { get; set; }
         public string? Shift { get; set; }
         public DateTime? FromDate { get; set; }
         public DateTime? ToDate { get; set; }

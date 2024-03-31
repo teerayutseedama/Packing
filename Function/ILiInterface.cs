@@ -14,7 +14,8 @@ using QRCoder;
 using System.Globalization;
 using System.Data.Common;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
+using Packing.Function;
+using System.Data;
 
 namespace Packing.Function
 {
@@ -22,6 +23,7 @@ namespace Packing.Function
     {
         Task<LiMaterial> GetMaterial(string MaterialCode);
         Task<LiCheckBatchNo> CheckBatchNo(string batchNo ,int SubBatch);
+        Task<ResponseMessage> ValidRunNo(string batchNo,int RunFrom,int RunTo);
         Task<LiCheckDate> CheckShift(DateTime date);
         Task<ResponseMessage> SaveLIData(SaveLiData data);
         Task<LiDataView> LoadLiDataView(string batchNo,int subBatch);
@@ -29,6 +31,10 @@ namespace Packing.Function
         Task<tbm_pk_batch_slip> GetConfig();
 
         Task<ResponseMessage> CloseJob(LiCloseJob data);
+
+        Task<IEnumerable<tbm_pk_production_line>> GetLine(int sloc_id);
+        Task<IEnumerable<tbm_pk_sloc>> GetStorageLocation(int plantid);
+        Task<Mat_Line_Sloc> GetMaterialsLines(string sloc_id);
     }
 
     public class LiInterface: ILiInterface
@@ -36,6 +42,7 @@ namespace Packing.Function
         private vms_packingContext _context;
         private VMS_CORE_2Context _2Context;
         private ResponseMessage _response;
+        private DB db;
         public LiInterface(vms_packingContext context, VMS_CORE_2Context Context)
         {
             _context = context;
@@ -45,18 +52,15 @@ namespace Packing.Function
 
         public async Task<LiCheckBatchNo> CheckBatchNo(string batchNo,int SubBatch)
         {
-            // 
-           
             var list = await _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO == batchNo).OrderByDescending(x=>x.SUB_BATCH).ToListAsync();
-
             return list.Select(x=> new LiCheckBatchNo { BatchNo = x.BATCH_NO, SubBatch = x.SUB_BATCH, QTY_FROM = x.QTY_FROM, QTY_TO = x.QTY_TO, QTY_TOTAL = list.Sum(x=>x.QTY_TOTAL)}).FirstOrDefault()!;
         }
 
         public async Task<LiCheckDate> CheckShift(DateTime date)
         {
             LiCheckDate result = new LiCheckDate();
-            
-            var shift = await _context.tbm_pk_work_shift.FirstOrDefaultAsync(x=>x.TIME_START.Value.TimeOfDay<=DateTime.Now.TimeOfDay && x.TIME_END.Value.TimeOfDay>=DateTime.Now.TimeOfDay);
+            DateTime idate = new DateTime(2000, 1, 1, DateTime.Now.Hour, DateTime.Now.Minute, 0);
+            var shift = await _context.tbm_pk_work_shift.FirstOrDefaultAsync(x=>x.TIME_START.Value < idate && x.TIME_END.Value>=idate);
    
             if (shift!=null)
             {
@@ -65,24 +69,32 @@ namespace Packing.Function
             }
             result.ExpiredDate = date.AddMonths(0);
             return result;
-
         }
 
         public async Task<ResponseMessage> CloseJob(LiCloseJob data)
         {
             try
-            {
-                
+            {               
                 var head = await _context.tbt_pk_batch_no_header.FirstOrDefaultAsync(x => x.SUB_BATCH == data.SUB_BATCH && x.BATCH_NO==data.BATCH_NO);
                 var detail = await _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH).ToListAsync();
                 if (head != null && detail.Count>0)
                 {
-                    var status = await _context.tbm_pk_batch_status.FirstOrDefaultAsync(x => x.BATCH_STATUS == data.Status);
-                    if (status != null)
+                    var istatus = await _context.tbm_material.FirstOrDefaultAsync(x => x.MATERIAL_CODE == head.MATERIAL_CODE);
+                    //var batch_status = await _context.tbm_pk_batch_status.ToListAsync();
+                    if (istatus != null)
                     {
-                        head.BATCH_STATUS = status.ID;
+                        var status = 0;
+                        if (istatus.DEFAULT_HOLD == null)
+                        {
+                            status = 1;
+                        }
+                        else
+                        {
+                            status = istatus.DEFAULT_HOLD.Value;
+                        }
+                        head.BATCH_STATUS = status;
                         detail.ForEach(x => {
-                            x.BATCH_STATUS = status.ID;
+                            x.BATCH_STATUS = status;
                         });
                     }
                      _context.tbt_pk_batch_no_header.Update(head);
@@ -145,13 +157,14 @@ namespace Packing.Function
                                   Material_GROUP = m.MATERIAL_GROUP,
                                   Material_Type = mt.MATERIAL_TYPE ?? "",
                                   BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
+                                  Line = li.PK_LINE_NAME,
                                   CodeQR = m.MATERIAL_CODE + "." + he.BATCH_NO + "." + li.PK_LINE_NAME + "." + d.BATCH_RUNNING_NO,
-                                  WORK_SHIFT​ = s.WORK_SHIFT ?? "WORK_SHIFT",
+                                  WORK_SHIFT​ = s.WORK_SHIFT ?? "",
                                   BATCH_NO = he.BATCH_NO,
                                   MFG_DATE = he.MFG_DATE,
                                   EXPIRE_DATE​ = he.EXPIRE_DATE,
-                                  FORM_NO​ = m.FORM_NO ?? "FORM_NO",
-                                  REV = m.REV ?? "REV",
+                                  FORM_NO​ = m.FORM_NO ?? "",
+                                  REV = m.REV == null ? "" : m.REV == "" ? "" : "แก้ไขครั้งที่ " + m.REV,
                               }).Distinct().ToListAsync();
            
                 var qr = new List<QrCodeData>();
@@ -166,6 +179,7 @@ namespace Packing.Function
                         Material_GROUP = item.Material_GROUP,
                         Material_Type = item.Material_Type,
                         BATCH_RUNNING_NO = item.BATCH_RUNNING_NO,
+                        Line = item.Line,
                         CodeQR = qrCode,
                         WORK_SHIFT = item.WORK_SHIFT,
                         BATCH_NO = item.BATCH_NO,
@@ -193,6 +207,10 @@ namespace Packing.Function
             try
             {
                 var data=await _context.tbt_pk_batch_no_header.FirstOrDefaultAsync(x=>x.BATCH_NO==batchNo && x.SUB_BATCH==subBatch);
+
+                var mat = await _context.tbm_material.Where(x => x.MATERIAL_CODE == data.MATERIAL_CODE).FirstOrDefaultAsync();
+                var mattype = await _context.tbm_materail_type.Where(x => x.ID.ToString() == mat.MATERIAL_TYPE_ID).FirstOrDefaultAsync();
+                var shift = await _context.tbm_pk_work_shift.Where(x => x.ID == data.WORK_SHIFT_ID).FirstOrDefaultAsync();
                 if (data != null)
                 {
                     var status = await _context.tbm_pk_batch_status.FirstOrDefaultAsync(x => x.ID == data.BATCH_STATUS);
@@ -209,6 +227,13 @@ namespace Packing.Function
                     result.PACKAGE = data.PACKAGE;
                     result.MFG_DATE = data.MFG_DATE;
                     result.EXPIRE_DATE = data.EXPIRE_DATE;
+                    result.SHELF_LIFT_MONTH = mat.SHELF_LIFT_MONTH;
+                    result.MATERIAL_NAME = mat.MATERIAL_NAME;
+                    result.MATERIAL_GROUP = mat.MATERIAL_GROUP;
+                    result.MATERIAL_TYPE = mattype.MATERIAL_TYPE;
+                    result.HOLD = mat.DEFAULT_HOLD == null ? "" : mat.DEFAULT_HOLD == 1 ? "PASS" : "HOLD";
+                    result.SHIFT = shift.WORK_SHIFT;
+                    result.SHIFT_ID = shift.ID;
                     if (status != null)
                     {
                         result.BATCH_STATUS = status!.BATCH_STATUS;
@@ -233,6 +258,16 @@ namespace Packing.Function
 
                 DateTime now = DateTime.Now;
 
+                var header = _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH).SingleOrDefault();
+                if (header != null)
+                {
+                    _context.tbt_pk_batch_no_header.Remove(header);
+                }
+
+                var dt = _context.tbt_pk_batch_no_detail.Where(x=>x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH).ToList();
+                if (dt.Count>0) { 
+                    _context.tbt_pk_batch_no_detail.RemoveRange(dt);
+                }
 
                 var save = new tbt_pk_batch_no_header();
                 save.BATCH_NO = data.BATCH_NO;
@@ -276,6 +311,9 @@ namespace Packing.Function
                     detail.APPROVE_DATE = null;
                     detailList.Add(detail);
                 }
+
+
+
                 await _context.tbt_pk_batch_no_detail.AddRangeAsync(detailList);
                 _response.Status=  await _context.SaveChangesAsync()>0;  
             }
@@ -310,5 +348,82 @@ namespace Packing.Function
             });
             return qrCodeImageBytes;
         }
+
+        public async Task<IEnumerable<tbm_pk_production_line>> GetLine(int sloc_id)
+        {
+            var data = await _context.tbm_pk_production_line.Where(x => x.SLOC_ID == sloc_id).ToListAsync();
+            return data;
+        }
+
+        public async Task<ResponseMessage> ValidRunNo(string batchNo, int RunFrom, int RunTo)
+        {
+            var valid = await _context.tbt_pk_batch_no_detail.Where(x=> x.BATCH_NO == batchNo && (x.BATCH_RUNNING_NO > RunFrom && x.BATCH_RUNNING_NO <= RunTo)).ToListAsync();
+                if (valid.Count > 0)
+            {
+                _response.Status = false;
+            }
+            else
+            {
+                _response.Status = true;
+            }
+            return _response;
+        }
+
+        public async Task<IEnumerable<tbm_pk_sloc>> GetStorageLocation(int plantid)
+        {
+            try
+            {
+                var lst = await (from line in _context.tbm_pk_production_line.Where(x => x.PLANT_ID == plantid)
+                                 join sloc in _context.tbm_pk_sloc on line.SLOC_ID equals sloc.ID
+                                 select new tbm_pk_sloc()
+                                 {
+                                     ID = sloc.ID,
+                                     SLOC = sloc.SLOC
+                                 }).OrderBy(x => x.SLOC).ToListAsync();
+                return lst;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<Mat_Line_Sloc> GetMaterialsLines(string sloc_id)
+        {
+            var mat = await (from m in _context.tbm_material.Where(x => x.SLOC_ID == sloc_id)
+                              from mt in _context.tbm_materail_type.Where(x => x.ID.ToString() == m.MATERIAL_TYPE_ID)
+                              select new LiMaterial
+                              {
+                                  MATERIAL_CODE = m.MATERIAL_CODE,
+                                  MaterialType = mt.MATERIAL_TYPE,
+                                  MATERIAL_NAME = m.MATERIAL_NAME,
+                                  MATERIAL_TYPE_ID = m.MATERIAL_TYPE_ID,
+                                  PKG_SIZE_KG = m.PKG_SIZE_KG,
+                                  BUN = m.BUN,
+                                  MATERIAL_GROUP = m.MATERIAL_GROUP,
+                                  SLOC_ID = m.SLOC_ID,
+                                  SHELF_LIFT_MONTH = m.SHELF_LIFT_MONTH,
+                                  FORM_NO = m.FORM_NO,
+                                  REV = m.REV,
+                                  DEFAULT_PACKING_LINE_ID = m.DEFAULT_PACKING_LINE_ID,
+                                  DEFAULT_UOM = m.DEFAULT_UOM,
+                                  DEFAULT_HOLD = m.DEFAULT_HOLD,
+                                  STATUS = m.STATUS,
+                              }).OrderBy(x=>x.MATERIAL_CODE).OrderBy(x=>x.MATERIAL_CODE).ToListAsync();
+
+            var line = await _context.tbm_pk_production_line.Where(x => x.SLOC_ID == Convert.ToInt32(sloc_id)).OrderBy(x=>x.PK_LINE_NAME).ToListAsync();
+
+            var ret = new Mat_Line_Sloc();
+            ret.Mat = mat;
+            ret.Lines = line;
+          
+            return ret;
+        }
+    }
+
+    public class Mat_Line_Sloc
+    {
+        public IEnumerable<tbm_pk_production_line> Lines { get; set; }
+        public IEnumerable<LiMaterial> Mat { get; set; }
     }
 }

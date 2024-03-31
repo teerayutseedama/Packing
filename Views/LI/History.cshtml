@@ -55,7 +55,7 @@
                 {
                     foreach (var item in masterData.MaterialList!)
                     {
-                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_NAME</option>
+                        <option value="@item.MATERIAL_NAME">@item.MATERIAL_NAME</option>
                     }
                 }
             </select>
@@ -237,13 +237,23 @@
 
     function GetSummaryList() {
         var txt = '';
+
+        var frmdate = moment($("#txfromdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD");
+        var frmtodate = moment($("#txtodate").val(), "DD-MM-YYYY").format("YYYY/MM/DD");
+
+        if (frmdate == 'Invalid date' || frmtodate == 'Invalid date'){
+            Notiflix.Notify.warning('ช่วงวันที่ไม่ถูกต้อง !!!')
+            return
+        }
+
+
         $.post('@Url.Action("GetHistoryDataViews", "History")', {
             Plant: $('#selplant').val(),
             Line: $('#selline').val(),
             MaterialCode: $('#selmatcode').val(),
             MaterialName: $('#selmatname').val(),
             BatchNo: $('#txbatch').val(),
-            Stataus: $('#selstatus').val(),
+            Status: $('#selstatus').val(),
             Shift: $('#selshift').val(),
             FromDate: moment($("#txfromdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
             ToDate: moment($("#txtodate").val(), "DD-MM-YYYY").format("YYYY/MM/DD")
@@ -265,11 +275,11 @@
                         '<td class="text-center" > ' + d.uom + ' </td>' +
                         '<td class="text-center" style = "color:' + mapStatus(d.stataus) + '" > ' + d.stataus + ' </td>' +
                         '</tr>';
-                }
-             $('#historybody').html(txt);
+                }            
             } else {
                 Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา');
             }
+            $('#historybody').html(txt);
         }).fail(function () {
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 

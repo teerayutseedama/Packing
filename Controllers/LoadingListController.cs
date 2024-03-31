@@ -102,7 +102,7 @@ namespace Packing.Controllers
             {
 
                 var dataList = await _loadding.GetLoaddingDataViews(data);
-                                string path = _webHostEnvironment.WebRootPath + "/ExcelLoading/Loadding.xlsx";
+                string path = _webHostEnvironment.WebRootPath + "/ExcelLoading/Loadding.xlsx";
                 using (var workbook = new XLWorkbook())
                 {
                     var worksheet = workbook.Worksheets.Add("LoaddingList");

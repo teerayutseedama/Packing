@@ -17,6 +17,7 @@ namespace Packing.Views.DataView
         public string? MFGDate { get; set; }
         public int? Qty { get; set; }
         public string? UOM { get; set; }
+        public int? status { get; set; }
     }
     public class GetLoaddingData
     {

@@ -135,9 +135,27 @@ namespace Loadin.Controllers
         {
             return Ok(await _liInterface.CloseJob(data));
         }
-        
 
+        public async Task<IActionResult> GetLine(int plantid)
+        {
+            var list = await _liInterface.GetLine(plantid);
+            return Ok(list);
+        }
 
-
+        public async Task<IActionResult> ValidRunNo(string batchNo, int RunFrom, int RunTo)
+        {
+            var result = await _liInterface.ValidRunNo(batchNo, RunFrom, RunTo);
+            return Ok(result);
+        }
+        public async Task<IActionResult> GetStorageLocation(int plantid)
+        {
+            var result = await _liInterface.GetStorageLocation(plantid);
+            return Ok(result);
+        }
+        public async Task<IActionResult> GetMaterialsLines(string sloc_id)
+        {
+            var result = await _liInterface.GetMaterialsLines(sloc_id);
+            return Ok(result);
+        }
     }
 }

@@ -31,7 +31,7 @@ namespace Packing.Function
         {
            
             List<ApprovalDataView> result = new List<ApprovalDataView>();
-            Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.BATCH_STATUS != 1 && x.APPROVE_BY == null);
+            Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.BATCH_STATUS != null && x.APPROVE_BY == null);
             Expression<Func<tbm_plant, bool>> plantConds = PredicateBuilder.New<tbm_plant>(true);
             Expression<Func<tbm_material, bool>> materialConds = PredicateBuilder.New<tbm_material>(true);
 
@@ -51,7 +51,7 @@ namespace Packing.Function
             {
                 batchConds = batchConds.And(x => x.MFG_DATE.Date == data.MFGDate.Value.Date );
             }
-            var test = await _context.tbt_pk_batch_no_header.Where(batchConds).ToListAsync();
+            //var test = await _context.tbt_pk_batch_no_header.Where(batchConds).ToListAsync();
             var pl = await _context2.tbm_plants.FirstOrDefaultAsync(plantConds);
             var list = await(from nh in _context.tbt_pk_batch_no_header.Where(batchConds)
                              from m in _context.tbm_material.Where(x=>x.MATERIAL_CODE==nh.MATERIAL_CODE)

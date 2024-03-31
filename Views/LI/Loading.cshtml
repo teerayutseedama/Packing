@@ -108,11 +108,11 @@
             <label style="font-weight:normal">@localizer["BatchNo"]</label>
             <input id="txbatch" class="form-control" />
         </div>
-        <div class="form-group col-md-1" style="padding:2px">
+        <div class="form-group col-md-1" style="padding:2px;display:none" >
             <label style="font-weight:normal">@localizer["RunNo"]</label>
             <input id="txrunno" class="form-control" />
         </div>
-        <div class="form-group col-md-1" style="margin-bottom:0px;padding-top:27px">
+        <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:28px">
             <button type="button" onclick="GetLoaddingDataViews()" class="btn btn-primary">@localizer["Search"]</button>
             <button type="button" onclick="GetExcel()" class="btn btn-secondary">@localizer["Excel"]</button>
         </div>
@@ -131,6 +131,8 @@
                  @*           <th>@localizer["RunNo"]</th>*@
                             <th>@localizer["Qty"]</th>
                             <th>@localizer["UOM"]</th>
+                            <th style="width:120px">@localizer["Status"]</th>
+                            <th style="width:45px"></th>
                         </tr>
                     </thead>
                     <tbody id="loadingbody">
@@ -146,69 +148,26 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Packing line configuration</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="showmodal(0)">
+                <h5 class="modal-title">@localizer["CloseBatchConfirm"]</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="showmodal(0,'','')">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="form-group">
-                        <label>Packing line</label>
-                        <input class="form-control" id="txline" readonly />
+                    <div class="form-group col-6">
+                        <label>@localizer["BatchNo"]</label>
+                        <input class="form-control text-center" id="txbatch1" readonly />
                     </div>
-                    <div class="form-group col-md-6">
-                        <label>Product Type</label>
-                        <div class="form-inline">
-                            <select id="seltype" style="width:100%">
-                                <option>OIL</option>
-                                <option>NON OIL</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Product</label>
-                        <select id="selproduct" style="width:100%">
-                            <option>น้ำมันดิบ(CDSBO)</option>
-                            <option>น้ำมันรีไฟล์ (RBD SBO)</option>
-                            <option>น้ำมันฟอกสี</option>
-                            <option>เลซิทีน</option>
-                            <option>กรดน้ำมันถั่วเหลือง</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>Package</label>
-                        <select id="selpkage" style="width:100%">
-                            <option>จัมโบ (Jumbo)</option>
-                            <option>เฟล็กซี่แทงค์</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>UOM</label>
-                        <select id="seluom" style="width:100%">
-                            <option>Flexitank</option>
-                            <option>Cubic foot</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>OPEN/CLOSE</label>
-                        <select id="selopen" style="width:100%">
-                            <option>OPEN</option>
-                            <option>CLOSE</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label>PASS/HOLD</label>
-                        <select id="selpass" style="width:100%">
-                            <option>PASS</option>
-                            <option>HOLD</option>
-                        </select>
+                    <div class="form-group col-6">
+                        <label>@localizer["SubBatch"]</label>
+                        <input class="form-control text-center" id="txsubbatch1" readonly />
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="showmodal(0)">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="showmodal(0)">Close</button>
+                <button type="button" class="btn btn-primary" onclick="CloseJob()"> @localizer["Save"]</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="showmodal(0,'','')">@localizer["Close"]</button>
             </div>
         </div>
     </div>
@@ -218,8 +177,10 @@
         SetPagename('Loading List');
     });
 
-    function showmodal(flagshow) {
+    function showmodal(flagshow,batchno,subbatch) {
         if (flagshow == 1) {
+            $('#txbatch1').val(batchno);
+            $('#txsubbatch1').val(subbatch);
             $('#modalconfig').show();
         } else {
             $('#modalconfig').hide();
@@ -254,10 +215,21 @@
             MFGDate: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
             RunNo: $('#txrunno').val()
         }, function (data) {
+            console.log(data)
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     var d = data[i];
-                    txt += ' <tr ondblclick="editData(`' + d.batchNo + '`,' + d.subBatch + ')">' +
+                    var st;
+                    if (d.status == null){
+                        st = "อยู่ระหว่างกำเนินการ";
+                    }else{
+                        if (d.status == 1) {
+                            st = "รออนุมัติ [PASS]";
+                        }else{
+                            st = "รออนุมัติ [HOLD]";
+                        }
+                    }
+                    txt += '<tr ondblclick="editData(`' + d.batchNo + '`,' + d.subBatch + ')">' +
                         '<td class="text-center" > ' + d.batchNo + ' </td>' +
                         '<td class="text-center" > ' + d.subBatch + ' </td>' +
                         '<td class="text-center" > ' + d.plant + ' </td>' +
@@ -268,6 +240,8 @@
                         //'<td class="text-center" > ' + d.runNo + ' </td>' +
                         '<td class="text-right" > ' + d.qty + ' </td>' +
                         '<td class="text-center" > ' + d.uom + ' </td>' +
+                        '<td class="text-center" > ' + st + ' </td>' +
+                        '<td class="text-center" ><i class="fa fa-check-square-o" aria-hidden="true" title="Close Batch" style="color:green" onclick=" showmodal(1,`' + d.batchNo + '`,`' + d.subBatch + '`)"></i></td>' +
                         '</tr>';
 
                 }
@@ -313,5 +287,23 @@
             }
         });
     }
+    function CloseJob() {
+        $.post('@Url.Action("CloseJob", "LI")', {
+            BATCH_NO: $('#txbatch1').val(),
+            SUB_BATCH: $('#txsubbatch1').val(),
+            Status: '',
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+                showmodal(0, '', '');
+                GetLoaddingDataViews();
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            }
 
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
 </script>

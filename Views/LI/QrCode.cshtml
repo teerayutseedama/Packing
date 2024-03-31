@@ -33,7 +33,7 @@
 
 }
 </style>
-<div id="section-to-print" class="container-fluid p-2  printme">
+<div id="section-to-print" class="container-fluid p-2  printme" style="height:90vh;overflow:auto">
     @if (QRDataList.Count() > 0)
     {
         @foreach (var item in QRDataList)
@@ -41,35 +41,39 @@
             <div class="card border border-dark m-1 gap-1" style="width:@mapW(Config.STICKER_WIDTH!);height:@mapW(Config.STICKER_HEIGH!);">
                 <div class="card-body">
                     <div class="row">
-                        <h5 class="card-title col"> @item.Material_GROUP <span style="text-decoration: underline; "> @item.Material_Type</span></h5>
+                        <h5 class="card-title col" style="font-size:@mapF(Config.FONT_SIZE);text-align:center"> @item.Material_GROUP <span style="text-decoration: underline; "> @item.Material_Type</span></h5>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col text-center" style="font-size:@mapF(Config.RUNNING_FONT_SIZE);">
-                            @item.BATCH_RUNNING_NO
+                        <div class="col text-center" style="font-size:@mapF(Config.RUNNING_FONT_SIZE);text-align:center">
+                           @item.Line@item.BATCH_RUNNING_NO
                         </div>
-                        <div class="col text-right">
+                        <div class="col text-right" style="vertical-align:middle">
                             <img style="width:@mapW(Config.QR_CODE_WIDTH!);height:@mapW(Config.QR_CODE_HEIGHT!);" src="data:image/png;base64,@(Convert.ToBase64String(item.CodeQR))" alt="QR Code" />
                         </div>
                        
                     </div>
                     <div class="row">
                         <div class="row">
-                            <h5 class="card-title col text-right">@item.WORK_SHIFT</h5>
+                            <h5 class="card-title col text-right" style="font-size:@mapF(Config.FONT_SIZE)">@item.WORK_SHIFT</h5>
                         </div>
-                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row" style="padding-bottom:5px">
+                        <h5 class="card-title col" style="font-size:@mapF(Config.FONT_SIZE)"> Batch No: @item.BATCH_NO</h5>
+                    </div>
+                    <div class="row" style="padding-bottom:5px">
+                        <h5 class="card-title col" style="font-size:@mapF(Config.FONT_SIZE)"> MFG DATE: @item.MFG_DATE.Value.ToString("dd/MM/yy") </h5>
+                    </div>
                     <div class="row">
-                        <h5 class="card-title col"> Batch No: @item.BATCH_NO</h5>
+                        <h5 class="card-title col " style="font-size:@mapF(Config.FONT_SIZE)">EXP Date: @item.EXPIRE_DATE.Value.ToString("dd/MM/yy")</h5>
                     </div>
-                      <div class="row">
-                        <h5 class="card-title col"> MFG DATE: @item.MFG_DATE.Value.ToString("dd/MM/yy") </h5>
-                    </div>
-                    <div class="row">
-                        <h5 class="card-title col ">EXP Date: @item.EXPIRE_DATE.Value.ToString("dd/MM/yy")</h5>
-                    </div>
-                 
+                 <br>
+                 <br>
                    <div class="row">
                        <div class="col" style="font-size:@mapF(Config.FORM_NO_SIZE)">@item.FORM_NO</div>
-                        <div class="col text-right" style="font-size:@mapF(Config.FORM_NO_SIZE)">@item.REV</div>
+                       <div class="col text-right" style="font-size:@mapF(Config.FORM_NO_SIZE)">@item.REV</div>
                     </div>
                  
                 </div>

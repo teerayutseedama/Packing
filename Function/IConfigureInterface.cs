@@ -123,7 +123,7 @@ namespace Packing.Function
                     var newShip = new tbm_pk_work_shift();
                     newShip.ID = ID;
                     newShip.TIME_START = SystemClass.ConvertTime(item.TIME_START!);
-                    newShip.TIME_END =SystemClass.ConvertTime(item.TIME_END!);
+                    newShip.TIME_END =SystemClass.ConvertTimeEnd(item.TIME_END!, item.TIME_START!);
                     newShip.WORK_SHIFT = item.WORK_SHIFT;
                     saveList.Add(newShip);
                 }

@@ -7,25 +7,27 @@
     MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
     string BatchNo = DateTime.Now.ToString("ddMMyy");
     string id = ViewBag.id;
+    //int plandid = 0;
 }
 
 <div class="row" style="padding-top:10px">
     <div class="form-row">
-        <div class="form-group col-md-2" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"]</label>
-            <select id="selline" onchange="selectLine()" class="form-control select2" style="width:100%">
+@*        <div class="form-group col-md-2" style="margin-bottom:3px">
+            <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Plant"] <span style="color:red"> *</span></label>
+            <select id="selplant" onchange="selectPlant()" class="form-control select2" style="width:100%">
                 <option></option>
-                @if (masterData.LineList!.Count() > 0)
+                @if (masterData.PlantList!.Count() > 0)
                 {
-                    foreach (var item in masterData.LineList!)
+                    foreach (var item in masterData.PlantList!)
                     {
-                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                        <option value="@item.PLANT">@item.PLANT_NAME</option>
                     }
                 }
             </select>
-        </div>
+        </div>*@
+        
         <div class="form-group col-md-2" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"] <span style="color:red"> *</span></label>
             <select id="selsloc" onchange="selectSloc()" class="form-control select2" style="width:100%">
                 <option></option>
                 @if (masterData.SlocList!.Count() > 0)
@@ -37,7 +39,57 @@
                 }
             </select>
         </div>
-        <div class="form-group col-md-3" style="margin-bottom:3px">
+
+        <div class="form-group col-md-2" style="margin-bottom:3px">
+            @*tbm_material.material_code*@
+            <label style="font-weight:normal;margin-bottom:3px" for="selmatcode">@localizer["MaterialCode"] <span style="color:red"> *</span></label>@*Material Code*@
+            <select id="selmatcode" onchange="selectMat()" class="form-control select2" style="width:100%">
+                @*                <option></option>
+                @if (masterData.MaterialList!.Count() > 0)
+                {
+                foreach (var item in masterData.MaterialList!)
+                {
+                <option value="@item.MATERIAL_CODE">@item.MATERIAL_CODE</option>
+                }
+                }*@
+            </select>
+        </div>
+        <div class="form-group col-md-4" style="margin-bottom:3px">
+            <label style="font-weight:normal;margin-bottom:3px" for="selprod">@localizer["MaterialGroup"]</label>
+            <input id="txmatgroup" class="form-control" readonly />
+        </div>
+        <div class="form-group col-md-4" style="margin-bottom:3px">
+            <label style="font-weight:normal;margin-bottom:3px" for="selprod">@localizer["MaterialName"]</label>
+            <input id="txmatname" class="form-control" readonly />
+        </div>
+
+
+        <div class="form-group col-md-2" style="margin-bottom:3px">
+            <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"] <span style="color:red"> *</span></label> 
+            <select id="selline" onchange="selectLine()" class="form-control select2" style="width:100%">
+@*                <option></option>
+                @if (masterData.LineList!.Count() > 0)
+                {
+                    foreach (var item in masterData.LineList!)
+                    {
+                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                    }
+                }*@
+            </select>
+        </div>
+        <div class="form-group col-md-2" style="margin-bottom:3px">
+            <label style="font-weight:normal;margin-bottom:3px" for="txdate">@localizer["MFGDate"] <span style="color:red"> *</span></label>
+            <input type="text" class="form-control text-center" onchange="selectDate()" id="txmfgdate">
+        </div>
+        <div class="form-group col-md-2" style="margin-bottom:3px">
+            <label style="font-weight:normal;margin-bottom:3px" for="txuser">@localizer["ExpiredDate"]</label>
+            <input type="text" class="form-control text-center" id="txexpiredate" readonly>
+        </div>
+        <div class="form-group col-md-1" style="margin-bottom:10px">
+            <label style="font-weight:normal;margin-bottom:3px" for="txqrcode">@localizer["Shift"]</label>
+            <input type="text" class="form-control text-center" id="txshift" readonly>
+        </div>
+        <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txbatch">@localizer["BatchNo"]</label>
             <input type="text" class="form-control text-center" id="txbatch"  readonly>
         </div>
@@ -45,37 +97,7 @@
             <label style="font-weight:normal;margin-bottom:3px" for="txbatch">@localizer["SubBatch"]</label>
             <input type="text" class="form-control text-center" id="txsubbatch" readonly>
         </div>
-        <div class="form-group col-md-2" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="txdate">@localizer["MFGDate"]</label>
-            <input type="text" class="form-control text-center" onchange="selectDate()" id="txmfgdate">
-        </div>
-        <div class="form-group col-md-2" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="txuser">@localizer["ExpiredDate"]</label>
-            <input type="text" class="form-control" id="txexpiredate" readonly>
-        </div>
 
-        <div class="form-group col-md-3" style="margin-bottom:3px">
-            @*tbm_material.material_code*@
-            <label style="font-weight:normal;margin-bottom:3px" for="selmatcode">@localizer["MaterialCode"]</label>@*Material Code*@
-            <select id="selmatcode" onchange="selectMat()" class="form-control select2" style="width:100%">
-                <option></option>
-                @if (masterData.MaterialList!.Count() > 0)
-                {
-                    foreach (var item in masterData.MaterialList!)
-                    {
-                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_CODE</option>
-                    }
-                }
-            </select>
-        </div>
-        <div class="form-group col-md-3" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="selprod">@localizer["MaterialGroup"]</label>
-            <input id="txmatgroup" class="form-control"  readonly />
-        </div>
-        <div class="form-group col-md-4" style="margin-bottom:3px">
-            <label style="font-weight:normal;margin-bottom:3px" for="selprod">@localizer["MaterialName"]</label>
-            <input id="txmatname" class="form-control" readonly />
-        </div>
         <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txstatus">@localizer["Hold"]</label>
             <input type="text" class="form-control" id="txstatus"  readonly>
@@ -83,9 +105,9 @@
 
 
         <div class="form-group col-md-3" style="margin-bottom:10px">
-            <label style="font-weight:normal;margin-bottom:3px"  for="txqty">@localizer["Qty"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="txqty">@localizer["Qty"] <span style="color:red"> *</span></label>
             <div class="row">
-                <div class="col-md-4"><input type="number" class="form-control text-center"  onblur="setQty();setBatch();"  id="txtotalqty"></div>
+                <div class="col-md-4"><input type="number" class="form-control text-center"  onblur="setQty()" id="txtotalqty"></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyfrom" readonly></div>
                 <div class="col-md-4"><input type="text" class="form-control text-center" id="txqtyto"  readonly></div>
             </div>            
@@ -95,7 +117,7 @@
             
         </div>*@
         <div class="form-group col-md-2" style="margin-bottom:10px">
-            <label style="font-weight:normal;margin-bottom:3px" for="seluom">@localizer["UOM"]</label>
+            <label style="font-weight:normal;margin-bottom:3px" for="seluom">@localizer["UOM"] <span style="color:red"> *</span></label>
             <select id="seluom" class="form-control select2" onchange="selectUOM()" style="width:100%">
                 <option></option>
                 @if (masterData.UomtList!.Count() > 0)
@@ -111,16 +133,14 @@
             <label style="font-weight:normal;margin-bottom:3px" for="txqrcode">@localizer["Package"]</label>
             <input type="text" class="form-control" id="txpackage" readonly>
         </div>
-        <div class="form-group col-md-1" style="margin-bottom:10px">
-            <label style="font-weight:normal;margin-bottom:3px" for="txqrcode">@localizer["Shift"]</label>
-            <input type="text" class="form-control" id="txshift"  readonly>
-        </div>
 
-        <div class="form-group col-md-4" style="margin-bottom:10px;padding-top:22px">
-            <button type="button" onclick="Apply()" class="btn btn-info" id="btapply">@localizer["Apply"]</button>
-            <button type="button" class="btn btn-primary"  onclick="SaveData()" id="btsave">@localizer["Save"]</button>
-            <button type="button" class="btn btn-success" disabled onclick="CloseJob()" id="btclose">@localizer["CloseJob"]</button>
-            <button type="button" class="btn btn-secondary" onclick="print()">@localizer["PrintQRCode"]</button>
+
+        <div class="form-group col-md-6" style="margin-bottom:10px;padding-top:22px">
+            <button type="button" onclick="Apply()" class="btn btn-primary" id="btapply">@localizer["Apply"]</button>
+            <button type="button" class="btn btn-success" disabled onclick="SaveData()" id="btsave">@localizer["Save"]</button>
+            @*<button type="button" class="btn btn-success" disabled onclick="CloseJob()" id="btclose">@localizer["CloseJob"]</button>*@
+            <button type="button" id="btprint" class="btn btn-secondary" disabled onclick="print()">@localizer["PrintQRCode"]</button>
+            @*<button type="button" id="btdelete" class="btn btn-danger" disabled onclick="DeleteRow()">@localizer["DeleteRow"]</button>*@
             <button type="button" class="btn btn-warning" onclick="Reset()">@localizer["ClearData"]</button>
         </div>
         <div class="form-group col-md-12" style="text-align:center">
@@ -133,6 +153,7 @@
                         <th style="width:80px;font-weight:normal">@localizer["RunNo"]</th>
                         <th style="width:120px;font-weight:normal">@localizer["MaterialType"]</th>
                         <th style="width:120px;font-weight:normal">@localizer["MaterialCode"]</th>
+                        <th style="font-weight:normal">@localizer["MaterialName"]</th>
                         <th style="font-weight:normal">@localizer["MaterialGroup"]</th>
                         <th style="font-weight:normal">@localizer["Shift"]</th>
                         <th style="width:120px;font-weight:normal">@localizer["MFGDate"]</th>
@@ -147,65 +168,97 @@
     </div>
 </div>
 <script>
+    var pid;
     var batchNo = '@BatchNo';
     var SHELF_LIFT_MONTH = 0;
     var pkG_SIZE_KG = '';
     var matcode = '';
-    var matname = '';
+    var matgroup = '';
+    var plant = '';
     var line = '';
-    var line = '';
+    var lineId = '';
     var qtys=0;
     var batchNoLast="";
     var batchSub = 0;
     var shift='';
     var ShiftID=0;
     var MaterialType='';
+    var Materialname= '';
     var batchList=[];
     var QtyALl=0;
     var LineConfig =localStorage.getItem('LineConfig');
     $(document).ready(function () {
         SetPagename('Loading');
         $('#selline').val(LineConfig).change();
-            $('#btsave').prop("disabled", true);
+        $('#btsave').prop("disabled", true);
         LoadData();
     });
-function LoadData(){
+    function LoadData(){
         var dataID = '@id';
         if (dataID!=''){
             $.post('@Url.Action("LoadLiData", "LI")', {
                 id: dataID
             }, function (data) {
                 if (data != null) {
-                    document.getElementById('btclose').disabled = false;
-               
-                    $('#selline').val(data.packinG_LINE_ID).change();
-                    $('#selsloc').val(data.sloc).change();
-                 
-                    $('#selmatcode').val(data.materiaL_CODE).change();
-                    $('#seluom').val(data.uom).change();
-                    $('#txtotalqty').val(data.qtY_TOTAL);
-                    qtys = data.qtY_TOTAL;
-                            $('#txqtyfrom').val(data.qtY_FROM);
-                    $('#txqtyto').val(data.qtY_TO);
-                 
-                    $('#txstatus').val(data.batcH_STATUS);
-                    $('#txpackage').val(data.package);
+                    //document.getElementById('btclose').disabled = false;
+                    console.log(data);
+
+                    MaterialType = data.materiaL_TYPE;
+                    Materialname = data.materiaL_NAME;
+                    matcode = data.materiaL_CODE;
+                    matgroup = data.materiaL_GROUP;
+                    shift = data.shift;
+                    ShiftID = data.shifT_ID;
+                    SHELF_LIFT_MONTH = data.shelF_LIFT_MONTH;
                     batchNoLast = data?.batcH_NO.trim();
                     batchSub = data?.suB_BATCH;
+                    lineId = data.packinG_LINE_ID;
+                    $('#selsloc').val(data.sloc).change();
+                    $('#btprint').prop('disabled', false);
+                    $('#btdelete').prop('disabled', false);
+
+                    $('#seluom').val(data.uom).change();
+                    $('#selmatcode').val(matcode).change();
+                    $('#selline').val(data.packinG_LINE_ID).change();
+
+                    $('#txtotalqty').val(data.qtY_TOTAL);
+                    qtys = data.qtY_TOTAL;
+                    $('#txqtyfrom').val(data.qtY_FROM);
+                    $('#txqtyto').val(data.qtY_TO);
+                 
+                    $('#txstatus').val(data.hold);
+                    $('#txpackage').val(data.package);
+
                     $('#txbatch').val(batchNoLast);
-                    //selectDate();
+                    $('#txsubbatch').val(data.suB_BATCH);
+
+                    $('#txmatgroup').val(data.materiaL_GROUP);
+                    $('#txmatname').val(data.materiaL_NAME);
+                    $('#txshift').val(data.shift);
+
+                    $("#txmfgdate").datepicker({
+                        format: 'dd/mm/yyyy',
+                        autoclose: true,
+                        orientation: "auto"
+                    }).datepicker("setDate", new Date(data.mfG_DATE))
+
+                    $("#txexpiredate").datepicker({
+                        format: 'dd/mm/yyyy',
+                        autoclose: true,
+                        orientation: "auto"
+                    }).datepicker("setDate", new Date(data.expirE_DATE))
+
                     Apply();
+                    $('#selsloc').prop('disabled', true);
+                    $('#txmfgdate').prop('disabled', true);
                 } else {
-                    Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
+                    Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา...')
                 }
             }).fail(function () {
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
-
             });
         }
-
-
-}
+    }
     $(function () {
         var d = new Date();
         $('#txmfgdate').datepicker({
@@ -216,25 +269,46 @@ function LoadData(){
 
         }).datepicker("setDate", d);
     });
-    function setQty(){
 
+    function setQty(){
         var qty = parseInt($('#txtotalqty').val());
-        if (qty>0){
+        if (qty == 0) {
+            Notiflix.Notify.warning('กรุณาระบุจำนวน')
+            return
+        }
+
+
+        if ('@id' != ''){
+            $.post('@Url.Action("ValidRunNo", "LI")', {
+                batchNo: $('#txbatch').val(),
+                RunFrom: $('#txqtyto').val(),
+                RunTo: parseInt($('#txqtyfrom').val()) + qty-1
+            }, function (data) {
+                if (data.status == true){
+                    $('#txqtyto').val(parseInt($('#txqtyfrom').val()) + qty -1);
+                }else{
+                    Notiflix.Notify.warning('ไม่สามารถสร้าง RUN No ซ้ำกันได้!!!')
+
+                    $('#txtotalqty').val(parseInt($('#txqtyto').val()) - parseInt($('#txqtyfrom').val())+1);
+
+                    return
+                }
+                //console.log(data);
+            }).fail(function () {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            });
+            
+        }else{
             console.log('QtyALl', QtyALl);
-            if(QtyALl>0){
-                $('#txtotalqty').val();
-                $('#txqtyfrom').val(QtyALl+1);
+            if (QtyALl > 0) {
+                $('#txqtyfrom').val(QtyALl + 1);
                 $('#txqtyto').val(QtyALl + qty);
-            }else{
+            } else {
                 $('#txqtyfrom').val(1);
                 $('#txqtyto').val(qty);
             }
-            qtys = qty;
-
-        
-
         }
-
+        qtys = qty;
     }
 
     function setBatch(){
@@ -243,23 +317,19 @@ function LoadData(){
             qtys = qty;
             //batchNoLast = batchNo;
             $('#txbatch').val(batchNoLast);
-
-
         }
-
     }
 
-
-
    function selectMat(){
-            $.post('@Url.Action("GetMaterial", "LI")', {
-                MaterialCode: $('#selmatcode').val()
-            }, function (data) {
-                if (data!=null) {
-                if ('@id' == '') {
+        $.post('@Url.Action("GetMaterial", "LI")', {
+            MaterialCode: $('#selmatcode').val()
+        }, function (data) {
+            if (data!=null) {
+                //if ('@id' == '') {
                     matcode = $('#selmatcode').val();
-                    matname = data.materiaL_NAME;
+                    matgroup = data.materiaL_GROUP;
                     MaterialType = data.materialType;
+                    Materialname = data.materiaL_NAME;
                     $('#txmatgroup').val(data.materiaL_GROUP);
                     $('#txmatname').val(data.materiaL_NAME);
                     $('#txpackage').val(data.pkG_SIZE_KG + ' ' + $('#seluom').val());
@@ -277,56 +347,45 @@ function LoadData(){
                     if (data.forM_NO != null) {
                         $('#txtotalqty').val(data.forM_NO);
                     }
-                }
+                //}
              
 
-                if (data.sloC_ID != null) {
-                   // $('#selsloc').val(data.sloC_ID).change();
-                   // console.log('ss1',$('#selsloc').val());
-                }
-                if ('@id'==''){
-                   
-                    batchNoLast = batchNo;
-                }
-                if (batchSub==0){
-                    batchSub=1;
-                }
-           
-                    $.post('@Url.Action("CheckBatchNo", "LI")', {
-                        batchNo: batchNo,
-                        SubBatch: batchSub
-                    }, function (data) {
-                        if (data != undefined) {
-                        if ('@id' == '') {
-                            batchSub = parseInt(data.subBatch ?? 0) + 1;
-                        }
-                          
-                            $('#txsubbatch').val(batchSub);
-                            $('#txbatch').val(batchNoLast);
-                            QtyALl = parseInt(data.qtY_TOTAL)
-                        } else {
-                        batchSub + 1;
-                            //$('#txtotalqty').val();
-                            //$('#txqtyto').val();
-                            //$('#txqtyfrom').val();
-                            $('#txsubbatch').val(batchSub);
-                            $('#txbatch').val(batchNoLast);
-                        }
-                    }).fail(function () {
-                        Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
-                    });
-                
-              
+                //if ('@id'==''){                  
+                //    batchNoLast = batchNo;
+                //}
+                //if (batchSub==0){
+                //    batchSub=1;
+                //}          
+                //$.post('@Url.Action("CheckBatchNo", "LI")', {
+                //    batchNo: batchNo,
+                //    SubBatch: batchSub
+                //}, function (data) {
+                //    if (data != undefined) {
+                //        if ('@id' == '') {
+                //            batchSub = parseInt(data.subBatch ?? 0) + 1;
+                //        }                         
+                //        $('#txsubbatch').val(batchSub);
+                //        $('#txbatch').val(batchNoLast);
+                //        QtyALl = parseInt(data.qtY_TOTAL)
+                //    } else {
+                //        batchSub + 1;
+                //        $('#txsubbatch').val(batchSub);
+                //        $('#txbatch').val(batchNoLast);
+                //    }
+                //}).fail(function () {
+                //    Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
+                //});                              
                 selectDate();
-                } else {
-                    Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
-                }
-            }).fail(function () {
-                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            } else {
+                if ('@id' != "") { return; }
+                Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา!')
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
-            });
+        });
 
 
    }
@@ -338,23 +397,49 @@ function LoadData(){
         batchList=[];
         var qty = $('#txtotalqty').val();
         var txt='';
+
+        if ($('#selline').val() == ""){
+            Notiflix.Notify.warning('กรุณาเลือกสายการผลิต');
+            return
+        }
+        if ($('#selsloc').val() == "") {
+            Notiflix.Notify.warning('กรุณาเลือกคลังวัตถุดิบ');
+            return
+        }
+        if ($('#txmfgdate').val() == "") {
+            Notiflix.Notify.warning('กรุณาเลือกวันที่ผลิต');
+            return
+        }
+
+        if ($('#selmatcode').val() == "") {
+            Notiflix.Notify.warning('กรุณาเลือกรหัสวัตถุดิบ');
+            return
+        }
+        if ($('#txtotalqty').val() == "") {
+            Notiflix.Notify.warning('กรุณาใส่จำนวน');
+            return
+        }
+        if ($('#seluom').val() == "") {
+            Notiflix.Notify.warning('กรุณาเลือกหน่วยนับ');
+            return
+        }
         if (qty > 0) {
             var fqty = parseInt($('#txqtyfrom').val());
-            for (var i = 0; i < qty; i++){
-              
+            for (var i = 0; i < qty; i++){             
                 batchList.push({ batchNo: batchNoLast, item: fqty,checked:false});
                 txt += '<tr>'+
-                    '<td class="text-center" style = "width:45px;font-weight:normal" > <input type="checkbox" id ="cb1" class="cb1" onchange="singleCheck(this.checked,'+i+')"  /> </td>' +
-                    '<td class="text-center" style = "width:120px;font-weight:normal" > '+batchNoLast+' </td>' +
-                    '<td class="text-center" style = "width:80px;font-weight:normal" > '+line+' </td>' +
-                    '<td class="text-center" style = "width:80px;font-weight:normal" > ' + fqty + ' </td>' +
-                    '<td class="text-center" > ' + MaterialType + ' </td>' +
-                    '<td class="text-center" > '+matcode+' </td>' +
-                    '<td class="text-left" > ' + matname + ' </td>' +
-                    '<td class="text-center" > ' + shift + ' </td>' +
-                    '<td class="text-center" > ' + $('#txmfgdate') .val()+ ' </td>' +
-                    '<td class="text-center" > ' + $('#txexpiredate').val() + ' </td>' +
-                    fqty++; '</tr>';
+                '<td class="text-center" style = "width:45px;font-weight:normal" > <input type="checkbox" id ="cb1" class="cb1" onchange="singleCheck(this.checked,'+i+')"  /> </td>' +
+                '<td class="text-center" style = "width:120px;font-weight:normal" > '+batchNoLast+' </td>' +
+                '<td class="text-center" style = "width:80px;font-weight:normal" > '+line+' </td>' +
+                '<td class="text-center" style = "width:80px;font-weight:normal" > ' + fqty + ' </td>' +
+                '<td class="text-center" > ' + MaterialType + ' </td>' +
+                '<td class="text-center" > '+matcode+' </td>' +
+                '<td class="text-left" > ' + Materialname + ' </td>' +
+                '<td class="text-left" > ' + matgroup + ' </td>' +
+                '<td class="text-center" > ' + shift + ' </td>' +
+                '<td class="text-center" > ' + $('#txmfgdate') .val()+ ' </td>' +
+                '<td class="text-center" > ' + $('#txexpiredate').val() + ' </td>' +
+                fqty++; '</tr>';
             }
             $('#bodyLiList').html(txt);
             $('#btsave').prop("disabled", false);
@@ -363,9 +448,9 @@ function LoadData(){
             all.checked = true;
             for (var i = 0; i < chlist.length; i++) {
                 batchList[i].checked = true;
-                chlist[i].checked = true;
-       
+                chlist[i].checked = true;       
             }
+            $('#btsave').prop('disabled', false);
         }else{
             Notiflix.Notify.warning('กรุณาระบุจำนวน');
         }
@@ -373,18 +458,90 @@ function LoadData(){
 
     function selectLine() {
         line = $('#selline option:selected').text();
-
     }
+
+    function selectPlant() {
+        plant = $('#selplant option:selected').text();
+        var pid = $('#selplant').val();
+        
+        $('#selsloc').find('option').remove().end();
+        $('#selsloc').append('<option value=""></option>');
+
+        $.post('@Url.Action("GetStorageLocation", "LI")', {
+            plantid: pid
+        }, function (data) {
+            console.log(data)
+            for (var i = 0;i < data.length;i++){
+                $('#selsloc').append('<option value=' + data[i].packinG_LINE_ID + '>' + data[i].pK_LINE_NAME + '</option>');
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+        });
+    }
+
 
     function selectSloc() {
         batchNo.replace($('#selsloc option:selected').text(), '');
         batchNo += $('#selsloc option:selected').text();
-     
 
-       // console.log('ss3', $('#selsloc').val());
+        $('#selmatcode').find('option').remove().end();
+        $('#selline').find('option').remove().end();
+        $('#selmatcode').append('<option value=""></option>');
+        $('#selline').append('<option value=""></option>');
+
+        $.post('@Url.Action("GetMaterialsLines", "LI")', {
+            sloc_id: $('#selsloc').val()
+        }, function (data) {
+            for (var i = 0; i < data.lines.length; i++) {
+                $('#selline').append('<option value=' + data.lines[i].packinG_LINE_ID + '>' + data.lines[i].pK_LINE_NAME + '</option>');
+            }
+            for (var i = 0; i < data.mat.length; i++) {
+                $('#selmatcode').append('<option value=' + data.mat[i].materiaL_CODE + '>' + data.mat[i].materiaL_CODE + '</option>');
+            }
+
+            if ('@id' != "") {
+                if ('@id' != "") {
+                    $('#selmatcode').val(matcode);
+                    $('#selline').val(lineId);
+                }
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+        });
+
+
+        if ('@id'==''){
+            batchNoLast = batchNo;
+        }
+        if (batchSub==0){
+            batchSub=1;
+        }
+        $.post('@Url.Action("CheckBatchNo", "LI")', {
+            batchNo: batchNo,
+            SubBatch: batchSub
+        }, function (data) {
+            if (data != undefined) {
+                if ('@id' == '') {
+                    batchSub = parseInt(data.subBatch ?? 0) + 1;
+                }
+                $('#txsubbatch').val(batchSub);
+                $('#txbatch').val(batchNoLast);
+                QtyALl = parseInt(data.qtY_TOTAL)
+            } else {
+                batchSub + 1;
+                $('#txsubbatch').val(batchSub);
+                $('#txbatch').val(batchNoLast);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+        });
+
+        //console.log('ss3', $('#selsloc').val());
     }
 
     function selectDate() {
+        //if ($('#selmatcode').val() == "" || $('#selmatcode').val() == null) { return; }
+      
         var date = moment($('#txmfgdate').val(), "DD-MM-YYYY");
         date.add('months', SHELF_LIFT_MONTH);
         $('#txexpiredate').datepicker({
@@ -392,21 +549,49 @@ function LoadData(){
             autoclose: true,
             todayHighlight: true,
             orientation: "auto"
-
         }).datepicker("setDate", date.toDate());
-          $.post('@Url.Action("CheckShift", "LI")', {
-              date: moment($('#txmfgdate').val(), "DD-MM-YYYY").format("YYYY/MM/DD")
-            }, function (data) {
-           if (data != null) {
+        $.post('@Url.Action("CheckShift", "LI")', {
+            date: moment($('#txmfgdate').val(), "DD-MM-YYYY").format("YYYY/MM/DD")
+        }, function (data) {
+            if (data != null) {
                 shift = data.shift;
                 ShiftID = data.shiftID;
                 $('#txshift').val(shift);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+        });
+
+
+        if ($('#selsloc').val() == "" || $('#selsloc').val() == null) { return; }
+        
+        batchNo = moment($('#txmfgdate').val(), "DD-MM-YYYY").format('DDMMYY');
+        batchNo += $('#selsloc option:selected').text();
+        if ('@id' == '') {
+            batchNoLast = batchNo;
+        }
+        if (batchSub == 0) {
+            batchSub = 1;
+        }
+        $.post('@Url.Action("CheckBatchNo", "LI")', {
+            batchNo: batchNo,
+            SubBatch: batchSub
+        }, function (data) {
+            if (data != undefined) {
+                if ('@id' == '') {
+                    batchSub = parseInt(data.subBatch ?? 0) + 1;
                 }
-            }).fail(function () {
-                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
-
-            });
-
+                $('#txsubbatch').val(batchSub);
+                $('#txbatch').val(batchNoLast);
+                QtyALl = parseInt(data.qtY_TOTAL)
+            } else {
+                batchSub + 1;
+                $('#txsubbatch').val(batchSub);
+                $('#txbatch').val(batchNoLast);
+            }
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+        });
     }
     function SaveData(){
         if (batchNoLast==''){
@@ -435,8 +620,12 @@ function LoadData(){
             User: localStorage.getItem("Username"),
         }, function (data) {
             if(data.status){
-                document.getElementById('btclose').disabled=false;
+                //document.getElementById('btclose').disabled=false;
                 Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+
+                $('#btprint').prop('disabled', false);
+                $('#btdelete').prop('disabled', false);
+                $('#selsloc').prop('disabled', true);
             }else{
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
             }
@@ -456,8 +645,7 @@ function LoadData(){
         }
         if(event){
 
-            }
-
+        }
     }
 
     function singleCheck(event,index) {

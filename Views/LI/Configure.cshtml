@@ -8,7 +8,7 @@
     tbm_pk_batch_slip BatchSlip = (tbm_pk_batch_slip)ViewBag.BatchSlip;
     IEnumerable<tbm_pk_work_shift> WorkSlift = (IEnumerable<tbm_pk_work_shift>)ViewBag.WorkSlift;
     tbm_pk_work_shift A = @WorkSlift.FirstOrDefault(x => x.ID == 1)!;
-      tbm_pk_work_shift B = @WorkSlift.FirstOrDefault(x => x.ID == 2)!;
+    tbm_pk_work_shift B = @WorkSlift.FirstOrDefault(x => x.ID == 2)!;
     tbm_pk_work_shift C = @WorkSlift.FirstOrDefault(x => x.ID == 3)!;
     MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
 }
@@ -28,18 +28,18 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td style="width:100px;min-width:100px"><input class="form-control text-center" value="เช้า" /></td>
+                        <td style="width:100px;min-width:100px"><input class="form-control text-center" value="เช้า" readonly /></td>
                         <td style="width:100px;min-width:100px"><input id="txtA1" value="@A.TIME_START!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                         <td style="width:100px;min-width:100px"><input id="txtA2" value="@A.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                     </tr>
                     <tr>
-                        <td><input class="form-control text-center" value="บ่าย" /></td>
-                        <td><input id="txtB1" value="@B.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
+                        <td><input class="form-control text-center" value="บ่าย" readonly /></td>
+                        <td><input id="txtB1" value="@B.TIME_START!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                         <td><input id="txtB2" value="@B.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                     </tr>
                     <tr>
-                        <td><input class="form-control text-center" value="ดึก" /></td>
-                        <td><input id="txtC1" value="@C.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
+                        <td><input class="form-control text-center" value="ดึก" readonly /></td>
+                        <td><input id="txtC1" value="@C.TIME_START!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                         <td><input id="txtC2" value="@C.TIME_END!.Value.ToString("HH:mm")" class="form-control text-center" /></td>
                         <td><button onclick="SaveShift()" class="btn btn-primary" style="padding-top:4px;padding-bottom:4px">@localizer["Apply"]</button></td>
                     </tr>
@@ -104,7 +104,7 @@
                                     <td class="text-center" style="color:gold">@item.HOLD</td>
                                     <td class="text-center">@item.FORM_NO</td>
                                     <td class="text-center">@item.REV</td>
-                                    <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1,'@item.MATERIAL_CODE', '@item.DEFAULT_PACKING_LINE_ID', '@item.DEFAULT_UOM', '@item.STATUS', '@item.DEFAULT_HOLD', '@item.FORM_NO','@item.REV','@item.id')"></i></td>
+                                    <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1,'@item.MATERIAL_CODE', '@item.DEFAULT_PACKING_LINE_ID', '@item.DEFAULT_UOM', '@item.STATUS', '@item.DEFAULT_HOLD', '@item.FORM_NO','@item.REV','@item.id','@item.SLOC_ID')"></i></td>
                                 </tr>
                             }
                      
@@ -121,7 +121,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Materail configuration</h5>
+                <h5 class="modal-title">@localizer["MaterailConfiguration"]</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="showmodal(0)">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -129,26 +129,26 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group">
-                        <label style="font-weight:normal">Material Code</label>
+                        <label style="font-weight:normal">@localizer["MaterialCode"]</label>
                         <input class="form-control" id="txcode" readonly />
                     </div>
                     <div class="form-group col-md-6">
-                        <label style="font-weight:normal">Packing Line</label>
+                        <label style="font-weight:normal">@localizer["Line"]</label>
                         <div class="form-inline">
                             <select id="selline" style="width:100%">
-                                <option></option>
+@*                                <option></option>
                                 @if (masterData.LineList!.Count() > 0)
                                 {
                                     foreach (var item in masterData.LineList!)
                                     {
                                         <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
                                     }
-                                }
+                                }*@
                             </select>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label style="font-weight:normal">UNIT</label>
+                        <label style="font-weight:normal">@localizer["UOM"]</label>
                         <select id="selunit" style="width:100%">
                             <option></option>
                             @if (masterData.UomtList!.Count() > 0)
@@ -161,14 +161,14 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label style="font-weight:normal">OPEN/CLOSE</label>
+                        <label style="font-weight:normal">@localizer["OpenClose"]</label>
                         <select id="selstatus" style="width:100%">
                             <option value="0">CLOSE</option>
                             <option value="1" selected>OPEN</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label style="font-weight:normal">HOLD</label>
+                        <label style="font-weight:normal">@localizer["Hold"]</label>
                         <select id="selhold" style="width:100%">
                             <option></option>
                             @if (masterData.StatausList!.Count() > 0)
@@ -181,18 +181,18 @@
                         </select>
                     </div>
                     <div class="form-group col-md-6">
-                        <label style="font-weight:normal">Form No</label>
+                        <label style="font-weight:normal">@localizer["FormNo"]</label>
                         <input class="form-control" id="txformnomat" />
                     </div>
                     <div class="form-group col-md-6">
-                        <label style="font-weight:normal">Revision</label>
+                        <label style="font-weight:normal">@localizer["Rev"]</label>
                         <input class="form-control" id="txrev" />
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="SaveConfigureMaterial()">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="showmodal(0)">Close</button>
+                <button type="button" class="btn btn-primary" onclick="SaveConfigureMaterial()">@localizer["Save"]</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="showmodal(0)">@localizer["Close"]</button>
             </div>
         </div>
     </div>
@@ -203,7 +203,7 @@
         SetPagename('Configuration');
     });
 
-    function showmodal(flagshow, matCode, selline, selunit, selstatus, selhold, txformno,txrev,id) {
+    function showmodal(flagshow, matCode, selline, selunit, selstatus, selhold, txformno, txrev, id, sloc_id) {
         if (flagshow == 1){
             ID = parseInt(id);
             $('#modalconfig').show();
@@ -214,6 +214,21 @@
             $('#selhold').val(selhold).change();
             $('#txformnomat').val(txformno);
             $('#txrev').val(txrev);
+
+
+            $('#selline').find('option').remove().end();
+            $('#selline').append('<option value=""></option>');
+            $.post('@Url.Action("GetMaterialsLines", "LI")', {
+                sloc_id: sloc_id
+            }, function (data) {
+                for (var i = 0; i < data.lines.length; i++) {
+                    $('#selline').append('<option value=' + data.lines[i].packinG_LINE_ID + '>' + data.lines[i].pK_LINE_NAME + '</option>');
+                }
+            }).fail(function () {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            });
+
+
         }else{
             ID=0;
             $('#modalconfig').hide();

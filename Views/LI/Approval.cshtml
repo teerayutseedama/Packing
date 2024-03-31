@@ -101,7 +101,7 @@
             <input id="txrunno" class="form-control" />
         </div>
         <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:27px">
-            <button type="button" class="btn btn-primary" onclick="GetApprovalyList()">@localizer["Search"]</button>
+            <button type="button" class="btn btn-primary" onclick="GetApprovalList()">@localizer["Search"]</button>
             <button type="button" class="btn btn-success" id="btupdate" onclick="showmodal(1)">@localizer["Update"]</button>
             <button type="button" class="btn btn-secondary" onclick="GetExcel()">@localizer["Excel"]</button>
         </div>
@@ -205,7 +205,7 @@
         }).datepicker("setDate", d);
     });
 
-    function GetApprovalyList() {
+    function GetApprovalList() {
         batchList=[];
         document.getElementById('checkkall').checked=false;
         var txt = '';
@@ -309,6 +309,16 @@
 
     function Approval(){
         var dataSave=[];
+
+        if ($("#selupdatestatus").val() == ""){
+            Notiflix.Notify.warning('กรุณาเลือกสถานะ');
+            return
+        }
+        if ($('#txremark').val() == "" && $("#selupdatestatus").val() != "1"){
+            Notiflix.Notify.warning('กรุณาระบุหมายเหตุของการ ' + $("#selupdatestatus option:selected").text());
+            return
+        }
+
         document.getElementById('checkkall').checked = false;
         var txt = '';
         for (var i = 0; i < batchList.length; i++) {
@@ -329,7 +339,7 @@
             if(data.status){
                 $('#modalapproval').hide();
                 $('#approvalbody').html('');
-                GetApprovalyList();
+                GetApprovalList();
                 Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
             }else{
             Notiflix.Notify.warning(data.error);
