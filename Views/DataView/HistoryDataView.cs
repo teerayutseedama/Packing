@@ -8,6 +8,7 @@ namespace Packing.Views.DataView
       public string?  BatchNo { get; set; }
         public int sub_batch { get; set; }
         public string? Plant { get; set; }
+        public string? sloc { get; set; }
         public string? Line { get; set; }
         public string? MaterialCode { get; set; }
         public string? MaterialName { get; set; }

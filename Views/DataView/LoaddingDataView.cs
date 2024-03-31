@@ -17,7 +17,15 @@ namespace Packing.Views.DataView
         public string? MFGDate { get; set; }
         public int? Qty { get; set; }
         public string? UOM { get; set; }
-        public int? status { get; set; }
+        //public int? status { get; set; }
+        public int sub_batch { get; set; }
+        public int? id_status { get; set; }
+        public string? sloc { get; set; }
+        public string? MaterialCode { get; set; }
+        public string? Shift { get; set; }
+        public string? RunNo { get; set; }
+        public string? Status { get; set; }
+
     }
     public class GetLoaddingData
     {
@@ -27,7 +35,7 @@ namespace Packing.Views.DataView
         public string? MaterialName { get; set; }
         public string? Shift { get; set; }
         public DateTime? MFGDate { get; set; }
-        public string? Stataus { get; set; }
+        public string? Status { get; set; }
         public string? BatchNo { get; set; }
         public string? RunNo { get; set; }
     }

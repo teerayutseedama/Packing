@@ -8,7 +8,7 @@
 
 <div class="row" style="padding-top:10px">
     <div class="form-row">
-        <div class="form-group col-md-1" style="padding:2px">
+        <div class="form-group col-md-1" style="padding:2px;display:none">
             <label style="font-weight:normal">@localizer["Plant"]</label>
             <select id="selplant" class="form-control select2" style="width:100%">
                 <option></option>
@@ -22,6 +22,20 @@
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
+            <label style="font-weight:normal">@localizer["Line"]</label>
+            <select id="selline" class="form-control select2" style="width:100%">
+                <option></option>
+                @if (masterData.LineList!.Count() > 0)
+                {
+                    foreach (var item in masterData.LineList!)
+                    {
+                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["MaterialCode"]</label>
             <select id="selmatcode" class="form-control select2" style="width:100%">
                 <option></option>
@@ -34,7 +48,7 @@
                 }
             </select>
         </div>
-        <div class="form-group col-md-2" style="padding:2px">
+        <div class="form-group col-md-3" style="padding:2px">
             <label style="font-weight:normal">@localizer["MaterialName"]</label>
             <select id="selmatname" class="form-control select2" style="width:100%">
                 <option></option>
@@ -42,7 +56,7 @@
                 {
                     foreach (var item in masterData.MaterialList!)
                     {
-                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_NAME</option>
+                        <option value="@item.MATERIAL_NAME">@item.MATERIAL_NAME</option>
                     }
                 }
             </select>
@@ -62,22 +76,10 @@
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["MFGDate"]</label>
+            <label style="font-weight:normal">@localizer["MFGDate"] <span style="color:red;font-weight:bold"> *</span></label>
             <input id="txmfgdate" class="form-control text-center" />
         </div>
-        <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["Line"]</label>
-            <select id="selline" class="form-control select2" style="width:100%">
-                <option></option>
-                @if (masterData.LineList!.Count() > 0)
-                {
-                    foreach (var item in masterData.LineList!)
-                    {
-                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
-                    }
-                }
-            </select>
-        </div>
+
         <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["Status"]</label>
             @*tbm_pk_batch_status*@
@@ -92,31 +94,32 @@
                 }
             </select>
         </div>
-        <div class="form-group col-md-1" style="padding:2px">
+@*        <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["BatchNo"]</label>
             <input id="txbatch" class="form-control" />
-        </div>
-        <div class="form-group col-md-1" style="padding:2px">
+        </div>*@
+@*        <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["RunNo"]</label>
             <input id="txrunno" class="form-control" />
-        </div>
+        </div>*@
         <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:27px">
             <button type="button" class="btn btn-primary" onclick="GetApprovalList()">@localizer["Search"]</button>
             <button type="button" class="btn btn-success" id="btupdate" onclick="showmodal(1)">@localizer["Update"]</button>
             <button type="button" class="btn btn-secondary" onclick="GetExcel()">@localizer["Excel"]</button>
         </div>
-        <div class="form-group col-md-12">
-            <div class="form-inline">
-                <table class="isr-table" id="tbl1">
+        <div class="form-group col-md-12" style="overflow:auto;height:80vh;border:solid thin lightgray">
+            <table class="isr-table" id="tbl1">
                     <thead>
                         <tr>
-                            <th style="width:50px">
+                            <th style="width:40px;background-color:silver">
                                 <input type="checkbox" id="checkkall" onchange="checkall(this.checked)" />
                             </th>
                             <th style="width:120px">@localizer["BatchNo"]</th>
                             <th>@localizer["Plant"]</th>
-                            <th>@localizer["MaterialName"]</th>
+                            <th>@localizer["SLOC"]</th>
                             <th style="width:100px">@localizer["Line"]</th>
+                            <th>@localizer["MaterialCode"]</th>
+                            <th>@localizer["MaterialName"]</th>
                             <th>@localizer["Package"]</th>
                             <th>@localizer["RunNo"]</th>
                             <th>@localizer["Qty"]</th>
@@ -131,7 +134,6 @@
                      
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -206,6 +208,15 @@
     });
 
     function GetApprovalList() {
+
+        var mfgdate = moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD");
+
+        if (mfgdate == 'Invalid date') {
+            Notiflix.Notify.warning('รูปแบบวันที่ไม่ถูกต้อง !!!')
+            return
+        }
+
+
         batchList=[];
         document.getElementById('checkkall').checked=false;
         var txt = '';
@@ -216,33 +227,36 @@
             Shift: $('#selshift').val(),
             MFGDate: moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD"),
             Line: $('#selline').val(),
-            Stataus: $('#selstatus').val(),
+            Status: $('#selstatus').val(),
             BatchNo: $('#txbatch').val(),
             RunNo: $('#txrunno').val()
         }, function (data) {
+            console.log(data)
         if (data.length > 0) {
             for (var i = 0; i < data.length; i++) {
                 var d = data[i];
-                    batchList.push({ batchNo: d.batchNo, item: i + 1, checked: false, batchSub: d.batchSub });
+                batchList.push({ batchNo: d.batchNo, item: i + 1, checked: false, batchSub: d.batchSub });
                 txt += '<tr>'+
-                        '<td class="text-center" > <input type="checkbox" id ="cb1" name="cb1" class="cb1" onchange="singleCheck(this.checked,' + i + ')"/> </td>' +
-                    '<td class="text-center" > ' + d.batchNo + ' </td>' +
-                    '<td class="text-center" > ' + d.plant+ ' </td>' +
-                    '<td> ' + d.materialName + ' </td>' +
-                    '<td class="text-center" > ' + d.line+ ' </td>' +
-                    '<td class="text-center" > ' + d.package + ' </td>' +
-                        '<td class="text-right" > ' + d.runNo + ' </td>' +
-                    '<td class="text-right" > ' + d.qty + ' </td>' +
-                    '<td class="text-center" > ' + d.uom + ' </td>' +
-                        '<td class="text-center" > ' + d.mfgDate + ' </td>' +
-                        '<td class="text-center" > ' + d.expireDate + ' </td>' +
-                        '<td class="text-center" style = "color:gold" > ' + d.stataus + ' </td>' +
-                    '</tr>';
-                    }
-            $('#approvalbody').html(txt);
+                '<td class="text-center" style="background-color:silver" > <input type="checkbox" id ="cb1" name="cb1" class="cb1" onchange="singleCheck(this.checked,' + i + ')"/> </td>' +
+                '<td class="text-center" > ' + d.batchNo + ' </td>' +
+                '<td class="text-center" > ' + d.plant + ' </td>' +
+                '<td class="text-center" > ' + d.sloc + ' </td>' +
+                '<td class="text-center" > ' + d.line + ' </td>' +
+                '<td class="text-center" > ' + d.materialCode + ' </td>' +
+                '<td> ' + d.materialName + ' </td>' +
+                '<td class="text-center" > ' + d.package + ' </td>' +
+                '<td class="text-center" > ' + d.runNo + ' </td>' +
+                '<td class="text-right" > ' + d.qty + ' </td>' +
+                '<td class="text-center" > ' + d.uom + ' </td>' +
+                '<td class="text-center" > ' + d.mfgDate + ' </td>' +
+                '<td class="text-center" > ' + d.expireDate + ' </td>' +
+                '<td class="text-center"  style = "color:' + mapStatus(d.id_status) + '" > ' + d.status + ' </td>' +
+                '</tr>';
+            }
         } else {
             Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา');
         }
+            $('#approvalbody').html(txt);
         }).fail(function () {
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
@@ -348,5 +362,16 @@
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่');
 
         });
+    }
+    function mapStatus(value) {
+        if (value == '0') {
+            return 'gray';
+        } else if (value == '1') {
+            return 'green';
+        } else if (value == '2') {
+            return 'gold';
+        } else {
+            return 'red';
+        }
     }
 </script>

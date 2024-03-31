@@ -48,4 +48,6 @@ public partial class tbt_pk_batch_no_header
     public string? APPROVE_BY { get; set; }
 
     public DateTime? APPROVE_DATE { get; set; }
+
+
 }

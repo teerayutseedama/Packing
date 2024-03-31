@@ -21,7 +21,7 @@ namespace Packing.Views.DataView
        public string? MaterialCode { get; set; }
        public string? MaterialName{ get; set; }
        public string? BatchNo{ get; set; }
-       public string? Shift { get; set; }
+       public int? Shift { get; set; }
        public DateTime? FromDate{ get; set; }
        public DateTime? ToDate{ get; set; }
     }

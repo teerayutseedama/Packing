@@ -27,6 +27,9 @@
   "CloseJob": "Close Job",
   "PrintQRCode": "Print QR Code",
   "ClearData": "Clear Data",
+  "DeleteRow": "Delete Item",
+
+  "CloseBatchConfirm": "Close Batch Confirmation",
 
   "Plant": "Plant",
   "Search": "Search",
@@ -53,6 +56,9 @@
   "Hold": "HOLD",
   "FormNo": "Form No",
   "Rev": "Rev",
+  "MaterailConfiguration": "Materail Configuration",
+  "OpenClose": "OPEN/CLOSE",
+  "Close": "Close",
 
   "UserName": "User Name",
   "Password": "Password",

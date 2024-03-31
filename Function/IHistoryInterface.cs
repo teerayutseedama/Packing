@@ -28,26 +28,7 @@ namespace Packing.Function
         {
             try
             {
-                List<HistoryDataView> result = new List<HistoryDataView>();
-                Expression<Func<tbt_pk_batch_no_header, bool>> batchConds = PredicateBuilder.New<tbt_pk_batch_no_header>(x => x.MFG_DATE.Date >= data.FromDate.Value.Date && x.MFG_DATE.Date <= data.ToDate.Value.Date);
-                Expression<Func<tbm_plant, bool>> plantConds = PredicateBuilder.New<tbm_plant>(true);
-                Expression<Func<tbm_material, bool>> materialConds = PredicateBuilder.New<tbm_material>(true);
-                if (data.Line != null)
-                {
-                    batchConds.And(x => x.PACKING_LINE_ID.ToString() == data.Line);
-                }
-                if (data.MaterialCode != null)
-                {
-                    batchConds = batchConds.And(x => x.MATERIAL_CODE == data.MaterialCode);
-                }
-                if (data.MaterialName != null)
-                {
-                    materialConds = materialConds.And(x => x.MATERIAL_NAME == data.MaterialName);
-                }
-                if (data.BatchNo != null)
-                {
-                    batchConds = batchConds.And(x => x.BATCH_NO == data.BatchNo);
-                }
+                var pl = await  _context2.tbm_plants.ToListAsync();
 
                // var pl = await _context2.tbm_plants.FirstOrDefaultAsync(plantConds);
                  var pl = await _context2.tbm_plants.ToListAsync();

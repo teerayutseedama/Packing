@@ -67,7 +67,7 @@ namespace Packing.Controllers
                         worksheet.Cell(row, 8).Value = item.UOM;
                         worksheet.Cell(row, 9).Value = item.MFGDate;
                         worksheet.Cell(row, 10).Value = item.ExpireDate;
-                        worksheet.Cell(row, 11).Value = item.Stataus;
+                        worksheet.Cell(row, 11).Value = item.Status;
                         row++;
                     }
                     workbook.SaveAs(path);

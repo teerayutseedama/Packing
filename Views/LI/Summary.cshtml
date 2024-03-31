@@ -7,7 +7,7 @@
 }
 <div class="row" style="padding-top:10px">
     <div class="form-row">
-        <div class="form-group col-md-1" style="padding:2px">
+        <div class="form-group col-md-1" style="padding:2px;display:none" >
             <label style="font-weight:normal">@localizer["Plant"]</label>
             <select id="selplant" class="form-control select2" style="width:100%">
                 <option></option>
@@ -55,7 +55,7 @@
                 {
                     foreach (var item in masterData.MaterialList!)
                     {
-                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_NAME</option>
+                        <option value="@item.MATERIAL_NAME">@item.MATERIAL_NAME</option>
                     }
                 }
             </select>
@@ -80,20 +80,19 @@
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["FromDate"]</label>
+            <label style="font-weight:normal">@localizer["FromDate"] <span style="color:red;font-weight:bold"> *</span></label>
             <input id="txfromdate" class="form-control text-center" />
         </div>
         <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["ToDate"]</label>
+            <label style="font-weight:normal">@localizer["ToDate"] <span style="color:red;font-weight:bold"> *</span></label>
             <input id="txtodate" class="form-control text-center" />
         </div>
         <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:27px">
             <button type="button" onclick="GetSummaryList()" class="btn btn-primary">@localizer["Search"]</button>
             <button type="button" onclick="GetExcel()" class="btn btn-secondary">@localizer["Excel"]</button>
         </div>
-        <div class="form-group col-md-12">
-            <div class="form-inline">
-                <table class="isr-table" id="tbl1">
+        <div class="form-group col-md-12" style="overflow:auto;height:80vh;border:solid thin lightgray">
+            <table class="isr-table" id="tbl1">
                     <thead>
                         <tr>
                             <th style="width:120px">@localizer["MaterialCode"]</th>
@@ -110,7 +109,6 @@
                        
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -218,6 +216,16 @@
 
     function GetSummaryList() {
         var txt='';
+
+        var frmdate = moment($("#txfromdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD");
+        var frmtodate = moment($("#txtodate").val(), "DD-MM-YYYY").format("YYYY/MM/DD");
+
+        if (frmdate == 'Invalid date' || frmtodate == 'Invalid date') {
+            Notiflix.Notify.warning('ช่วงวันที่ไม่ถูกต้อง !!!')
+            return
+        }
+
+
         $.post('@Url.Action("GetSummaryList", "Summary")', {
             Plant: $('#selplant').val(),
             Line: $('#selline').val(),
@@ -244,13 +252,12 @@
                         '</tr>';
          
                 }  
-                $('#summarybody').html(txt);
             }else{
                 Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
-            } 
+            }
+            $('#summarybody').html(txt);
         }).fail(function () {
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่');
-
         });
     }
 

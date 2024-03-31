@@ -69,15 +69,18 @@ select {
 .isr-table {
     width: 100%;
     border:thin solid silver;
+    margin-top:-1px
 }
     .isr-table th {
-        height: 25px;
+        height: 30px;
         padding: 0px 5px 0px 5px;
         border: thin solid #D6DBDF;
-        background-color: #EBEDEF;
+        background-color: silver;
         text-align: center;
         font-weight: normal;
         white-space: nowrap;
+        position:sticky;
+        top:0;
     }
     .isr-table td {
         font-size: small;

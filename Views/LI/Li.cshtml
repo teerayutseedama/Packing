@@ -143,8 +143,8 @@
             @*<button type="button" id="btdelete" class="btn btn-danger" disabled onclick="DeleteRow()">@localizer["DeleteRow"]</button>*@
             <button type="button" class="btn btn-warning" onclick="Reset()">@localizer["ClearData"]</button>
         </div>
-        <div class="form-group col-md-12" style="text-align:center">
-            <table class="isr-table" id="tblbatch">
+        <div class="form-group col-md-12" style="overflow:auto;height:70vh;border:solid thin lightgray">
+            <table class="isr-table" id="tblbatch" >
                 <thear>
                     <tr>
                         <th style="width:45px;font-weight:normal"><input type="checkbox" id="checkkall" onchange="checkall(this.checked)" /></th>

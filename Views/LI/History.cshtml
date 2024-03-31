@@ -8,7 +8,7 @@
 
 <div class="row" style="padding-top:10px">
     <div class="form-row">
-        <div class="form-group col-md-1" style="padding:2px">
+        <div class="form-group col-md-1" style="padding:2px;display:none">
             <label style="font-weight:normal">@localizer["Plant"]</label>
             <select id="selplant" class="form-control select2" style="width:100%">
                 <option></option>
@@ -94,25 +94,25 @@
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["FromDate"]</label>
+            <label style="font-weight:normal">@localizer["FromDate"] <span style="color:red;font-weight:bold"> *</span></label>
             <input id="txfromdate" class="form-control text-center" />            
         </div>
         <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["ToDate"]</label>
+            <label style="font-weight:normal">@localizer["ToDate"] <span style="color:red;font-weight:bold"> *</span></label>
             <input id="txtodate" class="form-control text-center" />
         </div>
         <div class="form-group col-md-2" style="margin-bottom:0px;padding-top:27px">
             <button type="button" onclick="GetSummaryList()" class="btn btn-primary">@localizer["Search"]</button>
             <button type="button" onclick="GetExcel()" class="btn btn-secondary">@localizer["Excel"]</button>
         </div>
-        <div class="form-group col-md-12">
-            <div class="form-inline">
-                <table class="isr-table" id="tbl1">
+        <div class="form-group col-md-12" style="overflow:auto;height:80vh;border:solid thin lightgray">
+            <table class="isr-table" id="tbl1">
                     <thead>
                         <tr>
                             <th style="width:120px">@localizer["BatchNo"]</th>
-                            <th style="width:120px">@localizer["SubBatch"]</th>
+                            <th style="width:60px">@localizer["SubBatch"]</th>
                             <th style="width:100px">@localizer["Plant"]</th>
+                            <th style="width:100px">@localizer["SLOC"]</th>
                             <th style="width:100px">@localizer["Line"]</th>
                             <th>@localizer["MaterialCode"]</th>
                             <th>@localizer["MaterialName"]</th>
@@ -130,7 +130,6 @@
                      
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -267,6 +266,7 @@
                         '<td class="text-center" > ' + d.batchNo + ' </td>' +
                         '<td class="text-center" > ' + d.sub_batch + ' </td>' +
                         '<td class="text-center" > ' + d.plant + ' </td>' +
+                        '<td class="text-center" > ' + d.sloc + ' </td>' +
                         '<td class="text-center" > ' + d.line + ' </td>' +
                         '<td class="text-center" > ' + d.materialCode + ' </td>' +
                         '<td> ' + d.materialName + ' </td>' +
@@ -289,11 +289,15 @@
         });
     }
     function mapStatus(value){
-        if (value == "Pass") {
+        if (value == "WIP") {
+            return 'gray';
+        } else if (value == "PASS") {
             return 'green';
-            }else{
+        } else if (value == "HOLD") {
             return 'gold';
-            }
+        }else{
+            return 'red';
+        }
     }
 
     function GetExcel() {

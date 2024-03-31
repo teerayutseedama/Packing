@@ -22,7 +22,7 @@
         </div>
         <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["Line"]</label>
-            <select id="seltype" class="form-control select2" style="width:100%">
+            <select id="selline" class="form-control select2" style="width:100%">
                 <option></option>
                 @if (masterData.LineList!.Count() > 0)
                 {
@@ -46,7 +46,7 @@
                 }
             </select>
         </div>
-        <div class="form-group col-md-2" style="padding:2px">
+        <div class="form-group col-md-3" style="padding:2px">
             <label style="font-weight:normal">@localizer["MaterialName"]</label>
             <select id="selmatname" class="form-control select2" style="width:100%">
                 <option></option>
@@ -54,7 +54,7 @@
                 {
                     foreach (var item in masterData.MaterialList!)
                     {
-                        <option value="@item.MATERIAL_CODE">@item.MATERIAL_NAME</option>
+                        <option value="@item.MATERIAL_NAME">@item.MATERIAL_NAME</option>
                     }
                 }
             </select>
@@ -74,22 +74,10 @@
             </select>
         </div>
         <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["MFGDate"]</label>
+            <label style="font-weight:normal">@localizer["MFGDate"] <span style="color:red;font-weight:bold"> *</span></label>
             <input id="txmfgdate" class="form-control text-center" />
         </div>
-        <div class="form-group col-md-1" style="padding:2px">
-            <label style="font-weight:normal">@localizer["Line"]</label>
-            <select id="selline" class="form-control select2" style="width:100%">
-                <option></option>
-                @if (masterData.LineList!.Count() > 0)
-                {
-                    foreach (var item in masterData.LineList!)
-                    {
-                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
-                    }
-                }
-            </select>
-        </div>
+
         <div class="form-group col-md-1" style="padding:2px">
             <label style="font-weight:normal">@localizer["Status"]</label>
             @*tbm_pk_batch_status*@
@@ -116,23 +104,25 @@
             <button type="button" onclick="GetLoaddingDataViews()" class="btn btn-primary">@localizer["Search"]</button>
             <button type="button" onclick="GetExcel()" class="btn btn-secondary">@localizer["Excel"]</button>
         </div>
-        <div class="form-group col-md-12">
-            <div class="form-inline">
-                <table class="isr-table" id="tbl1">
+        <div class="form-group col-md-12" style="overflow:auto;height:80vh;border:solid thin lightgray">
+            <table class="isr-table" id="tbl1">
                     <thead>
                         <tr>
                             <th style="width:120px">@localizer["BatchNo"]</th>
                             <th style="width:80px">@localizer["SubBatch"]</th>
                             <th>@localizer["Plant"]</th>
+                            <th style="width:100px">@localizer["SLOC"]</th>
+                            <th style="width:80px">@localizer["Line"]</th>
+                            <th style="width:120px">@localizer["MaterialCode"]</th>
                             <th>@localizer["MaterialName"]</th>
                             <th>@localizer["Package"]</th>
-                            <th style="width:100px">@localizer["Line"]</th>
-                            <th>@localizer["MFGDate"]</th>
-                 @*           <th>@localizer["RunNo"]</th>*@
+                            <th style="width:100px">@localizer["MFGDate"]</th>
+                            <th style="width:80px">@localizer["Shift"]</th>
+                            <th>@localizer["RunNo"]</th>
                             <th>@localizer["Qty"]</th>
                             <th>@localizer["UOM"]</th>
                             <th style="width:120px">@localizer["Status"]</th>
-                            <th style="width:45px"></th>
+                            <th style="width:40px;background-color:silver"></th>
                         </tr>
                     </thead>
                     <tbody id="loadingbody">
@@ -140,7 +130,6 @@
                        
                     </tbody>
                 </table>
-            </div>
         </div>
     </div>
 </div>
@@ -204,8 +193,16 @@
 
     function GetLoaddingDataViews() {
         var txt = '';
+
+        var mfgdate = moment($("#txmfgdate").val(), "DD-MM-YYYY").format("YYYY/MM/DD");
+
+        if (mfgdate == 'Invalid date') {
+            Notiflix.Notify.warning('รูปแบบวันที่ไม่ถูกต้อง !!!')
+            return
+        }
+
         $.post('@Url.Action("GetLoaddingDataViews", "LoadingList")', {
-            Stataus: $("#selstatus").val(),
+            Status: $("#selstatus").val(),
             Plant: $('#selplant').val(),
             Line: $('#selline').val(),
             MaterialCode: $('#selmatcode').val(),
@@ -219,36 +216,28 @@
             if (data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
                     var d = data[i];
-                    var st;
-                    if (d.status == null){
-                        st = "อยู่ระหว่างกำเนินการ";
-                    }else{
-                        if (d.status == 1) {
-                            st = "รออนุมัติ [PASS]";
-                        }else{
-                            st = "รออนุมัติ [HOLD]";
-                        }
-                    }
                     txt += '<tr ondblclick="editData(`' + d.batchNo + '`,' + d.subBatch + ')">' +
-                        '<td class="text-center" > ' + d.batchNo + ' </td>' +
-                        '<td class="text-center" > ' + d.subBatch + ' </td>' +
-                        '<td class="text-center" > ' + d.plant + ' </td>' +
-                        '<td>' + d.materialName + '</td>' +
-                        '<td class="text-center" > ' + d.package + '</td>' +
-                        '<td class="text-center" > ' + d.line + ' </td>' +
-                        '<td class="text-center" > ' + d.mfgDate + ' </td>' +
-                        //'<td class="text-center" > ' + d.runNo + ' </td>' +
-                        '<td class="text-right" > ' + d.qty + ' </td>' +
-                        '<td class="text-center" > ' + d.uom + ' </td>' +
-                        '<td class="text-center" > ' + st + ' </td>' +
-                        '<td class="text-center" ><i class="fa fa-check-square-o" aria-hidden="true" title="Close Batch" style="color:green" onclick=" showmodal(1,`' + d.batchNo + '`,`' + d.subBatch + '`)"></i></td>' +
-                        '</tr>';
-
+                    '<td class="text-center" > ' + d.batchNo + ' </td>' +
+                    '<td class="text-center" > ' + d.subBatch + ' </td>' +
+                    '<td class="text-center" > ' + d.plant + ' </td>' +
+                    '<td class="text-center" > ' + d.sloc + ' </td>' +
+                    '<td class="text-center" > ' + d.line + ' </td>' +
+                    '<td class="text-center" > ' + d.materialCode + ' </td>' +
+                    '<td>' + d.materialName + '</td>' +
+                    '<td class="text-center" > ' + d.package + '</td>' +                   
+                    '<td class="text-center" > ' + d.mfgDate + ' </td>' +
+                    '<td class="text-center" > ' + d.shift + ' </td>' +
+                    '<td class="text-center" > ' + d.runNo + ' </td>' +
+                    '<td class="text-right" > ' + d.qty + ' </td>' +
+                    '<td class="text-center" > ' + d.uom + ' </td>' +
+                    '<td class="text-center" style = "color:' + mapStatus(d.id_status) + '" > ' + d.status + ' </td>' +
+                    '<td class="text-center" style="background-color:silver" ><i class="fa fa-check-square-o" aria-hidden="true" title="Close Batch" style="color:green" onclick=" showmodal(1,`' + d.batchNo + '`,`' + d.subBatch + '`)"></i></td>' +
+                    '</tr>';
                 }
-                $('#loadingbody').html(txt);
             } else {
                 Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
             }
+            $('#loadingbody').html(txt);
         }).fail(function () {
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
@@ -260,7 +249,7 @@
             url: '@Url.Action("DownloadLoaddingExcel", "LoadingList")',
             type: 'POST',
             data:{
-                Stataus: $("#selstatus").val(),
+                Status: $("#selstatus").val(),
                 Plant: $('#selplant').val(),
                 Line: $('#selline').val(),
                 MaterialCode: $('#selmatcode').val(),
@@ -305,5 +294,16 @@
             Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
 
         });
+    }
+    function mapStatus(value) {
+        if (value == '0') {
+            return 'gray';
+        } else if (value == '1') {
+            return 'green';
+        } else if (value == '2') {
+            return 'gold';
+        } else {
+            return 'red';
+        }
     }
 </script>
