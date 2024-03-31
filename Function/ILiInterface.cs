@@ -7,6 +7,11 @@ using Packing.Views;
 using System.IO.Packaging;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Microsoft.AspNetCore.Mvc;
+using System.Drawing.Imaging;
+using System.Drawing;
+using QRCoder;
+using System.Globalization;
 
 namespace Packing.Function
 {
@@ -118,26 +123,60 @@ namespace Packing.Function
 
         public async Task<IEnumerable<QrCodeData>> GetQrCodeData(GetQrCodeData data)
         {
+
+            try
+            {
+      
+                var list= await (from he in _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH)
+                                 from m in _context.tbm_material.Where(x => x.MATERIAL_CODE == he.MATERIAL_CODE).DefaultIfEmpty()
+                                 from mt in _context.tbm_materail_type.Where(x => x.ID.ToString() == m.MATERIAL_TYPE_ID).DefaultIfEmpty()
+                                 from s in _context.tbm_pk_work_shift.Where(x => x.ID == he.WORK_SHIFT_ID).DefaultIfEmpty()
+                                 from li in _context.tbm_pk_production_line.Where(x=>x.PACKING_LINE_ID==he.PACKING_LINE_ID).DefaultIfEmpty()
+                              from d in _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH && data.BATCH_RUNNING_NO.Contains(x.BATCH_RUNNING_NO))
+                              select new 
+                              {
+                                  Material_GROUP = m.MATERIAL_GROUP,
+                                  Material_Type = mt.MATERIAL_TYPE ?? "",
+                                  BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
+                                  CodeQR =  he.BATCH_NO + "." + d.BATCH_RUNNING_NO ,
+                                  WORK_SHIFT​ = s.WORK_SHIFT ?? "WORK_SHIFT",
+                                  BATCH_NO = m.MATERIAL_CODE+"."+ he.BATCH_NO+"."+li.PK_LINE_NAME+"."+d.BATCH_RUNNING_NO,
+                                  MFG_DATE = he.MFG_DATE,
+                                  EXPIRE_DATE​ = he.EXPIRE_DATE,
+                                  FORM_NO​ = m.FORM_NO ?? "FORM_NO",
+                                  REV = m.REV ?? "REV",
+                              }).Distinct().ToListAsync();
            
-           
-            
-             return     await (from h in _context.tbt_pk_batch_no_header.Where(x => x.BATCH_NO==data.BATCH_NO && x.SUB_BATCH==data.SUB_BATCH)
-                                  from m in _context.tbm_material.Where(x=>x.MATERIAL_CODE==h.MATERIAL_CODE)
-                                  from mt in _context.tbm_materail_type.Where(x=>x.ID.ToString()==m.MATERIAL_TYPE_ID)
-                                  from s in _context.tbm_pk_work_shift.Where(x=>x.ID==h.WORK_SHIFT_ID)
-                                  from d in _context.tbt_pk_batch_no_detail.Where(x => x.BATCH_NO == data.BATCH_NO && x.SUB_BATCH == data.SUB_BATCH && data.BATCH_RUNNING_NO.Contains(x.BATCH_RUNNING_NO))
-                                  select new QrCodeData {
-                                       Material_GROUP=m.MATERIAL_GROUP,
-                                      Material_Type = mt.MATERIAL_TYPE,
-                                      BATCH_RUNNING_NO = d.BATCH_RUNNING_NO,
-                                      CodeQR = h.BATCH_NO+"."+d.BATCH_RUNNING_NO,
-                                      WORK_SHIFT​ = s.WORK_SHIFT,
-                                      BATCH_NO = h.BATCH_NO,
-                                      MFG_DATE = h.MFG_DATE,
-                                      EXPIRE_DATE​ =h.EXPIRE_DATE ,
-                                      FORM_NO​ =m.FORM_NO ,
-                                      REV = m.REV,
-                                  }).ToListAsync();
+                var qr = new List<QrCodeData>();
+                foreach (var item in list)
+                {
+                    // สร้าง QR Code จากข้อมูล BATCH_NO และ BATCH_RUNNING_NO
+                    var qrCode = await GenerateQRCode(item.CodeQR);
+
+                    // สร้าง QrCodeData จากข้อมูลที่ได้
+                    var qrCodeData = new QrCodeData
+                    {
+                        Material_GROUP = item.Material_GROUP,
+                        Material_Type = item.Material_Type,
+                        BATCH_RUNNING_NO = item.BATCH_RUNNING_NO,
+                        CodeQR = qrCode,
+                        WORK_SHIFT = item.WORK_SHIFT,
+                        BATCH_NO = item.BATCH_NO,
+                        MFG_DATE = item.MFG_DATE,
+                        EXPIRE_DATE = item.EXPIRE_DATE,
+                        FORM_NO = item.FORM_NO,
+                        REV = item.REV ,
+                    };
+
+                    qr.Add(qrCodeData);
+                }
+                return qr.AsEnumerable();
+            }
+            catch (Exception ex)
+            {
+                string mess = ex.Message;
+                throw;
+            }
         
         }
 
@@ -184,6 +223,10 @@ namespace Packing.Function
         {
             try
             {
+                var yy = DateTime.Now.Year; 
+
+                DateTime now = new DateTime(yy,DateTime.Now.Month,DateTime.Now.Day);
+
                 var save = new tbt_pk_batch_no_header();
                 save.BATCH_NO = data.BATCH_NO;
                 save.SUB_BATCH = data.SUB_BATCH;
@@ -200,7 +243,7 @@ namespace Packing.Function
                 save.EXPIRE_DATE = data.EXPIRE_DATE;
                 save.BATCH_STATUS = data.BATCH_STATUS;
                 save.CREATE_BY = data.User;
-                save.CREATE_DATE = DateTime.Now;
+                save.CREATE_DATE = now;
                 save.UPDATE_BY = null;
                 save.UPDATE_DATE = null;
                 save.APPROVE_BY =null;
@@ -219,7 +262,7 @@ namespace Packing.Function
                     detail.REMARK_HOLD = "";
                     detail.REMARK_HOLD_TO_PASS = "";
                     detail.CREATE_BY = data.User;
-                    detail.CREATE_DATE = DateTime.Now;
+                    detail.CREATE_DATE = now;
                     detail.UPDATE_BY = null;
                     detail.UPDATE_DATE = null;
                     detail.APPROVE_BY = null;
@@ -236,6 +279,29 @@ namespace Packing.Function
                 throw;
             }
             return _response;
+        }
+
+
+        public async  Task<byte[]> GenerateQRCode(string value)
+        {
+            byte[] qrCodeImageBytes = await Task.Run(() =>
+            {
+                // สร้าง QR Code
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                QRCodeData qrCodeData = qrGenerator.CreateQrCode(value, QRCodeGenerator.ECCLevel.Q);
+                QRCode qrCode = new QRCode(qrCodeData);
+
+                // แปลง QR Code เป็น Bitmap
+                Bitmap qrCodeImage = qrCode.GetGraphic(20);
+
+                // แปลง Bitmap เป็น byte array
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    qrCodeImage.Save(stream, ImageFormat.Png);
+                    return stream.ToArray();
+                }
+            });
+            return qrCodeImageBytes;
         }
     }
 }

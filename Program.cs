@@ -1,3 +1,4 @@
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
@@ -30,6 +31,7 @@ builder.Services.AddDbContext<VMS_CORE_2Context>(options => options.UseSqlServer
 {
     option.EnableRetryOnFailure();
 }));
+builder.Services.AddSession();
 //Configure multi langnage
 builder.Services.AddLocalization();
 builder.Services.AddDistributedMemoryCache();
@@ -86,7 +88,7 @@ app.UseRequestLocalization(localizationOptions);
 //*******************************************************
 
 app.UseAuthorization();
-
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=LI}/{action=Logout}/{id?}");

@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "/Users/teerayutseedama/Documents/Packing/Packing.csproj": {}
   },
   "projects": {
@@ -15,6 +16,30 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/teerayutseedama/.nuget/NuGet/NuGet.Config"
+=======
+    "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\Packing.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\Packing.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\Packing.csproj",
+        "projectName": "Packing",
+        "projectPath": "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\Packing.csproj",
+        "packagesPath": "C:\\Users\\wutt\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\wutt\\Documents\\GitHub\\Packing\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\wutt\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+>>>>>>> 083d54d087d72d1ec66d2678e631e94ef4e45d0e
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -70,9 +95,17 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "QRCoder": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.6, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.9, )"
             }
           },
           "imports": [

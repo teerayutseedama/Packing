@@ -11,7 +11,7 @@
 
 <div class="row" style="padding-top:10px">
     <div class="form-row">
-        <div class="form-group col-md-3" style="margin-bottom:3px">
+        <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selline">@localizer["Line"]</label>
             <select id="selline" onchange="selectLine()" class="form-control select2" style="width:100%">
                 <option></option>
@@ -24,7 +24,7 @@
                 }
             </select>
         </div>
-        <div class="form-group col-md-3" style="margin-bottom:3px">
+        <div class="form-group col-md-2" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="selsloc">@localizer["SLOC"]</label>
             <select id="selsloc" onchange="selectSloc()" class="form-control select2" style="width:100%">
                 <option></option>
@@ -37,7 +37,7 @@
                 }
             </select>
         </div>
-        <div class="form-group col-md-1" style="margin-bottom:3px">
+        <div class="form-group col-md-3" style="margin-bottom:3px">
             <label style="font-weight:normal;margin-bottom:3px" for="txbatch">@localizer["BatchNo"]</label>
             <input type="text" class="form-control text-center" id="txbatch"  readonly>
         </div>
@@ -176,10 +176,10 @@ function LoadData(){
             }, function (data) {
                 if (data != null) {
                     document.getElementById('btclose').disabled = false;
-                    batchNoLast = data?.batcH_NO;
-                    batchSub = data?.suB_BATCH;
+               
                     $('#selline').val(data.packinG_LINE_ID).change();
                     $('#selsloc').val(data.sloc).change();
+                    console.log('ss2', $('#selsloc').val());
                     $('#selmatcode').val(data.materiaL_CODE).change();
                     $('#seluom').val(data.uom).change();
                     $('#txtotalqty').val(data.qtY_TOTAL);
@@ -202,6 +202,9 @@ function LoadData(){
                     //}).datepicker("setDate", moment(data.expirE_DATE));
                     $('#txstatus').val(data.batcH_STATUS);
                     $('#txpackage').val(data.package);
+                    batchNoLast = data?.batcH_NO.trim();
+                    batchSub = data?.suB_BATCH;
+                    $('#txbatch').val(batchNoLast);
                     //selectDate();
                     Apply();
                 } else {
@@ -241,7 +244,7 @@ function LoadData(){
         var qty = $('#txtotalqty').val();
         if (qty > 0) {
             qtys = qty;
-            batchNoLast = matcode + '.' + batchNo + '.' + line+'.' + qtys;
+            batchNoLast = batchNo;
             $('#txbatch').val(batchNoLast);
 
 
@@ -277,9 +280,15 @@ function LoadData(){
                     $('#txtotalqty').val(data.forM_NO);
                 }
                 if (data.sloC_ID != null) {
-                    $('#selsloc').val(data.sloC_ID).change();
+                   // $('#selsloc').val(data.sloC_ID).change();
+                   // console.log('ss1',$('#selsloc').val());
                 }
-                batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                if ('@id'==''){
+                   // batchNoLast = matcode + '.' + batchNo + '.' + line + '.' + qtys;
+                    batchNoLast = batchNo;
+                }
+              
+                selectSloc();
                 selectDate();
                 } else {
                     Notiflix.Notify.warning('ไม่พบข้อมูลที่ค้นหา')
@@ -300,9 +309,9 @@ function LoadData(){
         var qty = $('#txtotalqty').val();
         var txt='';
         if (qty > 0) {
-            var fqty = $('#txqtyfrom').val();;
+            var fqty = parseInt($('#txqtyfrom').val());
             for (var i = 0; i < qty; i++){
-                fqty++;
+              
                 batchList.push({ batchNo: batchNoLast, item: fqty,checked:false});
                 txt += '<tr>'+
                     '<td class="text-center" style = "width:45px;font-weight:normal" > <input type="checkbox" id ="cb1" class="cb1" onchange="singleCheck(this.checked,'+i+')"  /> </td>' +
@@ -315,10 +324,18 @@ function LoadData(){
                     '<td class="text-center" > ' + shift + ' </td>' +
                     '<td class="text-center" > ' + $('#txmfgdate') .val()+ ' </td>' +
                     '<td class="text-center" > ' + $('#txexpiredate').val() + ' </td>' +
-                                                            '</tr>';
+                    fqty++; '</tr>';
             }
             $('#bodyLiList').html(txt);
             $('#btsave').prop("disabled", false);
+            var chlist = document.getElementsByClassName('cb1');
+            var all = document.getElementById('checkkall');
+            all.checked = true;
+            for (var i = 0; i < chlist.length; i++) {
+                batchList[i].checked = true;
+                chlist[i].checked = true;
+       
+            }
         }else{
             Notiflix.Notify.warning('กรุณาระบุจำนวน');
         }
@@ -330,15 +347,18 @@ function LoadData(){
     }
 
     function selectSloc() {
+        batchNo.replace($('#selsloc option:selected').text(), '');
         batchNo += $('#selsloc option:selected').text();
        $.post('@Url.Action("CheckBatchNo", "LI")', {
            batchNo: batchNo
             }, function (data) {
-           if (data != null) {
-                batchSub = parseInt(data.subBatch) + 1;
+           if (data != undefined) {
+           
+                batchSub = parseInt(data.subBatch??0) + 1;
                 $('#txsubbatch').val(batchSub);
                 $('#txbatch').val(batchNoLast);
                 } else {
+                $('#txsubbatch').val(1);
                 $('#txbatch').val(batchNoLast);
                 }
             }).fail(function () {
@@ -346,7 +366,7 @@ function LoadData(){
 
             });
 
-
+       // console.log('ss3', $('#selsloc').val());
     }
 
     function selectDate() {
@@ -379,7 +399,7 @@ function LoadData(){
             return;
         }
         $.post('@Url.Action("SaveLIData", "LI")', {
-            BATCH_NO:batchNoLast,
+            BATCH_NO: batchNoLast.trim(),
             SUB_BATCH: batchSub,
             PACKING_LINE_ID: $('#selline').val(),
             SLOC: $('#selsloc').val(),
@@ -433,16 +453,25 @@ function LoadData(){
     }
     function print() {
         var number = [];
-        var ch = batchList.f
-        console.log('sss', batchList);
-        return;
+        var ch = batchList.filter(f=>f.checked==true);
+        if(ch.length>0){
+            number=ch.map(x=>x.item);
+        }
+       if(number.length<1){
+            Notiflix.Notify.warning('กรุณาเลือกรายการที่ต้องการ');
+            return;
+       }
+
+     
           $.post('@Url.Action("LoadQrData", "LI")', {
-            BATCH_NO: batchNoLast,
+            BATCH_NO: batchNoLast.trim(),
               SUB_BATCH: batchSub,
-        BATCH_RUNNING_NO:[],
+            BATCH_RUNNING_NO: number,
         }, function (data) {
-            if (data.status) {
-                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+            if (data) {
+                var url = '@Url.Action("QrCode", "LI")';
+                window.open(url, '_blank');
+                //location.href=url;
             } else {
                 Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
             }

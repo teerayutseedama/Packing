@@ -86,7 +86,7 @@ namespace Packing.Views.DataView
         public string Material_GROUP { get; set; } = null!;
         public string Material_Type { get; set; } = null!;
         public int BATCH_RUNNING_NO { get; set; }
-        public string CodeQR { get; set; } = null!;
+        public byte[] CodeQR { get; set; } = null!;
         public string WORK_SHIFT​ { get; set; } = null!;
         public string BATCH_NO { get; set; } = null!;
           public DateTime? MFG_DATE { get; set; }

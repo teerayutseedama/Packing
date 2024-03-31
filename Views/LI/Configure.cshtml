@@ -4,13 +4,15 @@
 @using Packing.vmsPackingDB;
 @inject IViewLocalizer localizer
 @{
-    IEnumerable<tbm_material> data = (IEnumerable<tbm_material>)ViewBag.Data;
+    IEnumerable<ConfigureDataView> data = (IEnumerable<ConfigureDataView>)ViewBag.Data;
     tbm_pk_batch_slip BatchSlip = (tbm_pk_batch_slip)ViewBag.BatchSlip;
     IEnumerable<tbm_pk_work_shift> WorkSlift = (IEnumerable<tbm_pk_work_shift>)ViewBag.WorkSlift;
     tbm_pk_work_shift A = @WorkSlift.FirstOrDefault(x => x.ID == 1)!;
       tbm_pk_work_shift B = @WorkSlift.FirstOrDefault(x => x.ID == 2)!;
     tbm_pk_work_shift C = @WorkSlift.FirstOrDefault(x => x.ID == 3)!;
+    MasterDataView masterData = (MasterDataView)ViewBag.MasterData;
 }
+
 <div class="row" style="padding-top:10px">
     <div class="form-row">
         <div class="form-group col-md-12">
@@ -94,15 +96,15 @@
                             foreach (var item in data)
                             {
                                 <tr ondblclick="showmodal(1)">
-                                    <td class="text-center">@item.DEFAULT_PACKING_LINE_ID</td>
+                                    <td class="text-center">@item.PACKING_LINE_ID</td>
                                     <td class="text-center">@item.MATERIAL_CODE</td>
                                     <td>@item.MATERIAL_NAME</td>
                                     <td class="text-center">@item.DEFAULT_UOM</td>
-                                    <td class="text-center" style="color:green">@item.STATUS</td>
-                                    <td class="text-center" style="color:gold">@item.DEFAULT_HOLD</td>
+                                    <td class="text-center" style="color:green">@item.STATUS_NAME</td>
+                                    <td class="text-center" style="color:gold">@item.HOLD</td>
                                     <td class="text-center">@item.FORM_NO</td>
                                     <td class="text-center">@item.REV</td>
-                                    <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1)"></i></td>
+                                    <td class="text-center"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color:goldenrod" onclick=" showmodal(1,'@item.MATERIAL_CODE', '@item.DEFAULT_PACKING_LINE_ID', '@item.DEFAULT_UOM', '@item.STATUS', '@item.DEFAULT_HOLD', '@item.FORM_NO','@item.REV','@item.id')"></i></td>
                                 </tr>
                             }
                      
@@ -135,20 +137,27 @@
                         <div class="form-inline">
                             <select id="selline" style="width:100%">
                                 <option></option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>D</option>
+                                @if (masterData.LineList!.Count() > 0)
+                                {
+                                    foreach (var item in masterData.LineList!)
+                                    {
+                                        <option value="@item.PACKING_LINE_ID">@item.PK_LINE_NAME</option>
+                                    }
+                                }
                             </select>
                         </div>
                     </div>
                     <div class="form-group col-md-6">
                         <label style="font-weight:normal">UNIT</label>
                         <select id="selunit" style="width:100%">
-                            <option>00</option>
-                            <option>KG</option>
-                            <option>BAG</option>
-                            <option>BOX</option>
+                            <option></option>
+                            @if (masterData.UomtList!.Count() > 0)
+                            {
+                                foreach (var item in masterData.UomtList!)
+                                {
+                                    <option value="@item.UOM">@item.UOM @item.UOM_NAME</option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="form-group col-md-6">
@@ -161,13 +170,19 @@
                     <div class="form-group col-md-6">
                         <label style="font-weight:normal">HOLD</label>
                         <select id="selhold" style="width:100%">
-                            <option value="1">HOLD</option>
-                            <option value="0" selected>PASS</option>
+                            <option></option>
+                            @if (masterData.StatausList!.Count() > 0)
+                            {
+                                foreach (var item in masterData.StatausList!)
+                                {
+                                    <option value="@item.ID">@item.BATCH_STATUS</option>
+                                }
+                            }
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label style="font-weight:normal">Form No</label>
-                        <input class="form-control" id="txformno" />
+                        <input class="form-control" id="txformnomat" />
                     </div>
                     <div class="form-group col-md-6">
                         <label style="font-weight:normal">Revision</label>
@@ -176,22 +191,33 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="showmodal(0)">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="SaveConfigureMaterial()">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="showmodal(0)">Close</button>
             </div>
         </div>
     </div>
 </div>
 <script>
+    var ID=0;
     $(document).ready(function () {
         SetPagename('Configuration');
     });
 
-    function showmodal(flagshow) {
+    function showmodal(flagshow, matCode, selline, selunit, selstatus, selhold, txformno,txrev,id) {
         if (flagshow == 1){
+            ID = parseInt(id);
             $('#modalconfig').show();
+            $('#txcode').val(matCode);
+            $('#selline').val(selline).change();
+            $('#selunit').val(selunit).change();
+            $('#selstatus').val(selstatus).change();
+            $('#selhold').val(selhold).change();
+            $('#txformnomat').val(txformno);
+            $('#txrev').val(txrev);
         }else{
+            ID=0;
             $('#modalconfig').hide();
+            $('#txcode').val('');
         }
     }
 
@@ -249,5 +275,27 @@
 
         });
     }
-   
+    function SaveConfigureMaterial() {
+        $.post('@Url.Action("SaveConfigureMaterial", "Configure")', {
+            id: ID,
+            MATERIAL_CODE: $('#txcode').val(),
+            DEFAULT_PACKING_LINE_ID: $('#selline').val(),
+            DEFAULT_UOM: $('#selunit').val(),
+            DEFAULT_HOLD: $('#selhold').val(),
+            STATUS: $('#selstatus').val(),
+            FORM_NO: $('#txformnomat').val(),
+            REV: $('#txrev').val(),
+        }, function (data) {
+            if (data.status) {
+                Notiflix.Notify.Success('บันทึกข้อมูลเสร็จสิ้น');
+                //setTimeout(location.reload(), 3000);
+            } else {
+                Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+            }
+
+        }).fail(function () {
+            Notiflix.Notify.Failure('เกิดข้อผิดพลาด ตรวจสอบข้อมูลใหม่')
+
+        });
+    }
 </script>

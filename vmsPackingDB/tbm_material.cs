@@ -5,6 +5,7 @@ namespace Packing.vmsPackingDB;
 
 public partial class tbm_material
 {
+    public int id { get; set; } 
     public string MATERIAL_CODE { get; set; } = null!;
 
     public string MATERIAL_NAME { get; set; } = null!;
