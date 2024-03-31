@@ -111,6 +111,7 @@
                     <thead>
                         <tr>
                             <th style="width:120px">@localizer["BatchNo"]</th>
+                            <th style="width:120px">@localizer["SubBatch"]</th>
                             <th style="width:100px">@localizer["Plant"]</th>
                             <th style="width:100px">@localizer["Line"]</th>
                             <th>@localizer["MaterialCode"]</th>
@@ -259,10 +260,12 @@
             ToDate: moment($("#txtodate").val(), "DD-MM-YYYY").format("YYYY/MM/DD")
         }, function (data) {
             if (data.length > 0) {
+                console.log(data)
                 for (var i = 0; i < data.length; i++) {
                     var d = data[i];
                     txt += '  <tr>'+
                         '<td class="text-center" > ' + d.batchNo + ' </td>' +
+                        '<td class="text-center" > ' + d.sub_batch + ' </td>' +
                         '<td class="text-center" > ' + d.plant + ' </td>' +
                         '<td class="text-center" > ' + d.line + ' </td>' +
                         '<td class="text-center" > ' + d.materialCode + ' </td>' +
