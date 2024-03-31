@@ -55,7 +55,7 @@ namespace Packing.Function
                 var ret = await (from head in _context.tbt_pk_batch_no_header.Where((h => data.Status == null || h.BATCH_STATUS.ToString() == data.Status))
                                  join mat in _context.tbm_material.Where(m => (data.MaterialCode == null || m.MATERIAL_CODE == data.MaterialCode) && (data.MaterialName == null || m.MATERIAL_NAME == data.MaterialName)) on head.MATERIAL_CODE equals mat.MATERIAL_CODE
                                  join pdl in _context.tbm_pk_production_line.Where(l => data.Line == null || l.PACKING_LINE_ID.ToString() == data.Line) on head.PACKING_LINE_ID equals pdl.PACKING_LINE_ID
-                                 //join plant in pl on pdl.PLANT_ID.ToString() equals plant.PLANT
+                                from p in pl.Where(x=>x.PLANT==pdl.PLANT_ID.ToString()).DefaultIfEmpty()
                                  join ws in _context.tbm_pk_work_shift.Where(s => data.Shift == null || s.ID.ToString() == data.Shift) on head.WORK_SHIFT_ID equals ws.ID
                                  join st in _context.tbm_pk_batch_status on head.BATCH_STATUS equals st.ID into sx
                                  from st in sx.DefaultIfEmpty()
@@ -63,8 +63,7 @@ namespace Packing.Function
                                  {
                                      BatchNo = head.BATCH_NO,
                                      sub_batch = head.SUB_BATCH,
-                                     //Plant = pl.FirstOrDefault(x => x.PLANT == pdl.PLANT_ID.ToString()).PLANT_NAME.ToString(),
-                                     //Plant = plant.PLANT_NAME,
+                                     Plant = p.PLANT_NAME,
                                      Line = pdl.PK_LINE_NAME,
                                      MaterialCode = head.MATERIAL_CODE,
                                      MaterialName = mat.MATERIAL_NAME,
@@ -75,7 +74,7 @@ namespace Packing.Function
                                      Qty = head.QTY_TOTAL,
                                      UOM = head.UOM,
                                      Stataus = st.BATCH_STATUS == null ? "WIP" : st.BATCH_STATUS,
-                                 }).Distinct().ToListAsync();
+                                 }).AsEnumerable().Distinct().ToListAsync();
                 return ret;
                 //var list = await (from nh in _context.tbt_pk_batch_no_header
                 //                  //from runno in minmax.Where(x => x.batch_no == nh.BATCH_NO && x.sub_batch == nh.SUB_BATCH)
